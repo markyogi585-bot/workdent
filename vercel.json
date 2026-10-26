@@ -34,6 +34,8 @@
     { "source": "/designer/projects", "destination": "/designer/projects.html" },
     { "source": "/designer/subscription", "destination": "/designer/subscription.html" },
     { "source": "/designer/wallet", "destination": "/designer/wallet.html" },
+    { "source": "/designers", "destination": "/designers.html" },
+    { "source": "/find-designers", "destination": "/find-designers.html" },
     { "source": "/projects", "destination": "/projects.html" },
     { "source": "/projects/new", "destination": "/projects/new.html" },
     { "source": "/profile", "destination": "/profile.html" },
