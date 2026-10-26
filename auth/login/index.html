@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WorkDent &bull; The Professional Network for Dental Work</title>
+  <title>Sign In &bull; WorkDent Dental Network</title>
+  <meta name="description" content="Sign in to your WorkDent professional account. Access dental CAD cases, lab overflow, and clinical network.">
   <link rel="icon" href="/favicon.ico">
   
-  <!-- Plus Jakarta Sans Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- CSS -->
   <link rel="stylesheet" href="/css/workdent-ui.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   
   <style>
     body {
@@ -99,12 +99,11 @@
       border-radius: 0.875rem;
       padding: 0.75rem 0.875rem;
       cursor: pointer;
-      transition: all 0.15s ease-in-out;
-      text-align: left;
+      transition: all 0.2s ease;
     }
     .role-card:hover {
-      border-color: #93c5fd;
-      background-color: #eff6ff;
+      border-color: #94a3b8;
+      background-color: #ffffff;
     }
     .role-card.selected {
       border-color: #2563eb;
@@ -116,15 +115,29 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Floating Header -->
+  <!-- Floating Header with 3-Dot Navigation System -->
   <header class="py-5 px-6 max-w-7xl mx-auto w-full flex items-center justify-between">
-    <a href="/" class="flex items-center text-2xl font-black text-slate-900 no-underline tracking-tight group">
-      <span class="font-extrabold tracking-tight">Work<span class="text-blue-600">Dent</span></span>
+    <a href="/" class="flex items-center gap-2.5 no-underline group">
+      <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
+        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xl font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
+          Work<span class="text-blue-600">Dent</span>
+        </span>
+        <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5">The Professional Network</span>
+      </div>
     </a>
+
     <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
       <a href="/community" class="hover:text-blue-600 transition-colors hidden sm:inline">Community</a>
       <a href="/jobs" class="hover:text-blue-600 transition-colors hidden sm:inline">Find Work</a>
-      <a href="/" class="text-blue-600 hover:underline">&larr; Back to Home</a>
+      <a href="/membership" class="hover:text-amber-600 transition-colors font-bold hidden sm:inline">VIP ⭐</a>
+      <a href="/" class="text-blue-600 font-bold hover:underline flex items-center gap-1">
+        <span>&larr;</span> Back to Home
+      </a>
     </div>
   </header>
 
@@ -166,6 +179,22 @@
               <span><strong>3-Day Cookie Security</strong> with rate-limit protection</span>
             </div>
           </div>
+
+          <!-- Quick Demo Logins -->
+          <div class="mt-8 pt-6 border-t border-slate-800">
+            <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">Instant Demo Accounts</div>
+            <div class="flex flex-wrap gap-1.5">
+              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-blue-600 text-[11px] font-bold text-slate-200 transition-colors" data-email="designer@workdent.io" data-pw="Password123!" data-role="designer">
+                👨‍🔬 Demo CAD Designer
+              </button>
+              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-blue-600 text-[11px] font-bold text-slate-200 transition-colors" data-email="lab@workdent.io" data-pw="Password123!" data-role="lab">
+                🏢 Demo Dental Lab
+              </button>
+              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-blue-600 text-[11px] font-bold text-slate-200 transition-colors" data-email="dentist@workdent.io" data-pw="Password123!" data-role="dentist">
+                🦷 Demo Dentist
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="relative z-10 pt-6 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
@@ -179,24 +208,24 @@
 
       <!-- Right Auth Card with Interactive Switch -->
       <div class="lg:col-span-7">
-        <div class="auth-card p-6 sm:p-10 max-w-lg mx-auto">
+        <div class="auth-card p-6 sm:p-8">
           
-          <!-- Unified Master Switch: Sign In vs Create Account -->
+          <!-- Master Switcher Tab -->
           <div class="auth-main-switch mb-6" role="tablist">
-            <button type="button" id="main-tab-login" class="auth-main-tab active" role="tab" aria-selected="true">
+            <button type="button" class="auth-main-tab active" id="main-tab-login" role="tab" aria-selected="true">
               Sign In
             </button>
-            <button type="button" id="main-tab-register" class="auth-main-tab " role="tab" aria-selected="false">
+            <button type="button" class="auth-main-tab" id="main-tab-register" role="tab" aria-selected="false">
               Create Account
             </button>
           </div>
 
-          <!-- Alert Notice Container -->
-          <div id="auth-notice" class="hidden mb-4 p-3 rounded-xl text-xs font-medium"></div>
+          <!-- Alert / Status Notice Area -->
+          <div id="auth-notice" class="hidden p-3.5 mb-5 rounded-xl text-xs font-semibold" role="alert"></div>
 
           <!-- Rate Limiter Warning Banner -->
-          <div id="rate-limit-banner" class="hidden mb-4 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-center gap-2.5">
-            <span class="text-base">⏳</span>
+          <div id="rate-limit-banner" class="hidden p-3.5 mb-5 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center gap-2">
+            <svg class="size-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
             <div>
               <p class="font-bold">Rate Limit Protected</p>
               <p id="rate-limit-msg">Too many attempts. Cooldown active: <span id="cooldown-timer" class="font-mono font-bold">60</span>s</p>
@@ -233,7 +262,7 @@
             <form id="form-login" class="space-y-4">
               <div>
                 <label for="signin-email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Address</label>
-                <input type="email" id="signin-email" name="email" autocomplete="email" required placeholder="dr.smith@dentalclinic.com" class="auth-input">
+                <input type="email" id="signin-email" name="email" autocomplete="email" required placeholder="designer@workdent.io" class="auth-input">
               </div>
 
               <!-- Password block -->
@@ -303,40 +332,38 @@
               <div class="grid grid-cols-2 gap-2.5">
                 <div>
                   <label for="reg-fullname" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Display Name</label>
-                  <input type="text" id="reg-fullname" required placeholder="Dr. Sarah Miller" class="auth-input">
+                  <input type="text" id="reg-fullname" required placeholder="Elena Rostova" class="auth-input">
                 </div>
                 <div>
                   <label for="reg-username" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">@Username</label>
                   <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs">@</span>
-                    <input type="text" id="reg-username" required placeholder="sarah_cad" class="auth-input pl-7" pattern="[a-zA-Z0-9_]{3,20}">
+                    <input type="text" id="reg-username" required placeholder="cad_master" class="auth-input pl-7" pattern="[a-zA-Z0-9_]{3,20}">
                   </div>
                 </div>
               </div>
 
               <div>
                 <label for="reg-email" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Address</label>
-                <input type="email" id="reg-email" autocomplete="email" required placeholder="sarah@digitaldentistry.com" class="auth-input">
+                <input type="email" id="reg-email" autocomplete="email" required placeholder="elena@dentaldesign.io" class="auth-input">
               </div>
 
               <div>
                 <label for="reg-password" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Create Password</label>
-                <input type="password" id="reg-password" autocomplete="new-password" required placeholder="Minimum 8 characters" class="auth-input">
+                <input type="password" id="reg-password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" class="auth-input">
+              </div>
+
+              <!-- 3-Day session checkbox -->
+              <div class="flex items-center gap-2 pt-1">
+                <input type="checkbox" id="reg-remember" checked class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
+                <label for="reg-remember" class="text-xs text-slate-600 cursor-pointer">Remember session for 3 days with encrypted cookie</label>
               </div>
 
               <button type="submit" id="reg-submit-btn" class="wd-btn-primary w-full justify-center py-3 text-sm mt-2">
-                <span id="reg-btn-label">Create Free Account</span>
+                <span id="reg-btn-label">Create WorkDent Account</span>
                 <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path></svg>
               </button>
             </form>
-
-          </div>
-
-          <div class="mt-6 pt-5 border-t border-slate-100 text-center text-xs text-slate-500">
-            <span>By proceeding, you agree to WorkDent's </span>
-            <a href="/terms" class="text-slate-700 underline hover:text-blue-600">Terms</a>
-            <span> and </span>
-            <a href="/privacy" class="text-slate-700 underline hover:text-blue-600">Privacy Policy</a>.
           </div>
 
         </div>
@@ -369,7 +396,7 @@
           secLogin.classList.remove('hidden');
           secRegister.classList.add('hidden');
           googleBtnText.textContent = 'Continue with Google';
-          window.history.replaceState(null, '', '/auth/login');
+          document.title = 'Sign In • WorkDent Dental Network';
         } else {
           tabRegister.classList.add('active');
           tabRegister.setAttribute('aria-selected', 'true');
@@ -378,12 +405,19 @@
           secRegister.classList.remove('hidden');
           secLogin.classList.add('hidden');
           googleBtnText.textContent = 'Sign up with Google';
-          window.history.replaceState(null, '', '/auth/register');
+          document.title = 'Create Account • WorkDent Dental Network';
         }
       }
 
       tabLogin.addEventListener('click', () => setTab('login'));
       tabRegister.addEventListener('click', () => setTab('register'));
+
+      // Check initial URL parameters or path
+      if (window.location.pathname.includes('/register') || window.location.search.includes('tab=register') || window.location.search.includes('mode=register')) {
+        setTab('register');
+      } else {
+        setTab('login');
+      }
 
       // --- 2. Notice System ---
       function showNotice(msg, type = 'error') {
@@ -451,7 +485,28 @@
         }
       });
 
-      // --- 5. Sign In Form Logic (Password & OTP) ---
+      // --- 5. Quick Demo Login Chips ---
+      document.querySelectorAll('.demo-login-chip').forEach(chip => {
+        chip.addEventListener('click', async () => {
+          setTab('login');
+          document.getElementById('signin-email').value = chip.dataset.email;
+          document.getElementById('signin-password').value = chip.dataset.pw;
+          showNotice('Loaded ' + chip.textContent.trim() + ' credentials. Signing in...', 'info');
+          
+          setTimeout(async () => {
+            const res = await window.WorkDentAuth.login({
+              email: chip.dataset.email,
+              password: chip.dataset.pw
+            });
+            if (res.success) {
+              showNotice('Signed in as ' + chip.dataset.email + '! Redirecting...', 'success');
+              setTimeout(() => { window.location.href = '/dashboard'; }, 400);
+            }
+          }, 300);
+        });
+      });
+
+      // --- 6. Sign In Form Logic (Password & OTP) ---
       let isOtpLogin = false;
       const btnPw = document.getElementById('login-mode-pw');
       const btnOtp = document.getElementById('login-mode-otp');
@@ -537,7 +592,7 @@
         }
       });
 
-      // --- 6. Role Selection Cards ---
+      // --- 7. Role Selection Cards ---
       const roleCards = document.querySelectorAll('#reg-roles-wrap .role-card');
       const roleValInput = document.getElementById('reg-role-val');
       roleCards.forEach(card => {
@@ -548,7 +603,7 @@
         });
       });
 
-      // --- 7. Registration Form Logic ---
+      // --- 8. Registration Form Logic ---
       document.getElementById('form-register').addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!checkRateLimit()) return;
@@ -577,26 +632,25 @@
         const res = await window.WorkDentAuth.register({
           email,
           password,
-          role,
-          name: fullName,
-          username: username.replace('@', '')
+          firstName: fullName.split(' ')[0],
+          lastName: fullName.split(' ').slice(1).join(' '),
+          role
         });
 
         if (res.success) {
           window.WorkDentAuth.RateLimiter?.recordAttempt(true);
-          showNotice('Account created! Dispatching verification code...', 'success');
+          showNotice('Account registered successfully! Redirecting...', 'success');
           setTimeout(() => {
-            window.location.href = `/auth/register/verify?email=${encodeURIComponent(email)}`;
-          }, 400);
+            window.location.href = window.WorkDentAuth.getDashboardUrl(role);
+          }, 600);
         } else {
           window.WorkDentAuth.RateLimiter?.recordAttempt(false);
           checkRateLimit();
           showNotice(res.error || 'Registration failed.', 'error');
-          regBtnLabel.textContent = 'Create Free Account';
+          regBtnLabel.textContent = 'Create WorkDent Account';
           submitBtn.disabled = false;
         }
       });
-
     })();
   </script>
 </body>

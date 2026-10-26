@@ -813,3 +813,76 @@ p {
   border-color: #BFDBFE;
   color: #2563EB;
 }
+
+/* ==================== 3-DOTS NAVBAR SYSTEM ==================== */
+.wd-dots-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  padding: 0 !important;
+  border-radius: 0.625rem !important;
+  color: #475569 !important;
+  transition: all 0.2s ease !important;
+}
+.wd-dots-btn:hover {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+.wd-more-dropdown {
+  position: relative !important;
+}
+.wd-more-dropdown .wd-dropdown-content {
+  position: absolute !important;
+  top: calc(100% + 0.5rem) !important;
+  right: 0 !important;
+  left: auto !important;
+  width: 16rem !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15) !important;
+  padding: 0.5rem !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(8px) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 100 !important;
+}
+.wd-more-dropdown.open .wd-dropdown-content {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+/* Mobile Drawer Smooth Animation */
+.wd-mobile-drawer {
+  position: absolute !important;
+  top: calc(100% + 0.75rem) !important;
+  left: 0 !important;
+  right: 0 !important;
+  max-height: 80vh !important;
+  overflow-y: auto !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.18) !important;
+  padding: 1.25rem !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-8px) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+  z-index: 99 !important;
+}
+.wd-mobile-drawer.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
