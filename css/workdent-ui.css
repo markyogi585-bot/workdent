@@ -582,3 +582,37 @@ p {
   .lg\:col-span-7 { grid-column: span 7 / span 7 !important; }
   .lg\:col-span-2 { grid-column: span 2 / span 2 !important; }
 }
+
+/* ==================== WORKDENT BANNER SYSTEM STYLES ==================== */
+.wd-banner-tab {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.8125rem !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  text-decoration: none !important;
+}
+.wd-banner-tab:hover {
+  background-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+.wd-banner-tab.active {
+  background-color: #eff6ff !important;
+  color: #2563eb !important;
+  border-color: #bfdbfe !important;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.1) !important;
+}
+.wd-banner-tab.active span.size-2 {
+  background-color: #2563eb !important;
+}
+
+#banner-image {
+  transition: opacity 0.25s ease-in-out !important;
+}

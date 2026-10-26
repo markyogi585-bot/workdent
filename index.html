@@ -169,9 +169,9 @@
                 <span>workdent.io/marketplace</span>
               </div>
             </div>
-            <div class="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
-              <span class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Live Platform</span>
+            <div class="flex items-center gap-2 text-xs font-semibold text-slate-400">
+              <span class="size-1.5 rounded-full bg-slate-300"></span>
+              <span>Encrypted Dental CAD Cloud</span>
             </div>
           </div>
           
@@ -236,6 +236,107 @@
           <p class="text-xs sm:text-sm font-semibold text-slate-700 mt-1">In-Browser 3D Viewer</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ==================== INTERACTIVE CLINICAL WORKFLOW BANNER SYSTEM ==================== -->
+  <section class="py-14 sm:py-18 bg-white border-b border-slate-200 overflow-hidden" id="clinical-showcase">
+    <div class="wd-container">
+      
+      <!-- Banner Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 mb-3">
+          <span>✦ Real-World Clinical CAD Architecture</span>
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Precision Dental Workflow In Action
+        </h3>
+        <p class="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+          From intraoral optical scans to micron-accurate milling files &bull; explore how top practices and laboratories collaborate seamlessly on WorkDent.
+        </p>
+      </div>
+
+      <!-- Banner Navigation Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-8" role="tablist" aria-label="Clinical Showcase Tabs">
+        <button type="button" class="wd-banner-tab active" data-banner-idx="0" role="tab" aria-selected="true">
+          <span class="size-2 rounded-full bg-blue-600"></span>
+          <span>1. Clinic Scan Ingestion</span>
+        </button>
+        <button type="button" class="wd-banner-tab" data-banner-idx="1" role="tab" aria-selected="false">
+          <span class="size-2 rounded-full bg-slate-300"></span>
+          <span>2. CAD Margin Verification</span>
+        </button>
+        <button type="button" class="wd-banner-tab" data-banner-idx="2" role="tab" aria-selected="false">
+          <span class="size-2 rounded-full bg-slate-300"></span>
+          <span>3. Laboratory Milling Capacity</span>
+        </button>
+        <button type="button" class="wd-banner-tab" data-banner-idx="3" role="tab" aria-selected="false">
+          <span class="size-2 rounded-full bg-slate-300"></span>
+          <span>4. Restorative Precision & Inspection</span>
+        </button>
+      </div>
+
+      <!-- Interactive Banner Display Card -->
+      <div class="max-w-5xl mx-auto bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative">
+        <div class="grid lg:grid-cols-12 min-h-[420px]">
+          
+          <!-- Banner Text Content Column -->
+          <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between text-white z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900/90">
+            <div>
+              <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md text-[11px] font-extrabold uppercase bg-blue-600/30 text-blue-300 border border-blue-500/40 mb-4" id="banner-badge">
+                Clinical Workflow 01
+              </div>
+              <h4 class="text-xl sm:text-2xl font-black text-white leading-tight" id="banner-title">
+                Zero-Loss Scan Ingestion Directly From Chairside
+              </h4>
+              <p class="text-slate-300 text-sm leading-relaxed mt-4" id="banner-desc">
+                Seamlessly transfer STL, PLY, and OBJ datasets directly from Medit Link, 3Shape TRIOS, and iTero scanners. No fragmented email threads or third-party download expirations.
+              </p>
+              
+              <div class="mt-6 space-y-2.5 text-xs text-slate-300" id="banner-features">
+                <div class="flex items-center gap-2">
+                  <span class="text-blue-400 font-bold">&check;</span>
+                  <span>Instant multi-gigabyte cloud upload with resumable transfer</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-blue-400 font-bold">&check;</span>
+                  <span>Patient data protection & HIPAA-compliant encryption</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Banner Action / Navigation Footer -->
+            <div class="mt-8 pt-6 border-t border-slate-800 flex items-center justify-between">
+              <a href="/cases/new" class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors">
+                <span>Start Case With This Workflow</span>
+                <span>&rarr;</span>
+              </a>
+              <div class="flex items-center gap-1.5">
+                <button type="button" id="banner-prev" class="size-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-colors" aria-label="Previous Showcase Banner">
+                  <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path></svg>
+                </button>
+                <button type="button" id="banner-next" class="size-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-colors" aria-label="Next Showcase Banner">
+                  <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Visual Imagery Column -->
+          <div class="lg:col-span-7 relative min-h-[300px] lg:min-h-full overflow-hidden bg-slate-950 flex items-center justify-center">
+            <img id="banner-image" src="./img/banners/banner-clinic.webp" alt="WorkDent Chairside Scan Ingestion" class="w-full h-full object-cover transition-opacity duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none"></div>
+            
+            <!-- Real-time Clinical Metric Overlay Badge -->
+            <div class="absolute bottom-4 right-4 bg-slate-900/90 backdrop-blur-md border border-slate-700/80 rounded-xl py-2 px-3.5 text-xs text-white shadow-lg flex items-center gap-2.5">
+              <span class="size-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span class="font-bold text-slate-200" id="banner-metric">Direct Optical Scanner Ingestion</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -936,6 +1037,7 @@
   </footer>
 
   <!-- ==================== SCRIPTS ==================== -->
+  <script src="./lib/workdent-banner.js"></script>
   <script src="./lib/workdent-stepper.js"></script>
   <script src="./lib/workdent-supabase.js"></script>
   <script src="./lib/app-connector.js"></script>
