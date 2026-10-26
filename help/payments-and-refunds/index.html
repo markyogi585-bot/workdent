@@ -46,7 +46,7 @@
         </a>
 
         <div class="relative wd-more-dropdown">
-          <button type="button" class="wd-dots-btn" id="wd-desktop-dots-btn" aria-label="More options" aria-expanded="false" title="More Options">
+          <button type="button" class="wd-dots-btn" onclick="window.toggleWorkdentMoreMenu(event, this)" id="wd-desktop-dots-btn" aria-label="More options" aria-expanded="false" title="More Options">
             <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
               <circle cx="5" cy="12" r="2.2"></circle>
               <circle cx="12" cy="12" r="2.2"></circle>
@@ -73,7 +73,7 @@
       <div class="flex items-center gap-2">
         <a href="/auth/login" class="text-xs font-bold text-slate-700 hover:text-blue-600 px-3 py-2 rounded-xl transition-colors hidden sm:inline">Sign In</a>
         <a href="/auth/register" class="text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-xl shadow-sm transition-all hover:shadow-blue-500/25">Join Free</a>
-        <button type="button" class="wd-mobile-toggle md:hidden" id="wd-mobile-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <button type="button" class="wd-mobile-toggle md:hidden" id="wd-mobile-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false" onclick="window.toggleWorkdentMobileNav(event, this)">
           <span class="wd-dots-icon"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
         </button>
       </div>

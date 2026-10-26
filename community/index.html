@@ -68,7 +68,7 @@
       
         <!-- Desktop 3-Dots More Menu -->
         <div class="relative wd-more-dropdown">
-          <button type="button" class="wd-dots-btn" id="wd-desktop-dots-btn" aria-label="More options" aria-expanded="false" title="More Options">
+          <button type="button" class="wd-dots-btn" onclick="window.toggleWorkdentMoreMenu(event, this)" id="wd-desktop-dots-btn" aria-label="More options" aria-expanded="false" title="More Options">
             <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
               <circle cx="5" cy="12" r="2.2"></circle>
               <circle cx="12" cy="12" r="2.2"></circle>
@@ -112,7 +112,7 @@
 
       <!-- Mobile Hamburger Button -->
       <!-- Mobile 3-Dots Menu Button -->
-      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100 transition-colors" aria-label="Toggle navigation menu" aria-expanded="false" title="Menu">
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100 transition-colors" aria-label="Toggle navigation menu" aria-expanded="false" title="Menu" onclick="window.toggleWorkdentMobileNav(event, this)">
         <svg class="size-6 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
           <circle cx="5" cy="12" r="2.2"></circle>
           <circle cx="12" cy="12" r="2.2"></circle>
