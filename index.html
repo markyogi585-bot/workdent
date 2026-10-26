@@ -6,7 +6,7 @@
   <title>WorkDent — Premier Dental CAD Marketplace</title>
   <meta name="description" content="Connecting dental practices and labs with skilled CAD designers worldwide. Find the right designer, send your scans, review the work and pay safely, all in one place.">
   <link rel="icon" href="/favicon.ico">
-  
+
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,241 +17,170 @@
   <link rel="stylesheet" href="/_next/static/chunks/0xz-sz3jw.my4.css?dpl=dpl_2hMkPcr7GpjvDxBdydYSyvRckuF2">
   <link rel="stylesheet" href="/_next/static/chunks/0~4p~3i0tlbud.css?dpl=dpl_2hMkPcr7GpjvDxBdydYSyvRckuF2">
 
+  <!-- Dedicated WorkDent UI Engine (WCAG AAA Contrast & Auto Stepper) -->
+  <link rel="stylesheet" href="./css/workdent-ui.css">
+
   <!-- Supabase CDN Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- Modern Design System & Soft UI Evolution Tokens -->
-  <style>
-    :root {
-      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --bg-base: #FFFFFF;
-      --bg-soft: #F8FAFC;
-      --fg-primary: #0F172A;
-      --fg-muted: #64748B;
-      --brand-primary: #2563EB;
-      --brand-hover: #1D4ED8;
-      --border-subtle: rgba(226, 232, 240, 0.85);
-      --border-glass: rgba(255, 255, 255, 0.8);
-      --shadow-glass: 0 8px 32px rgba(20, 40, 80, 0.08);
-      --shadow-soft: 0 12px 32px -4px rgba(15, 23, 42, 0.06);
-      --shadow-hover: 0 20px 40px -8px rgba(15, 23, 42, 0.1);
-    }
-
-    * {
-      font-family: var(--font-sans);
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: var(--bg-base);
-      color: var(--fg-primary);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Ambient Subtle Mesh */
-    .ambient-bg {
-      background-image: 
-        radial-gradient(at 15% 15%, rgba(37, 99, 235, 0.04) 0px, transparent 50%),
-        radial-gradient(at 85% 20%, rgba(14, 165, 233, 0.04) 0px, transparent 50%),
-        radial-gradient(at 50% 80%, rgba(37, 99, 235, 0.03) 0px, transparent 50%);
-    }
-
-    /* Floating Glassmorphic Navbar (Specified in Prompt) */
-    .glass-nav-container {
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 8px 32px rgba(20, 40, 80, 0.08);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .glass-nav-scrolled {
-      background: rgba(255, 255, 255, 0.88) !important;
-      box-shadow: 0 12px 36px rgba(20, 40, 80, 0.12) !important;
-      border-color: rgba(226, 232, 240, 0.9) !important;
-    }
-
-    /* Soft UI Card System */
-    .soft-card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-subtle);
-      border-radius: 1.25rem;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .soft-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(147, 197, 253, 0.8);
-      box-shadow: var(--shadow-hover);
-    }
-
-    /* Step Active Pill */
-    .step-tab.active {
-      background: rgba(255, 255, 255, 0.12) !important;
-      border-color: rgba(255, 255, 255, 0.3) !important;
-    }
-
-    .badge-soft-blue {
-      background: #EFF6FF;
-      color: #2563EB;
-      border: 1px solid rgba(191, 219, 254, 0.8);
-    }
-  </style>
 </head>
 
-<body class="ambient-bg flex min-h-screen flex-col selection:bg-blue-100 selection:text-blue-900">
+<body class="flex min-h-screen flex-col selection:bg-blue-100 selection:text-blue-900 bg-white">
+
+  <!-- ==================== TOP ANNOUNCEMENT BANNER ==================== -->
+  <aside class="w-full bg-slate-900 text-white text-xs py-2 px-4 text-center z-50 relative border-b border-slate-800" aria-label="Announcement">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 flex-wrap">
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase bg-blue-600 text-white tracking-wider">NEW</span>
+      <span class="text-slate-300 font-medium">✨ Zero platform fees for dentists &bull; 100% Escrow-protected case turnaround &bull; Vetted Dental CAD specialists</span>
+      <a href="/auth/register" class="font-bold text-blue-400 hover:text-blue-300 underline ml-1 inline-flex items-center gap-0.5">Learn more &rarr;</a>
+    </div>
+  </aside>
 
   <!-- ==================== PREMIUM FLOATING GLASS NAVBAR ==================== -->
-  <header class="fixed top-0 left-0 right-0 z-50 px-4 py-3.5 sm:px-6 lg:px-8 pointer-events-none">
-    <nav id="main-nav" class="glass-nav-container mx-auto max-w-7xl rounded-2xl px-5 py-3 sm:px-6 pointer-events-auto">
-      <div class="flex items-center justify-between gap-4">
-        
-        <!-- Brand Logo -->
-        <a href="/" class="flex items-center gap-2.5 text-xl font-black tracking-tight text-slate-900 group">
-          <span class="flex size-9 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-500/25 group-hover:bg-blue-700 transition-colors">
-            <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15M7 7l10 10M17 7L7 17"></path>
-            </svg>
-          </span>
-          <span class="text-xl font-extrabold tracking-tight">Work<span class="text-blue-600">Dent</span></span>
-        </a>
+  <div class="wd-navbar-wrap">
+    <header class="wd-navbar">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2.5 text-xl font-black text-slate-900 no-underline" aria-label="WorkDent Home">
+        <span class="flex size-9 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-500/25">
+          <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2.3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15M7 7l10 10M17 7L7 17"></path>
+          </svg>
+        </span>
+        <span class="text-xl font-extrabold tracking-tight text-slate-900">Work<span class="text-blue-600">Dent</span></span>
+      </a>
 
-        <!-- Desktop Navigation Items -->
-        <div class="hidden md:flex items-center gap-8 text-[14px] font-semibold text-slate-600">
-          <a href="#how-it-works" class="hover:text-blue-600 transition-colors">How it works?</a>
-          <a href="#features" class="hover:text-blue-600 transition-colors">Features</a>
-          <a href="#pricing" class="hover:text-blue-600 transition-colors">Pricing</a>
-          
-          <!-- Solutions Dropdown -->
-          <div class="relative group">
-            <button type="button" class="flex items-center gap-1.5 hover:text-blue-600 transition-colors py-2" id="solutions-btn" aria-haspopup="true" aria-expanded="false">
-              <span>Solutions</span>
-              <svg class="size-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            <div class="absolute top-full left-0 mt-1.5 w-56 rounded-xl bg-white/95 p-2 shadow-xl ring-1 ring-slate-900/5 backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-              <a href="/as/dentist" class="flex flex-col rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                <span>I'm a Dentist</span>
-                <span class="text-[11px] font-normal text-slate-400">Post cases & access vetted CAD talent</span>
-              </a>
-              <a href="/as/designer" class="flex flex-col rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors mt-1">
-                <span>I'm a Designer</span>
-                <span class="text-[11px] font-normal text-slate-400">Earn with zero upfront fees & escrow</span>
-              </a>
-              <a href="/as/lab" class="flex flex-col rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-colors mt-1">
-                <span>I'm a Dental Lab</span>
-                <span class="text-[11px] font-normal text-slate-400">Scale laboratory capacity on demand</span>
-              </a>
-            </div>
+      <!-- Desktop Navigation Items -->
+      <nav class="hidden md:flex items-center gap-2" aria-label="Main Navigation">
+        <a href="#how-it-works" class="wd-nav-link">How it works?</a>
+        <a href="#features" class="wd-nav-link">Features</a>
+        <a href="#pricing" class="wd-nav-link">Pricing</a>
+        
+        <!-- Solutions Dropdown Menu -->
+        <div class="relative wd-dropdown" id="wd-solutions-dropdown">
+          <button type="button" class="wd-nav-link" id="wd-solutions-btn" aria-haspopup="true" aria-expanded="false">
+            <span>Solutions</span>
+            <svg class="size-3.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+          <div class="wd-dropdown-content" role="menu">
+            <a href="/as/dentist" class="flex flex-col p-2.5 rounded-lg text-slate-800 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors" role="menuitem">
+              <span class="text-xs font-bold text-slate-900">I'm a Dentist</span>
+              <span class="text-[11px] text-slate-500 mt-0.5">Post cases & access vetted CAD talent</span>
+            </a>
+            <a href="/as/designer" class="flex flex-col p-2.5 rounded-lg text-slate-800 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors mt-1" role="menuitem">
+              <span class="text-xs font-bold text-slate-900">I'm a Designer</span>
+              <span class="text-[11px] text-slate-500 mt-0.5">Earn with zero upfront fees & escrow</span>
+            </a>
+            <a href="/as/lab" class="flex flex-col p-2.5 rounded-lg text-slate-800 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors mt-1" role="menuitem">
+              <span class="text-xs font-bold text-slate-900">I'm a Dental Lab</span>
+              <span class="text-[11px] text-slate-500 mt-0.5">Scale laboratory capacity on demand</span>
+            </a>
           </div>
         </div>
+      </nav>
 
-        <!-- Auth CTAs -->
-        <div class="hidden sm:flex items-center gap-3">
-          <a href="/auth/login" class="px-4 py-2 text-[13.5px] font-semibold text-slate-700 hover:text-blue-600 transition-colors">Login</a>
-          <a href="/auth/register" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4.5 py-2 text-[13.5px] font-semibold text-white shadow-sm shadow-blue-500/20 hover:bg-blue-700 transition-all hover:scale-[1.01] active:scale-[0.98]">
-            <span>Get Started</span>
-            <svg class="size-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
-            </svg>
-          </a>
-        </div>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobile-toggle-btn" type="button" class="md:hidden flex size-9 items-center justify-center rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100" aria-label="Toggle navigation menu">
-          <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+      <!-- Desktop Auth CTAs -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="/auth/login" class="wd-nav-link">Login</a>
+        <a href="/auth/register" class="wd-btn-primary">
+          <span>Get Started</span>
+          <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
           </svg>
-        </button>
-
+        </a>
       </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg class="size-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </button>
 
       <!-- Mobile Navigation Drawer -->
-      <div id="mobile-menu" class="hidden md:hidden pt-4 pb-2 border-t border-slate-100 mt-3 flex-col gap-2">
-        <a href="#how-it-works" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg">How it works?</a>
-        <a href="#features" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg">Features</a>
-        <a href="#pricing" class="px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 rounded-lg">Pricing</a>
-        <div class="px-3 py-1 text-xs font-bold uppercase text-slate-400">Solutions</div>
-        <a href="/as/dentist" class="px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 rounded-lg">I'm a Dentist</a>
+      <div id="wd-mobile-drawer" class="wd-mobile-drawer" role="dialog" aria-label="Mobile Navigation Menu">
+        <a href="#how-it-works" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">How it works?</a>
+        <a href="#features" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Features</a>
+        <a href="#pricing" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Pricing</a>
+        <div class="px-3 pt-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Solutions</div>
+        <a href="/as/dentist" class="px-3 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg no-underline">I'm a Dentist</a>
         <a href="/as/dentist" class="hidden">I'm a dentist</a>
-        <a href="/as/designer" class="px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 rounded-lg">I'm a Designer</a>
-        <a href="/as/lab" class="px-3 py-1.5 text-sm text-slate-600 hover:bg-slate-50 rounded-lg">I'm a Dental Lab</a>
-        <div class="flex gap-2 pt-2 border-t border-slate-100 mt-2">
-          <a href="/auth/login" class="flex-1 text-center py-2 text-sm font-semibold text-slate-700 border border-slate-200 rounded-lg">Login</a>
-          <a href="/auth/register" class="flex-1 text-center py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg">Get Started</a>
+        <a href="/as/designer" class="px-3 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg no-underline">I'm a Designer</a>
+        <a href="/as/lab" class="px-3 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg no-underline">I'm a Dental Lab</a>
+        <div class="flex gap-2 pt-3 border-t border-slate-200 mt-2">
+          <a href="/auth/login" class="wd-btn-secondary flex-1 text-center">Login</a>
+          <a href="/auth/register" class="wd-btn-primary flex-1 text-center">Get Started</a>
         </div>
       </div>
-    </nav>
-  </header>
+
+    </header>
+  </div>
 
   <!-- ==================== HERO SECTION ==================== -->
-  <section class="relative pt-32 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+  <section class="wd-hero-section">
+    <div class="wd-container">
       
-      <!-- Hero Copy -->
-      <div class="text-center max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold badge-soft-blue mb-6 shadow-xs">
+      <!-- Text Hierarchy (Guaranteed Zero Navbar Overlap) -->
+      <div class="text-center max-w-4xl mx-auto">
+        
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold wd-pill-badge mb-6">
           <span>✦ Next-Gen Dental CAD Marketplace</span>
         </div>
         
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
-          Connecting Dental Practices & Labs With Skilled CAD Designers Worldwide.
+        <h1 class="wd-hero-title">
+          Connecting Dental Practices &amp; Labs With Skilled CAD Designers Worldwide.
         </h1>
         
-        <p class="mt-6 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
+        <p class="wd-hero-p">
           Find the right designer, send your scans, review the work and pay safely, all in one place.
         </p>
 
-        <!-- CTA Action Buttons -->
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-          <a href="/auth/register" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-[14px] font-semibold text-white shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all hover:scale-[1.01] active:scale-[0.99]">
+        <!-- CTA Buttons (Responsive Flex with Mobile Full-Width Support) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto sm:max-w-none">
+          <a href="/auth/register" class="wd-btn-primary w-full sm:w-auto">
             <span>Get Started</span>
             <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>
           </a>
-          <a href="/designers" class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-semibold text-slate-700 border border-slate-200 shadow-sm hover:border-slate-300 hover:bg-slate-50 transition-all">
+          <a href="/designers" class="wd-btn-secondary w-full sm:w-auto">
             <span>Browse Designers</span>
           </a>
-          <a href="/auth/register" class="hidden sm:inline-flex items-center text-xs text-slate-500 hover:text-blue-600 transition-colors ml-2">
-            <span>Create a free account</span>
-          </a>
         </div>
+
+        <!-- Secondary Support Links -->
+        <div class="mt-4 flex items-center justify-center gap-4 text-xs font-medium text-slate-500 flex-wrap">
+          <span>Want to see who is on the platform first? <a href="/designers" class="text-blue-600 hover:underline font-bold">Browse designers &rarr;</a></span>
+          <span class="hidden sm:inline">&bull;</span>
+          <a href="/auth/register" class="text-slate-600 hover:text-blue-600 underline">Create a free account</a>
+        </div>
+
       </div>
 
-      <!-- Hero Visual Showcase: High-Res Glass Browser Frame with workdentheader.png -->
-      <div class="mt-14 relative max-w-5xl mx-auto">
-        <!-- Ambient Glow behind visual -->
-        <div class="absolute -inset-2 bg-gradient-to-r from-blue-500/10 via-sky-400/15 to-blue-600/10 rounded-3xl blur-2xl -z-10"></div>
-        
-        <div class="rounded-2xl border border-slate-200/90 bg-white shadow-2xl overflow-hidden ring-1 ring-slate-900/5">
-          <!-- Browser Controls Bar -->
-          <div class="flex items-center justify-between px-4 py-3 bg-slate-50/90 border-b border-slate-100">
+      <!-- Hero Visual Showcase Frame (workdentheader.png) -->
+      <div class="mt-12 sm:mt-16 max-w-5xl mx-auto">
+        <div class="wd-browser-frame">
+          <div class="wd-browser-header">
             <div class="flex items-center gap-2">
               <span class="size-3 rounded-full bg-rose-400"></span>
               <span class="size-3 rounded-full bg-amber-400"></span>
               <span class="size-3 rounded-full bg-emerald-400"></span>
-              <div class="ml-3 hidden sm:flex items-center gap-2 text-xs font-medium text-slate-400 bg-white border border-slate-200/80 rounded-md px-3 py-1">
+              <div class="ml-3 hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-500 bg-white border border-slate-200 rounded-md px-3 py-1">
                 <svg class="size-3 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path>
                 </svg>
                 <span>workdent.io/marketplace</span>
               </div>
             </div>
-            <div class="flex items-center gap-2 text-xs font-semibold text-emerald-600 bg-emerald-50 border border-emerald-200/60 rounded-full px-2.5 py-0.5">
+            <div class="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-2.5 py-0.5">
               <span class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>Live Platform</span>
             </div>
           </div>
           
-          <!-- Image Asset -->
-          <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] bg-slate-950 flex items-center justify-center overflow-hidden">
-            <img src="/workdentheader.png" alt="WorkDent Header" class="w-full h-full object-cover object-center">
+          <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] bg-slate-950 overflow-hidden flex items-center justify-center">
+            <img src="/workdentheader.png" alt="WorkDent Header Showcase" class="w-full h-full object-cover object-center">
           </div>
         </div>
       </div>
@@ -259,160 +188,181 @@
     </div>
   </section>
 
-  <!-- ==================== 5-STEP INTERACTIVE WORKFLOW SECTION ==================== -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-slate-50/70 border-y border-slate-100" id="how-it-works">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+  <!-- ==================== TRUST & STATS STRIP ==================== -->
+  <section class="py-10 bg-slate-50 border-y border-slate-200">
+    <div class="wd-container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-blue-600">500+</p>
+          <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Vetted CAD Designers</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">12-Micron</p>
+          <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Clinical Margin Precision</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-blue-600">100%</p>
+          <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Escrow Payment Protection</p>
+        </div>
+        <div>
+          <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">24/7</p>
+          <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-1">Browser 3D STL Viewer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AUTOMATIC HOW IT WORKS STEPPING ENGINE ==================== -->
+  <section class="py-16 sm:py-20 lg:py-24 bg-white" id="how-it-works">
+    <div class="wd-container">
       
       <!-- Section Header -->
-      <div class="text-center mb-12 sm:mb-16">
-        <p class="text-blue-600 text-xs font-bold tracking-[0.15em] uppercase mb-3">
+      <div class="text-center mb-12 sm:mb-16 max-w-3xl mx-auto">
+        <p class="text-blue-600 text-xs font-extrabold tracking-[0.18em] uppercase mb-3">
           ✦ How It Works
         </p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
           From scan to finished design<br class="hidden sm:block"> in five steps.
         </h2>
-        <p class="text-slate-600 mt-4 max-w-xl mx-auto text-[14.5px] leading-relaxed">
+        <p class="text-slate-600 mt-4 text-[15px] sm:text-base leading-relaxed">
           Post a case, pick your designer, and approve the result. No hiring, no contracts, and you only pay when a designer takes your case.
+        </p>
+        <p class="text-xs font-semibold text-blue-600 mt-2 flex items-center justify-center gap-1.5">
+          <svg class="size-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672z"></path>
+          </svg>
+          <span><span class="hidden lg:inline">Click</span><span class="lg:hidden">Tap</span> any step to see it in action &bull; Auto-advances every 4.5s</span>
         </p>
       </div>
 
-      <!-- Interactive 5-Step Grid -->
-      <div class="grid lg:grid-cols-12 gap-8 items-start">
+      <!-- 2-Column Responsive Layout (Stepper Tabs Left, Active Detail Right) -->
+      <div class="grid lg:grid-cols-12 gap-8 items-start max-w-6xl mx-auto">
         
-        <!-- Left: Interactive Step Navigation List -->
-        <div class="lg:col-span-5 bg-[#0F172A] rounded-2xl p-4 sm:p-5 flex flex-col gap-2 shadow-xl ring-1 ring-white/10">
-          <p class="flex items-center gap-2 px-3 pt-1 pb-3 text-[12px] font-medium text-slate-400 border-b border-slate-800">
-            <svg class="size-4 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 6.257L6.166 4.666M6 10.5H3.75"></path>
-            </svg>
-            <span><span class="hidden lg:inline">Click</span><span class="lg:hidden">Tap</span> any step to see it in action</span>
-          </p>
-
-          <!-- Step 1 Button -->
-          <button type="button" onclick="switchStep(1)" id="step-tab-1" class="step-tab active w-full text-left rounded-xl p-3.5 transition-all border border-slate-800 hover:border-slate-700 bg-white/[0.04]">
-            <div class="flex items-center gap-3.5">
-              <span id="step-num-1" class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-600 text-white font-bold text-xs">
-                01
-              </span>
-              <div>
-                <span class="block text-[11px] font-bold tracking-wider uppercase text-blue-400">STEP 01</span>
-                <span class="font-semibold text-[15px] text-white">Post your case</span>
-              </div>
+        <!-- Left: 5 Stepper Tabs with Animated Progress Bars -->
+        <div class="lg:col-span-5 flex flex-col gap-3" role="tablist" aria-label="Workflow Steps">
+          
+          <!-- Step 1 Tab -->
+          <button type="button" class="wd-step-tab active" role="tab" id="step-tab-0" aria-selected="true" aria-controls="step-panel" tabindex="0">
+            <span class="wd-step-badge">01</span>
+            <div class="flex-1">
+              <span class="wd-step-eyebrow">STEP 01</span>
+              <div class="wd-step-title">Post your case</div>
+            </div>
+            <div class="wd-step-progress-track">
+              <div class="wd-step-progress-bar"></div>
             </div>
           </button>
 
-          <!-- Step 2 Button -->
-          <button type="button" onclick="switchStep(2)" id="step-tab-2" class="step-tab w-full text-left rounded-xl p-3.5 transition-all border border-transparent hover:border-slate-800 hover:bg-white/[0.04]">
-            <div class="flex items-center gap-3.5">
-              <span id="step-num-2" class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-slate-400 font-bold text-xs">
-                02
-              </span>
-              <div>
-                <span class="block text-[11px] font-bold tracking-wider uppercase text-slate-400">STEP 02</span>
-                <span class="font-semibold text-[15px] text-white">Choose your designer</span>
-              </div>
+          <!-- Step 2 Tab -->
+          <button type="button" class="wd-step-tab" role="tab" id="step-tab-1" aria-selected="false" aria-controls="step-panel" tabindex="0">
+            <span class="wd-step-badge">02</span>
+            <div class="flex-1">
+              <span class="wd-step-eyebrow">STEP 02</span>
+              <div class="wd-step-title">Choose your designer</div>
+            </div>
+            <div class="wd-step-progress-track">
+              <div class="wd-step-progress-bar"></div>
             </div>
           </button>
 
-          <!-- Step 3 Button -->
-          <button type="button" onclick="switchStep(3)" id="step-tab-3" class="step-tab w-full text-left rounded-xl p-3.5 transition-all border border-transparent hover:border-slate-800 hover:bg-white/[0.04]">
-            <div class="flex items-center gap-3.5">
-              <span id="step-num-3" class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-slate-400 font-bold text-xs">
-                03
-              </span>
-              <div>
-                <span class="block text-[11px] font-bold tracking-wider uppercase text-slate-400">STEP 03</span>
-                <span class="font-semibold text-[15px] text-white">Upload your scans</span>
-              </div>
+          <!-- Step 3 Tab -->
+          <button type="button" class="wd-step-tab" role="tab" id="step-tab-2" aria-selected="false" aria-controls="step-panel" tabindex="0">
+            <span class="wd-step-badge">03</span>
+            <div class="flex-1">
+              <span class="wd-step-eyebrow">STEP 03</span>
+              <div class="wd-step-title">Upload your scans</div>
+            </div>
+            <div class="wd-step-progress-track">
+              <div class="wd-step-progress-bar"></div>
             </div>
           </button>
 
-          <!-- Step 4 Button -->
-          <button type="button" onclick="switchStep(4)" id="step-tab-4" class="step-tab w-full text-left rounded-xl p-3.5 transition-all border border-transparent hover:border-slate-800 hover:bg-white/[0.04]">
-            <div class="flex items-center gap-3.5">
-              <span id="step-num-4" class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-slate-400 font-bold text-xs">
-                04
-              </span>
-              <div>
-                <span class="block text-[11px] font-bold tracking-wider uppercase text-slate-400">STEP 04</span>
-                <span class="font-semibold text-[15px] text-white">Authorize, don't pay</span>
-              </div>
+          <!-- Step 4 Tab -->
+          <button type="button" class="wd-step-tab" role="tab" id="step-tab-3" aria-selected="false" aria-controls="step-panel" tabindex="0">
+            <span class="wd-step-badge">04</span>
+            <div class="flex-1">
+              <span class="wd-step-eyebrow">STEP 04</span>
+              <div class="wd-step-title">Authorize, don't pay</div>
+            </div>
+            <div class="wd-step-progress-track">
+              <div class="wd-step-progress-bar"></div>
             </div>
           </button>
 
-          <!-- Step 5 Button -->
-          <button type="button" onclick="switchStep(5)" id="step-tab-5" class="step-tab w-full text-left rounded-xl p-3.5 transition-all border border-transparent hover:border-slate-800 hover:bg-white/[0.04]">
-            <div class="flex items-center gap-3.5">
-              <span id="step-num-5" class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-slate-800 text-slate-400 font-bold text-xs">
-                05
-              </span>
-              <div>
-                <span class="block text-[11px] font-bold tracking-wider uppercase text-slate-400">STEP 05</span>
-                <span class="font-semibold text-[15px] text-white">Review and approve</span>
-              </div>
+          <!-- Step 5 Tab -->
+          <button type="button" class="wd-step-tab" role="tab" id="step-tab-4" aria-selected="false" aria-controls="step-panel" tabindex="0">
+            <span class="wd-step-badge">05</span>
+            <div class="flex-1">
+              <span class="wd-step-eyebrow">STEP 05</span>
+              <div class="wd-step-title">Review and approve</div>
+            </div>
+            <div class="wd-step-progress-track">
+              <div class="wd-step-progress-bar"></div>
             </div>
           </button>
 
         </div>
 
-        <!-- Right: Dynamic Step Detail Card & High-Res Visual Preview -->
-        <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-xl flex flex-col justify-between min-h-[460px]">
+        <!-- Right: Active Step Detailed Content Panel -->
+        <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xl flex flex-col justify-between min-h-[480px]" id="step-panel" role="tabpanel">
           
-          <div id="step-details-container">
+          <div>
             <!-- Header for Active Step -->
             <div class="flex items-center justify-between pb-4 border-b border-slate-100">
               <div>
-                <span id="active-step-badge" class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-100">Step 01 of 05</span>
+                <span id="active-step-badge" class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">Step 01 of 05</span>
                 <h3 id="active-step-title" class="text-2xl font-bold text-slate-900 mt-2">Post your case</h3>
               </div>
-              <span class="size-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <span class="size-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-100">
+                <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path>
                 </svg>
               </span>
             </div>
 
-            <!-- Summary Text -->
-            <p id="active-step-summary" class="mt-4 text-slate-600 text-[14.5px] leading-relaxed">
+            <!-- Summary Description -->
+            <p id="active-step-summary" class="mt-4 text-slate-700 text-[15px] leading-relaxed">
               Tell the designer what you need. It takes a couple of minutes and you do it once per case.
             </p>
 
-            <!-- Key Points Bullet List -->
-            <ul id="active-step-points" class="mt-5 space-y-2.5 text-[13.5px] text-slate-700">
+            <!-- Key Checkpoints -->
+            <ul id="active-step-points" class="mt-5 space-y-2.5 text-slate-700">
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 shrink-0 mt-1" style="color: #2563EB;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="9"></circle>
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"></path>
                 </svg>
-                <span>Pick the service you need from the ones designers offer</span>
+                <span style="color: #334155; font-size: 0.9375rem; line-height: 1.5;">Pick the service you need from the ones designers offer</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 shrink-0 mt-1" style="color: #2563EB;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="9"></circle>
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"></path>
                 </svg>
-                <span>Give the case a title, like Crown & Bridge - Upper Left Molar</span>
+                <span style="color: #334155; font-size: 0.9375rem; line-height: 1.5;">Give the case a title, like Crown & Bridge - Upper Left Molar</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 shrink-0 mt-1" style="color: #2563EB;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="9"></circle>
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"></path>
                 </svg>
-                <span>Add your notes: teeth involved, material, occlusion, anything unusual</span>
+                <span style="color: #334155; font-size: 0.9375rem; line-height: 1.5;">Add your notes: teeth involved, material, occlusion, anything unusual</span>
               </li>
             </ul>
 
-            <!-- Step Visual Preview -->
+            <!-- High-Res Visual Display -->
             <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-2 overflow-hidden shadow-inner">
-              <img id="active-step-visual" src="/help/getting-started-dentist/03-new-project-case-details.png" alt="Step preview" class="w-full h-48 sm:h-56 object-cover object-top rounded-lg">
+              <img id="active-step-visual" src="/help/getting-started-dentist/03-new-project-case-details.png" alt="WorkDent case submission step" class="w-full h-48 sm:h-60 object-cover object-top rounded-lg transition-all duration-300">
             </div>
           </div>
 
-          <!-- Footer Next Action -->
+          <!-- Footer Controls -->
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-xs text-slate-400 font-medium">WorkDent Verified CAD Workflow</span>
-            <button type="button" onclick="nextStep()" class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700">
-              <span id="next-step-label">Next: Choose your designer</span>
+            <button type="button" id="step-prev-btn" class="wd-btn-secondary py-2 px-3.5 text-xs" aria-label="Previous step">
+              &larr; Previous
+            </button>
+            <button type="button" id="step-next-btn" class="wd-btn-primary py-2 px-4 text-xs" aria-label="Next step">
+              <span id="step-next-label">Next: Choose your designer</span>
               <svg class="size-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
               </svg>
@@ -427,26 +377,26 @@
   </section>
 
   <!-- ==================== FEATURES SECTION ==================== -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-white" id="features">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+  <section class="py-16 sm:py-20 lg:py-24 bg-slate-50 border-t border-slate-200" id="features">
+    <div class="wd-container">
       
       <!-- Section Header -->
-      <div class="text-center mb-14 sm:mb-16">
-        <p class="text-blue-600 text-xs font-bold tracking-[0.15em] uppercase mb-3">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <p class="text-blue-600 text-xs font-extrabold tracking-[0.18em] uppercase mb-3">
           ✦ Features
         </p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
           Everything your dental<br>CAD design needs.
         </h2>
-        <p class="text-slate-600 mt-4 max-w-xl mx-auto text-[14.5px] leading-relaxed">
+        <p class="text-slate-600 mt-4 text-[15px] sm:text-base leading-relaxed">
           Find the right designer, send your scans, review the work and pay safely, all in one place.
         </p>
       </div>
 
       <!-- Feature 1: The Case Workspace 2-Column Showcase -->
-      <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center max-w-6xl mx-auto mb-14 bg-gradient-to-br from-blue-50/50 via-white to-white p-8 sm:p-10 rounded-3xl border border-blue-200/60 shadow-lg">
+      <div class="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto mb-12 bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-md">
         <div>
-          <span class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold badge-soft-blue mb-4">
+          <span class="wd-pill-badge mb-4">
             ✦ The Case Workspace
           </span>
           <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
@@ -456,26 +406,26 @@
             Stop chasing files across email threads and chat apps. Every case gets its own workspace, and both you and your designer work from the same place.
           </p>
           <ul class="mt-6 space-y-3">
-            <li class="flex items-start gap-3 text-[14px] text-slate-700 leading-relaxed">
-              <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <li class="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+              <svg class="size-4 shrink-0 mt-1 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
               </svg>
               <span>Scan files, deliverables and web links, sorted and labeled</span>
             </li>
-            <li class="flex items-start gap-3 text-[14px] text-slate-700 leading-relaxed">
-              <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <li class="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+              <svg class="size-4 shrink-0 mt-1 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
               </svg>
               <span>A 3D viewer and your digital design link one tab away</span>
             </li>
-            <li class="flex items-start gap-3 text-[14px] text-slate-700 leading-relaxed">
-              <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <li class="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+              <svg class="size-4 shrink-0 mt-1 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
               </svg>
               <span>A conversation with your designer, inside the case</span>
             </li>
-            <li class="flex items-start gap-3 text-[14px] text-slate-700 leading-relaxed">
-              <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <li class="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+              <svg class="size-4 shrink-0 mt-1 text-blue-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
               </svg>
               <span>A timeline of every status the case has passed through</span>
@@ -483,16 +433,16 @@
           </ul>
         </div>
         
-        <!-- Workspace 3D Visual Preview Frame -->
-        <div class="rounded-2xl border border-slate-200/90 bg-white shadow-xl overflow-hidden ring-1 ring-slate-900/5">
-          <div class="flex items-center gap-1.5 px-4 py-3 bg-slate-50 border-b border-slate-100">
-            <span class="size-2.5 rounded-full bg-slate-300"></span>
-            <span class="size-2.5 rounded-full bg-slate-300"></span>
-            <span class="size-2.5 rounded-full bg-slate-300"></span>
-            <span class="ml-2 text-xs font-semibold text-slate-500">Case #WD-4921 Workspace • 3D STL Viewer</span>
+        <!-- 3D Preview Frame -->
+        <div class="rounded-xl border border-slate-200 bg-slate-900 overflow-hidden shadow-lg">
+          <div class="flex items-center gap-1.5 px-4 py-2.5 bg-slate-800 border-b border-slate-700">
+            <span class="size-2.5 rounded-full bg-slate-500"></span>
+            <span class="size-2.5 rounded-full bg-slate-500"></span>
+            <span class="size-2.5 rounded-full bg-slate-500"></span>
+            <span class="ml-2 text-xs font-semibold text-slate-300">Case #WD-4921 &bull; 3D STL Viewer</span>
           </div>
-          <div class="relative w-full aspect-[16/10] bg-slate-900 overflow-hidden">
-            <img src="/img/home/case-3d-viewer.webp" alt="The WorkDent case workspace with 3D viewer" class="w-full h-full object-cover">
+          <div class="relative w-full aspect-[16/10] bg-slate-950 overflow-hidden">
+            <img src="/img/home/case-3d-viewer.webp" alt="WorkDent 3D STL Viewer" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
@@ -500,95 +450,95 @@
       <!-- Features Grid (6 Core Cards) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         
-        <!-- Feature 2: See designers before you join -->
-        <div class="soft-card p-7 flex flex-col justify-between">
+        <!-- Feature 2 -->
+        <div class="wd-card">
           <div>
-            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-5">
+            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-4">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"></path>
               </svg>
             </span>
             <h3 class="text-lg font-bold text-slate-900">See designers before you join</h3>
-            <p class="mt-2.5 text-slate-600 text-[13.5px] leading-relaxed">
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed">
               The designer directory is open to everyone. Check profiles, work samples, reviews and prices first, then decide.
             </p>
           </div>
           <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-400">Want to see who is on the platform first?</span>
+            <span class="text-slate-400">Directory access</span>
             <a href="/designers" class="font-bold text-blue-600 hover:text-blue-700">Browse designers &rarr;</a>
           </div>
         </div>
 
-        <!-- Feature 3: Your card is held, not charged -->
-        <div class="soft-card p-7 flex flex-col justify-between">
+        <!-- Feature 3 -->
+        <div class="wd-card">
           <div>
-            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-5">
+            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-4">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"></path>
               </svg>
             </span>
             <h3 class="text-lg font-bold text-slate-900">Your card is held, not charged</h3>
-            <p class="mt-2.5 text-slate-600 text-[13.5px] leading-relaxed">
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed">
               Submitting a case places a hold on your card. You are charged only when a designer accepts. If nobody takes it in 6 days, the hold is released.
             </p>
           </div>
         </div>
 
-        <!-- Feature 4: 3D preview in the browser -->
-        <div class="soft-card p-7 flex flex-col justify-between">
+        <!-- Feature 4 -->
+        <div class="wd-card">
           <div>
-            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-5">
+            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-4">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path>
               </svg>
             </span>
             <h3 class="text-lg font-bold text-slate-900">3D preview in the browser</h3>
-            <p class="mt-2.5 text-slate-600 text-[13.5px] leading-relaxed">
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed">
               Open STL, PLY and OBJ files and spin them around without downloading anything. Step through every file in fullscreen with the arrow keys.
             </p>
           </div>
         </div>
 
-        <!-- Feature 5: Review digital design links in the case -->
-        <div class="soft-card p-7 flex flex-col justify-between">
+        <!-- Feature 5 -->
+        <div class="wd-card">
           <div>
-            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-5">
+            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-4">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"></path>
               </svg>
             </span>
             <h3 class="text-lg font-bold text-slate-900">Review digital design links in the case</h3>
-            <p class="mt-2.5 text-slate-600 text-[13.5px] leading-relaxed">
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed">
               Attach a digital design web link to any case and open it right inside the workspace, so design reviews do not happen over email.
             </p>
           </div>
         </div>
 
-        <!-- Feature 6: Revisions and disputes built in -->
-        <div class="soft-card p-7 flex flex-col justify-between">
+        <!-- Feature 6 -->
+        <div class="wd-card">
           <div>
-            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-5">
+            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-4">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-7.5 7.5l.01-.011M12 3a9 9 0 100 18 9 9 0 000-18z"></path>
               </svg>
             </span>
             <h3 class="text-lg font-bold text-slate-900">Revisions and disputes built in</h3>
-            <p class="mt-2.5 text-slate-600 text-[13.5px] leading-relaxed">
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed">
               Ask for changes with one click. If something goes wrong, open a dispute and the WorkDent team reviews it and settles it with a refund, a release or a split.
             </p>
           </div>
         </div>
 
-        <!-- Feature 7: Referrals that pay -->
-        <div class="soft-card p-7 flex flex-col justify-between">
+        <!-- Feature 7 -->
+        <div class="wd-card">
           <div>
-            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-5">
+            <span class="flex size-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600 mb-4">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
             </span>
             <h3 class="text-lg font-bold text-slate-900">Referrals that pay</h3>
-            <p class="mt-2.5 text-slate-600 text-[13.5px] leading-relaxed">
+            <p class="mt-2.5 text-slate-600 text-sm leading-relaxed">
               Share your referral code with a colleague. When their case is paid, you earn. It is tracked for you on your Referrals page.
             </p>
           </div>
@@ -597,20 +547,20 @@
       </div>
 
       <!-- Feature 8: Digital Design Professionals Banner Card -->
-      <div class="max-w-6xl mx-auto mt-8 rounded-3xl bg-[#0F172A] p-8 sm:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-8 shadow-2xl ring-1 ring-white/10">
+      <div class="max-w-6xl mx-auto mt-8 rounded-2xl bg-slate-900 p-8 sm:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 shadow-xl">
         <div class="max-w-xl">
-          <p class="text-blue-400 text-xs font-bold tracking-[0.18em] uppercase mb-2">
+          <p class="text-blue-400 text-xs font-extrabold tracking-wider uppercase mb-2">
             For digital design professionals
           </p>
           <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
             Set your own prices. Build your profile. Get paid for your work.
           </h3>
-          <p class="mt-3 text-slate-300 text-[14.5px] leading-relaxed">
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">
             List the services you offer, add work samples to your public profile, and take on cases from dentists who choose you.
           </p>
         </div>
         <div class="shrink-0">
-          <a href="/auth/register?role=designer" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-700 transition-all hover:scale-[1.01] active:scale-[0.99]">
+          <a href="/auth/register?role=designer" class="wd-btn-primary">
             <span>Join as a designer</span>
             <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
@@ -623,18 +573,18 @@
   </section>
 
   <!-- ==================== PRICING SECTION ==================== -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-slate-50/70 border-t border-slate-100" id="pricing">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+  <section class="py-16 sm:py-20 lg:py-24 bg-white" id="pricing">
+    <div class="wd-container">
       
       <!-- Section Header -->
-      <div class="text-center mb-14 sm:mb-16">
-        <p class="text-blue-600 text-xs font-bold tracking-[0.15em] uppercase mb-3">
+      <div class="text-center mb-14 max-w-3xl mx-auto">
+        <p class="text-blue-600 text-xs font-extrabold tracking-[0.18em] uppercase mb-3">
           ✦ Pricing
         </p>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
           Flexible Pricing Built For<br>Freelance Digital Design Professionals
         </h2>
-        <p class="text-slate-600 mt-4 text-[14.5px]">
+        <p class="text-slate-600 mt-4 text-[15px]">
           Start free on Standard.
         </p>
       </div>
@@ -643,7 +593,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
         
         <!-- Standard Plan -->
-        <div class="soft-card p-8 flex flex-col justify-between bg-white border-slate-200 shadow-md">
+        <div class="wd-card bg-white border-slate-200">
           <div>
             <div class="mb-4">
               <h3 class="font-bold text-xl text-slate-900">Standard</h3>
@@ -654,41 +604,41 @@
               <span class="text-4xl sm:text-5xl font-extrabold text-slate-900">Free</span>
             </div>
 
-            <a href="/auth/register?role=designer" class="block w-full py-3 rounded-xl text-center text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors">
+            <a href="/auth/register?role=designer" class="wd-btn-secondary w-full text-center">
               Get Started
             </a>
 
             <ul class="border-t border-slate-100 pt-6 mt-6 space-y-3.5">
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-600">No monthly fee.</span>
+                <span class="text-sm text-slate-700">No monthly fee.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-600">Standard platform commission on each completed case.</span>
+                <span class="text-sm text-slate-700">Standard platform commission on each completed case.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-600">Unlimited case uploads & direct clinical messaging.</span>
+                <span class="text-sm text-slate-700">Unlimited case uploads &amp; direct clinical messaging.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-600">Instant payment protection via Escrow.</span>
+                <span class="text-sm text-slate-700">Instant payment protection via Escrow.</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Premium Plan (Highlighted) -->
-        <div class="relative soft-card p-8 flex flex-col justify-between bg-white border-2 border-blue-600 shadow-xl shadow-blue-500/10">
+        <!-- Premium Plan -->
+        <div class="relative wd-card bg-white border-2 border-blue-600 shadow-xl shadow-blue-500/10">
           <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[11px] font-bold tracking-wider uppercase px-3.5 py-1 rounded-full shadow-sm">
             Most Popular
           </span>
@@ -705,34 +655,34 @@
               <span class="text-sm font-medium text-slate-500 ml-1">/month</span>
             </div>
 
-            <a href="/auth/register?role=designer" class="block w-full py-3 rounded-xl text-center text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-500/20 transition-all">
+            <a href="/auth/register?role=designer" class="wd-btn-primary w-full text-center">
               Get Started
             </a>
 
             <ul class="border-t border-slate-100 pt-6 mt-6 space-y-3.5">
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-700 font-medium">5% platform commission on each completed case.</span>
+                <span class="text-sm text-slate-800 font-semibold">5% platform commission on each completed case.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-700 font-medium">On a $100 case, you keep $95.</span>
+                <span class="text-sm text-slate-800 font-semibold">On a $100 case, you keep $95.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-600">Featured badge & priority listing in designer search.</span>
+                <span class="text-sm text-slate-700">Featured badge &amp; priority listing in designer search.</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <svg class="size-4 text-blue-600 shrink-0 mt-1" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-                <span class="text-[13.5px] leading-snug text-slate-600">Priority client matching & dedicated VIP support.</span>
+                <span class="text-sm text-slate-700">Priority client matching &amp; dedicated VIP support.</span>
               </li>
             </ul>
           </div>
@@ -741,39 +691,38 @@
       </div>
 
       <!-- For Dentists Notice -->
-      <div class="mt-10 max-w-2xl mx-auto rounded-2xl border border-blue-200/80 bg-blue-50/50 p-6 text-center">
+      <div class="mt-10 max-w-2xl mx-auto rounded-xl border border-blue-200 bg-blue-50/70 p-6 text-center">
         <p class="text-sm font-bold text-slate-900">For dentists</p>
-        <p class="mt-1 text-[13.5px] text-slate-600">Free to join. You only pay the price of each case.</p>
+        <p class="mt-1 text-sm text-slate-700">Free to join. You only pay the price of each case.</p>
       </div>
 
     </div>
   </section>
 
   <!-- ==================== TESTIMONIALS SECTION ==================== -->
-  <section class="py-16 sm:py-20 lg:py-24 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+  <section class="py-16 sm:py-20 lg:py-24 bg-slate-50 border-t border-slate-200">
+    <div class="wd-container">
       
       <!-- Section Header -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-end mb-14">
+      <div class="grid lg:grid-cols-2 gap-8 items-end mb-12">
         <div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 leading-[1.1] tracking-tight">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
             Trusted By Dental<br>Practices &amp; Digital Design<br>Professionals Worldwide
           </h2>
         </div>
         <div>
-          <p class="text-slate-600 text-[15.5px] leading-relaxed max-w-md">
+          <p class="text-slate-600 text-base leading-relaxed max-w-md">
             See how WorkDent is helping dental professionals collaborate faster, deliver better results, and grow their workflow with confidence.
           </p>
         </div>
       </div>
 
-      <!-- Testimonials Grid -->
+      <!-- Testimonial Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Card 1 -->
-        <div class="soft-card p-6 flex flex-col justify-between">
+        <div class="wd-card">
           <div>
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
+            <div class="flex items-center gap-1 text-amber-500 mb-3 text-sm">
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <p class="text-slate-700 text-sm leading-relaxed italic">
@@ -781,7 +730,7 @@
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
-            <div class="size-10 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs">MV</div>
+            <div class="size-10 rounded-full bg-blue-100 text-blue-700 font-extrabold flex items-center justify-center text-xs">MV</div>
             <div>
               <p class="text-xs font-bold text-slate-900">Dr. Marcus Vance</p>
               <p class="text-[11px] text-slate-500">Vance Prosthodontics, CA</p>
@@ -789,10 +738,9 @@
           </div>
         </div>
 
-        <!-- Card 2 -->
-        <div class="soft-card p-6 flex flex-col justify-between">
+        <div class="wd-card">
           <div>
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
+            <div class="flex items-center gap-1 text-amber-500 mb-3 text-sm">
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <p class="text-slate-700 text-sm leading-relaxed italic">
@@ -800,7 +748,7 @@
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
-            <div class="size-10 rounded-full bg-sky-100 text-sky-700 font-bold flex items-center justify-center text-xs">ER</div>
+            <div class="size-10 rounded-full bg-sky-100 text-sky-700 font-extrabold flex items-center justify-center text-xs">ER</div>
             <div>
               <p class="text-xs font-bold text-slate-900">Elena Rostova</p>
               <p class="text-[11px] text-slate-500">Certified Dental CAD Specialist</p>
@@ -808,10 +756,9 @@
           </div>
         </div>
 
-        <!-- Card 3 -->
-        <div class="soft-card p-6 flex flex-col justify-between">
+        <div class="wd-card">
           <div>
-            <div class="flex items-center gap-1 text-amber-400 mb-4">
+            <div class="flex items-center gap-1 text-amber-500 mb-3 text-sm">
               <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
             </div>
             <p class="text-slate-700 text-sm leading-relaxed italic">
@@ -819,7 +766,7 @@
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-3">
-            <div class="size-10 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-xs">AD</div>
+            <div class="size-10 rounded-full bg-indigo-100 text-indigo-700 font-extrabold flex items-center justify-center text-xs">AD</div>
             <div>
               <p class="text-xs font-bold text-slate-900">Apex Dental Arts Laboratory</p>
               <p class="text-[11px] text-slate-500">Commercial Milling Center, NY</p>
@@ -834,26 +781,25 @@
 
   <!-- ==================== CTA BANNER SECTION ==================== -->
   <section class="relative overflow-hidden py-16 sm:py-20 lg:py-24" style="background-image:url('/img/cta.webp');background-size:cover;background-position:center">
-    <!-- Dark Blue Gradient Overlay for High Readability -->
-    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/80 to-blue-950/70"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-blue-950/80"></div>
     
-    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="relative z-10 wd-container">
       <div class="max-w-2xl">
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
           Ready To Transform Your<br>Dental CAD Workflow?
         </h2>
-        <p class="mt-4 text-slate-300 text-[15px] sm:text-base leading-relaxed">
+        <p class="mt-4 text-slate-200 text-base leading-relaxed">
           See how WorkDent is helping dental professionals collaborate faster, deliver better results, and grow their workflow with confidence.
         </p>
         
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="/designers" class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-bold text-slate-900 shadow-lg hover:bg-slate-100 transition-all hover:scale-[1.01] active:scale-[0.99]">
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="/designers" class="wd-btn-secondary">
             <span>Find a Designer</span>
             <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"></path>
             </svg>
           </a>
-          <a href="/auth/register?role=designer" class="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-bold text-white shadow-lg shadow-blue-500/25 hover:bg-blue-700 transition-all hover:scale-[1.01] active:scale-[0.99]">
+          <a href="/auth/register?role=designer" class="wd-btn-primary">
             <span>Join as a Designer</span>
           </a>
         </div>
@@ -863,12 +809,12 @@
 
   <!-- ==================== FOOTER ==================== -->
   <footer class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 pb-12 border-b border-slate-900">
+    <div class="wd-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-900">
         
         <!-- Brand Info -->
         <div class="lg:col-span-2">
-          <a href="/" class="flex items-center gap-2.5 text-xl font-black text-white group mb-4">
+          <a href="/" class="flex items-center gap-2.5 text-xl font-black text-white group mb-4 no-underline">
             <span class="flex size-9 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-500/25">
               <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15M7 7l10 10M17 7L7 17"></path>
@@ -880,44 +826,44 @@
             Connecting dental practices and labs with skilled CAD designers worldwide.
           </p>
           
-          <!-- Newsletter / Subscribe -->
           <div>
-            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to WorkDent updates!');" class="flex gap-2 max-w-sm">
+            <form onsubmit="event.preventDefault(); document.getElementById('nl-success').classList.remove('hidden');" class="flex gap-2 max-w-sm">
               <input type="email" placeholder="Enter your email" required class="flex-1 rounded-xl bg-slate-900 border border-slate-800 px-3.5 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-hidden focus:border-blue-500 transition-colors">
-              <button type="submit" class="rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors">
+              <button type="submit" class="wd-btn-primary py-2 px-3 text-xs" style="min-height: auto;">
                 Subscribe
               </button>
             </form>
+            <p id="nl-success" class="hidden text-xs text-emerald-400 mt-2 font-medium">&check; Thank you for subscribing to WorkDent updates!</p>
           </div>
         </div>
 
         <!-- Navigation Col 1: Company -->
         <div>
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Company</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
-            <li><a href="/our-story" class="hover:text-white transition-colors">Our Story</a></li>
-            <li><a href="/how-it-works" class="hover:text-white transition-colors">How It Works</a></li>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/about" class="text-slate-400 hover:text-white no-underline transition-colors">About Us</a></li>
+            <li><a href="/our-story" class="text-slate-400 hover:text-white no-underline transition-colors">Our Story</a></li>
+            <li><a href="/how-it-works" class="text-slate-400 hover:text-white no-underline transition-colors">How It Works</a></li>
           </ul>
         </div>
 
         <!-- Navigation Col 2: Marketplace -->
         <div>
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Marketplace</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="/designers" class="hover:text-white transition-colors">Browse Designers</a></li>
-            <li><a href="/cases/new" class="hover:text-white transition-colors">Post a Case</a></li>
-            <li><a href="/auth/register" class="hover:text-white transition-colors">Create Account</a></li>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/designers" class="text-slate-400 hover:text-white no-underline transition-colors">Browse Designers</a></li>
+            <li><a href="/cases/new" class="text-slate-400 hover:text-white no-underline transition-colors">Post a Case</a></li>
+            <li><a href="/auth/register" class="text-slate-400 hover:text-white no-underline transition-colors">Create Account</a></li>
           </ul>
         </div>
 
         <!-- Navigation Col 3: Support -->
         <div>
           <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Support</h4>
-          <ul class="space-y-2.5 text-sm">
-            <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
-            <li><a href="/help" class="hover:text-white transition-colors">Help Center</a></li>
-            <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/contact" class="text-slate-400 hover:text-white no-underline transition-colors">Contact</a></li>
+            <li><a href="/help" class="text-slate-400 hover:text-white no-underline transition-colors">Help Center</a></li>
+            <li><a href="/terms" class="text-slate-400 hover:text-white no-underline transition-colors">Terms of Service</a></li>
           </ul>
         </div>
 
@@ -927,160 +873,17 @@
       <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
         <p>© Copyright 2026. All rights reserved</p>
         <div class="flex gap-6">
-          <a href="/privacy" class="hover:text-slate-400">Privacy Policy</a>
-          <a href="/terms" class="hover:text-slate-400">Terms of Use</a>
-          <a href="/security" class="hover:text-slate-400">Security</a>
+          <a href="/privacy" class="text-slate-500 hover:text-slate-400 no-underline">Privacy Policy</a>
+          <a href="/terms" class="text-slate-500 hover:text-slate-400 no-underline">Terms of Use</a>
+          <a href="/security" class="text-slate-500 hover:text-slate-400 no-underline">Security</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- ==================== INTERACTIVE SCRIPTS ==================== -->
-  <script>
-    // Navbar Scroll-State Transition (Prompt Requirement)
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('main-nav');
-      if (window.scrollY > 30) {
-        nav.classList.add('glass-nav-scrolled');
-      } else {
-        nav.classList.remove('glass-nav-scrolled');
-      }
-    });
-
-    // 5-Step Interactive Workflow State Machine
-    const stepsData = {
-      1: {
-        badge: "Step 01 of 05",
-        title: "Post your case",
-        summary: "Tell the designer what you need. It takes a couple of minutes and you do it once per case.",
-        points: [
-          "Pick the service you need from the ones designers offer",
-          "Give the case a title, like Crown & Bridge - Upper Left Molar",
-          "Add your notes: teeth involved, material, occlusion, anything unusual"
-        ],
-        visual: "/help/getting-started-dentist/03-new-project-case-details.png",
-        nextLabel: "Next: Choose your designer",
-        nextStepNum: 2
-      },
-      2: {
-        badge: "Step 02 of 05",
-        title: "Choose your designer",
-        summary: "You pick who does the work. No waiting to be assigned someone you have never seen.",
-        points: [
-          "See every designer who offers your service, with their price",
-          "Open a profile to check their work samples and reviews",
-          "Browse the whole directory before you create an account"
-        ],
-        visual: "/help/getting-started-dentist/02-dashboard.png",
-        nextLabel: "Next: Upload your scans",
-        nextStepNum: 3
-      },
-      3: {
-        badge: "Step 03 of 05",
-        title: "Upload your scans",
-        summary: "Drop in whatever the designer needs to start. Several files at once is fine.",
-        points: [
-          "STL, OBJ, PNG, JPG, WEBP, PDF and ZIP are all accepted",
-          "Up to 50 MB per file and 500 MB per case",
-          "Files stay attached to the case, so nothing gets lost in email"
-        ],
-        visual: "/help/getting-started-dentist/04-upload-scan-files.png",
-        nextLabel: "Next: Authorize, don't pay",
-        nextStepNum: 4
-      },
-      4: {
-        badge: "Step 04 of 05",
-        title: "Authorize, don't pay",
-        summary: "Your card is held, not charged. The money only moves when a designer accepts your case.",
-        points: [
-          "A hold is placed for the case amount when you submit",
-          "You are charged only once a designer accepts",
-          "If nobody takes the case in 6 days, the hold is released and you pay nothing"
-        ],
-        visual: "/help/getting-started-dentist/01-create-account.png",
-        nextLabel: "Next: Review and approve",
-        nextStepNum: 5
-      },
-      5: {
-        badge: "Step 05 of 05",
-        title: "Review and approve",
-        summary: "Everything for the case lives on one screen: the files, a 3D preview, the history and your conversation with the designer.",
-        points: [
-          "Spin and zoom STL, PLY and OBJ files right in the browser",
-          "Attach a digital design web link and review it inside the case",
-          "Accept the design, send it back for a revision, or open a dispute"
-        ],
-        visual: "/img/home/case-3d-viewer.webp",
-        nextLabel: "Start with Step 01: Post your case",
-        nextStepNum: 1
-      }
-    };
-
-    let currentStep = 1;
-
-    function switchStep(stepNum) {
-      currentStep = stepNum;
-      const data = stepsData[stepNum];
-      if (!data) return;
-
-      // Update Active UI Tab Styles
-      for (let i = 1; i <= 5; i++) {
-        const tab = document.getElementById('step-tab-' + i);
-        const num = document.getElementById('step-num-' + i);
-        if (i === stepNum) {
-          tab.classList.add('active', 'border-slate-800', 'bg-white/[0.08]');
-          tab.classList.remove('border-transparent');
-          num.classList.add('bg-blue-600', 'text-white');
-          num.classList.remove('bg-slate-800', 'text-slate-400');
-        } else {
-          tab.classList.remove('active', 'border-slate-800', 'bg-white/[0.08]');
-          tab.classList.add('border-transparent');
-          num.classList.remove('bg-blue-600', 'text-white');
-          num.classList.add('bg-slate-800', 'text-slate-400');
-        }
-      }
-
-      // Update Right Container Content
-      document.getElementById('active-step-badge').textContent = data.badge;
-      document.getElementById('active-step-title').textContent = data.title;
-      document.getElementById('active-step-summary').textContent = data.summary;
-      
-      const pointsList = document.getElementById('active-step-points');
-      pointsList.innerHTML = '';
-      data.points.forEach(point => {
-        const li = document.createElement('li');
-        li.className = 'flex items-start gap-2.5';
-        li.innerHTML = `
-          <svg class="size-4 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"></path>
-          </svg>
-          <span>${point}</span>
-        `;
-        pointsList.appendChild(li);
-      });
-
-      const visualImg = document.getElementById('active-step-visual');
-      visualImg.src = data.visual;
-      visualImg.alt = data.title;
-
-      document.getElementById('next-step-label').textContent = data.nextLabel;
-    }
-
-    function nextStep() {
-      const nextNum = stepsData[currentStep].nextStepNum;
-      switchStep(nextNum);
-    }
-
-    // Mobile Menu Toggle
-    document.getElementById('mobile-toggle-btn')?.addEventListener('click', function() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    });
-  </script>
-
-  <!-- WorkDent Supabase Auth & App Connector Integration -->
-  <script src="/lib/workdent-supabase.js"></script>
-  <script src="/lib/app-connector.js"></script>
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="./lib/workdent-stepper.js"></script>
+  <script src="./lib/workdent-supabase.js"></script>
+  <script src="./lib/app-connector.js"></script>
 </body>
 </html>
