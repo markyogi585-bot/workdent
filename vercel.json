@@ -20,6 +20,12 @@
     }
   ],
   "rewrites": [
+    { "source": "/community", "destination": "/community.html" },
+    { "source": "/jobs", "destination": "/jobs.html" },
+    { "source": "/members", "destination": "/members.html" },
+    { "source": "/gallery", "destination": "/gallery.html" },
+    { "source": "/marketplace", "destination": "/marketplace.html" },
+    { "source": "/membership", "destination": "/membership.html" },
     { "source": "/auth/login", "destination": "/auth/login.html" },
     { "source": "/auth/register", "destination": "/auth/register.html" },
     { "source": "/auth/register/verify", "destination": "/auth/register/verify.html" },

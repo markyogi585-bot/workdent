@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WorkDent Members Directory &bull; Vetted Dental Technicians & Labs</title>
+  <meta name="description" content="Discover 1,480+ verified dental technicians, CAD designers, full-service dental labs, and clinicians worldwide.">
+  <link rel="icon" href="/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/workdent-ui.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- ==================== FLOATING GLASS NAVBAR ==================== -->
+  <div class="wd-navbar-wrap">
+    <header class="wd-navbar">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 no-underline group">
+        <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
+            WorkDent
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">Members</span>
+          </span>
+          <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5 hidden sm:inline">Connect. Work. Grow.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-semibold">
+        <a href="/community" class="wd-nav-link">Community</a>
+        <a href="/jobs" class="wd-nav-link">Find Jobs</a>
+        <a href="/members" class="wd-nav-link text-blue-600 bg-blue-50 font-bold">Members</a>
+        <a href="/gallery" class="wd-nav-link">Case Gallery</a>
+        <a href="/marketplace" class="wd-nav-link">Marketplace</a>
+        <a href="/membership" class="wd-nav-link text-amber-700 hover:text-amber-800 flex items-center gap-1 font-bold">
+          <span>VIP</span>
+          <span class="text-xs">⭐</span>
+        </a>
+      </nav>
+
+      <!-- Desktop Auth Slot -->
+      <div class="hidden sm:flex items-center gap-3 wd-auth-slot">
+        <a href="/auth/login" class="wd-nav-link">Sign In</a>
+        <a href="/auth/register" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.875rem;">Join Free</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100" aria-label="Toggle navigation menu">
+        <svg class="size-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="wd-mobile-drawer" class="wd-mobile-drawer">
+        <a href="/community" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Community</a>
+        <a href="/jobs" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Find Jobs</a>
+        <a href="/members" class="px-3 py-2 text-sm font-bold text-blue-600 bg-blue-50 rounded-lg no-underline">Members Directory</a>
+        <a href="/gallery" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Case Gallery</a>
+        <a href="/marketplace" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Marketplace</a>
+        <a href="/membership" class="px-3 py-2 text-sm font-bold text-amber-700 bg-amber-50 rounded-lg no-underline flex items-center justify-between">
+          <span>WorkDent VIP</span>
+          <span>⭐</span>
+        </a>
+        <div class="wd-mobile-auth-slot"></div>
+      </div>
+    </header>
+  </div>
+
+  <!-- ==================== MEMBERS HERO ==================== -->
+  <section class="pt-32 pb-8 px-4 bg-gradient-to-b from-white via-slate-50 to-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold mb-3">
+          <span>👥 GLOBAL DENTAL DIRECTORY</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
+          Find Dental Labs & Technicians
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed">
+          Search 1,480+ verified dental technicians, master ceramists, full-service laboratory owners, and clinical partners across 48 countries.
+        </p>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="mt-8 flex flex-col md:flex-row gap-4">
+        <div class="relative flex-1">
+          <svg class="size-5 absolute left-3.5 top-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+          </svg>
+          <input type="text" id="member-search" placeholder="Search by name, @username, software (exocad, 3Shape), location..." class="w-full pl-11 pr-4 py-3 bg-white border border-slate-300 rounded-xl text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent shadow-sm">
+        </div>
+      </div>
+
+      <!-- Role Filter Pills -->
+      <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-2" id="member-role-filters">
+        <button class="wd-filter-pill active" data-role="all">All Members (1,480)</button>
+        <button class="wd-filter-pill" data-role="tech">👨‍🔬 CAD Technicians (820)</button>
+        <button class="wd-filter-pill" data-role="lab">🏢 Dental Labs (410)</button>
+        <button class="wd-filter-pill" data-role="dentist">🦷 Dentists & Clinics (250)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MEMBERS GRID ==================== -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="members-container">
+      
+      <!-- Member 1 -->
+      <div class="wd-item-card member-card" data-role="tech">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80" alt="Elena Rostova" class="size-14 rounded-2xl object-cover border-2 border-white shadow-md">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-extrabold text-slate-950">Elena Rostova</h3>
+                <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold">@cad_master_elena</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="wd-badge wd-badge-tech">CAD Specialist</span>
+                <span class="wd-badge wd-badge-vip">⭐ VIP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
+          Specializing in full arch immediate load All-on-X, multi-unit titanium custom abutments, and exocad 3.2 Galway workflows.
+        </p>
+
+        <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+          <span class="flex items-center gap-1 font-semibold text-slate-700">
+            📍 Miami, FL, USA
+          </span>
+          <span>&bull;</span>
+          <span class="flex items-center gap-1 font-bold text-amber-600">
+            ★ 5.0 (142 cases)
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-1 mt-3">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">exocad Galway</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">All-on-4</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">Custom Abutments</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100">
+          <button type="button" class="connect-btn py-2 px-3 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-800 transition-colors text-center" data-name="Elena Rostova">
+            + Connect
+          </button>
+          <button type="button" class="msg-btn py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors text-center" data-name="Elena Rostova" data-handle="@cad_master_elena">
+            Message
+          </button>
+        </div>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="wd-item-card member-card" data-role="lab">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="size-14 rounded-2xl bg-blue-600 text-white font-extrabold flex items-center justify-center text-lg shadow-md">AD</div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-extrabold text-slate-950">Apex Dental Studio</h3>
+                <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold">@apexlab</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="wd-badge wd-badge-lab">Dental Lab</span>
+                <span class="wd-badge wd-badge-vip">⭐ VIP Lab</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
+          Full-service digital laboratory with in-house 5-axis milling (vhf, Imes-Icore) and 3D printing. Open for laboratory overflow cases.
+        </p>
+
+        <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+          <span class="flex items-center gap-1 font-semibold text-slate-700">
+            📍 Chicago, IL, USA
+          </span>
+          <span>&bull;</span>
+          <span class="flex items-center gap-1 font-bold text-amber-600">
+            ★ 4.9 (320 cases)
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-1 mt-3">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">vhf 5-Axis</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">Zirconia</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">SprintRay 3D</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100">
+          <button type="button" class="connect-btn py-2 px-3 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-800 transition-colors text-center" data-name="Apex Dental Studio">
+            + Connect
+          </button>
+          <button type="button" class="msg-btn py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors text-center" data-name="Apex Dental Studio" data-handle="@apexlab">
+            Message
+          </button>
+        </div>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="wd-item-card member-card" data-role="dentist">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=160&q=80" alt="Dr. Marcus Vance" class="size-14 rounded-2xl object-cover border-2 border-white shadow-md">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-extrabold text-slate-950">Dr. Marcus Vance</h3>
+                <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold">@dr_marcus_implants</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="wd-badge wd-badge-dentist">Prosthodontist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
+          Board-certified prosthodontist focusing on guided implant surgery, digital smile design, and monolithic aesthetic restorations.
+        </p>
+
+        <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+          <span class="flex items-center gap-1 font-semibold text-slate-700">
+            📍 London, United Kingdom
+          </span>
+          <span>&bull;</span>
+          <span class="flex items-center gap-1 font-bold text-amber-600">
+            ★ 5.0 (88 cases)
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-1 mt-3">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">Implantology</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">GuidedSurgery</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">DigitalSmile</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100">
+          <button type="button" class="connect-btn py-2 px-3 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-800 transition-colors text-center" data-name="Dr. Marcus Vance">
+            + Connect
+          </button>
+          <button type="button" class="msg-btn py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors text-center" data-name="Dr. Marcus Vance" data-handle="@dr_marcus_implants">
+            Message
+          </button>
+        </div>
+      </div>
+
+      <!-- Member 4 -->
+      <div class="wd-item-card member-card" data-role="tech">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80" alt="Carlos Mendez" class="size-14 rounded-2xl object-cover border-2 border-white shadow-md">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-extrabold text-slate-950">Carlos Mendez</h3>
+                <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold">@mendez_cad</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="wd-badge wd-badge-tech">CAD Specialist</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
+          Certified Dental Technician with 8+ years experience in 3Shape Dental System and high-translucency aesthetic anterior layering.
+        </p>
+
+        <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+          <span class="flex items-center gap-1 font-semibold text-slate-700">
+            📍 Madrid, Spain
+          </span>
+          <span>&bull;</span>
+          <span class="flex items-center gap-1 font-bold text-amber-600">
+            ★ 4.9 (96 cases)
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-1 mt-3">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">3Shape 2024</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">AnteriorVeneers</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">e.max</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100">
+          <button type="button" class="connect-btn py-2 px-3 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-800 transition-colors text-center" data-name="Carlos Mendez">
+            + Connect
+          </button>
+          <button type="button" class="msg-btn py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors text-center" data-name="Carlos Mendez" data-handle="@mendez_cad">
+            Message
+          </button>
+        </div>
+      </div>
+
+      <!-- Member 5 -->
+      <div class="wd-item-card member-card" data-role="lab">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <div class="size-14 rounded-2xl bg-slate-900 text-white font-extrabold flex items-center justify-center text-lg shadow-md">SC</div>
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-extrabold text-slate-950">SmileCraft European Lab</h3>
+                <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold">@smilecraft_lab</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="wd-badge wd-badge-lab">Dental Lab</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
+          German precision dental laboratory. Specializing in telescopic crowns, titanium bars, and precision attachments.
+        </p>
+
+        <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+          <span class="flex items-center gap-1 font-semibold text-slate-700">
+            📍 Munich, Germany
+          </span>
+          <span>&bull;</span>
+          <span class="flex items-center gap-1 font-bold text-amber-600">
+            ★ 5.0 (215 cases)
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-1 mt-3">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">TelescopicCrowns</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">TitaniumBars</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">CAM/Milling</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100">
+          <button type="button" class="connect-btn py-2 px-3 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-800 transition-colors text-center" data-name="SmileCraft European Lab">
+            + Connect
+          </button>
+          <button type="button" class="msg-btn py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors text-center" data-name="SmileCraft European Lab" data-handle="@smilecraft_lab">
+            Message
+          </button>
+        </div>
+      </div>
+
+      <!-- Member 6 -->
+      <div class="wd-item-card member-card" data-role="tech">
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80" alt="Kenji Tanaka" class="size-14 rounded-2xl object-cover border-2 border-white shadow-md">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-extrabold text-slate-950">Kenji Tanaka</h3>
+                <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              </div>
+              <div class="text-xs text-slate-500 font-semibold">@tanaka_dentalarts</div>
+              <div class="flex items-center gap-1.5 mt-1">
+                <span class="wd-badge wd-badge-tech">CAD Specialist</span>
+                <span class="wd-badge wd-badge-vip">⭐ VIP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-600 mt-3 line-clamp-2 leading-relaxed">
+          Microscopic dental CAD ceramist. Natural occlusal anatomy morphology presets and delicate margin designs.
+        </p>
+
+        <div class="flex items-center gap-3 text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+          <span class="flex items-center gap-1 font-semibold text-slate-700">
+            📍 Tokyo, Japan
+          </span>
+          <span>&bull;</span>
+          <span class="flex items-center gap-1 font-bold text-amber-600">
+            ★ 5.0 (164 cases)
+          </span>
+        </div>
+
+        <div class="flex flex-wrap gap-1 mt-3">
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">exocad Galway</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">ToothLibraries</span>
+          <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">OcclusalDesign</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100">
+          <button type="button" class="connect-btn py-2 px-3 rounded-lg border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-800 transition-colors text-center" data-name="Kenji Tanaka">
+            + Connect
+          </button>
+          <button type="button" class="msg-btn py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-xs font-bold text-white transition-colors text-center" data-name="Kenji Tanaka" data-handle="@tanaka_dentalarts">
+            Message
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== MESSAGE MODAL ==================== -->
+  <div id="message-modal" class="wd-modal-backdrop">
+    <div class="wd-modal-box">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <h3 class="text-base font-extrabold text-slate-900" id="msg-modal-title">Send Direct Message</h3>
+        <button type="button" id="close-msg-modal" class="text-slate-400 hover:text-slate-600">
+          <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <form id="msg-form" class="mt-4 flex flex-col gap-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Subject / Case Reference</label>
+          <input type="text" placeholder="e.g. Question about your All-on-X turnaround times" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Message</label>
+          <textarea rows="4" required placeholder="Hi Elena, I saw your casework on WorkDent and would love to collaborate on 10 upcoming upper zirconia cases..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-200">
+          <button type="button" id="cancel-msg-btn" class="px-3 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+          <button type="submit" class="wd-btn-primary" style="padding: 0.4rem 1.25rem; font-size: 0.8125rem;">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 3-DAY COOKIE NOTICE BAR ==================== -->
+  <div id="wd-cookie-notice" class="wd-cookie-bar hidden">
+    <div class="flex items-center gap-3">
+      <div class="size-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      </div>
+      <p class="text-xs text-slate-200 m-0">
+        <strong class="text-white">Secure 3-Day Session:</strong> WorkDent uses encrypted authentication cookies to keep you connected for 3 days across all network hubs.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <button id="wd-cookie-dismiss" type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors">Dismiss</button>
+      <button id="wd-cookie-accept" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition-colors">Accept & Remember (3 Days)</button>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 text-white pt-12 pb-8 border-t border-slate-800 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800 text-xs">
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Network</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><a href="/community" class="hover:text-white no-underline">Community & Forum</a></li>
+            <li><a href="/jobs" class="hover:text-white no-underline">Find Work (Jobs)</a></li>
+            <li><a href="/members" class="hover:text-white no-underline text-blue-400 font-bold">Members Directory</a></li>
+            <li><a href="/gallery" class="hover:text-white no-underline">Case Gallery</a></li>
+            <li><a href="/marketplace" class="hover:text-white no-underline">Marketplace</a></li>
+            <li><a href="/membership" class="hover:text-amber-400 no-underline font-bold">VIP Membership ⭐</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">Dental CAD/CAM</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><span>exocad Galway 3.2</span></li>
+            <li><span>3Shape Dental System</span></li>
+            <li><span>MillBox 5-Axis CAM</span></li>
+            <li><span>Blender for Dental</span></li>
+            <li><span>SprintRay & Asiga 3D</span></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">Company</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><a href="/about-us" class="hover:text-white no-underline">About Us</a></li>
+            <li><a href="/our-story" class="hover:text-white no-underline">Our Story</a></li>
+            <li><a href="/how-it-works" class="hover:text-white no-underline">How It Works</a></li>
+            <li><a href="/contact" class="hover:text-white no-underline">Contact Support</a></li>
+            <li><a href="/terms" class="hover:text-white no-underline">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Identity</h5>
+          <p class="text-slate-400 leading-relaxed mb-3">
+            Where Dental Professionals Connect, Work & Grow. Guaranteed escrow payments, vetted designers, and laboratory workflows.
+          </p>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-900/50 text-blue-300 font-bold border border-blue-700 text-[11px]">
+            <span>Connect &bull; Work &bull; Grow</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
+        <span>&copy; 2026 WorkDent Inc. All rights reserved.</span>
+        <span>HIPAA Compliant &bull; Secure Escrow Architecture</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/lib/workdent-supabase.js"></script>
+  <script src="/lib/workdent-nav.js"></script>
+  <script>
+    // Role filter
+    const rolePills = document.querySelectorAll('#member-role-filters button');
+    const memberCards = document.querySelectorAll('.member-card');
+    rolePills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        rolePills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const role = pill.dataset.role;
+        memberCards.forEach(card => {
+          if (role === 'all' || card.dataset.role === role) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Search filter
+    const memberSearch = document.getElementById('member-search');
+    memberSearch.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      memberCards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    });
+
+    // Connect button toggle
+    document.querySelectorAll('.connect-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('bg-emerald-50')) {
+          btn.classList.remove('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+          btn.classList.add('border-slate-300', 'text-slate-800');
+          btn.textContent = '+ Connect';
+        } else {
+          btn.classList.add('bg-emerald-50', 'text-emerald-700', 'border-emerald-300');
+          btn.classList.remove('border-slate-300', 'text-slate-800');
+          btn.textContent = 'Connected ✓';
+        }
+      });
+    });
+
+    // Message modal
+    const msgModal = document.getElementById('message-modal');
+    document.querySelectorAll('.msg-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('msg-modal-title').textContent = 'Message ' + btn.dataset.name + ' (' + btn.dataset.handle + ')';
+        msgModal.classList.add('open');
+      });
+    });
+    document.getElementById('close-msg-modal').addEventListener('click', () => msgModal.classList.remove('open'));
+    document.getElementById('cancel-msg-btn').addEventListener('click', () => msgModal.classList.remove('open'));
+    document.getElementById('msg-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Message sent! You will receive an email and in-app notification when they reply.');
+      msgModal.classList.remove('open');
+      document.getElementById('msg-form').reset();
+    });
+  </script>
+</body>
+</html>

@@ -45,38 +45,20 @@
       </a>
 
       <!-- Desktop Navigation Items -->
-      <nav class="hidden md:flex items-center gap-2" aria-label="Main Navigation">
-        <a href="#how-it-works" class="wd-nav-link">How it works?</a>
-        <a href="#features" class="wd-nav-link">Features</a>
-        <a href="#pricing" class="wd-nav-link">Pricing</a>
-        
-        <!-- Solutions Dropdown Menu -->
-        <div class="relative wd-dropdown" id="wd-solutions-dropdown">
-          <button type="button" class="wd-nav-link" id="wd-solutions-btn" aria-haspopup="true" aria-expanded="false">
-            <span>Solutions</span>
-            <svg class="size-3.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
-            </svg>
-          </button>
-          <div class="wd-dropdown-content" role="menu">
-            <a href="/as/dentist" class="flex flex-col p-2.5 rounded-lg text-slate-800 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors" role="menuitem">
-              <span class="text-xs font-bold text-slate-900">I'm a Dentist</span>
-              <span class="text-[11px] text-slate-500 mt-0.5">Post cases & access vetted CAD talent</span>
-            </a>
-            <a href="/as/designer" class="flex flex-col p-2.5 rounded-lg text-slate-800 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors mt-1" role="menuitem">
-              <span class="text-xs font-bold text-slate-900">I'm a Designer</span>
-              <span class="text-[11px] text-slate-500 mt-0.5">Earn with zero upfront fees & escrow</span>
-            </a>
-            <a href="/as/lab" class="flex flex-col p-2.5 rounded-lg text-slate-800 hover:bg-blue-50 hover:text-blue-600 no-underline transition-colors mt-1" role="menuitem">
-              <span class="text-xs font-bold text-slate-900">I'm a Dental Lab</span>
-              <span class="text-[11px] text-slate-500 mt-0.5">Scale laboratory capacity on demand</span>
-            </a>
-          </div>
-        </div>
+      <nav class="hidden md:flex items-center gap-1.5 text-sm font-semibold" aria-label="Main Navigation">
+        <a href="/community" class="wd-nav-link">Community</a>
+        <a href="/jobs" class="wd-nav-link">Find Jobs</a>
+        <a href="/members" class="wd-nav-link">Members</a>
+        <a href="/gallery" class="wd-nav-link">Case Gallery</a>
+        <a href="/marketplace" class="wd-nav-link">Marketplace</a>
+        <a href="/membership" class="wd-nav-link text-amber-700 hover:text-amber-800 flex items-center gap-1 font-bold">
+          <span>VIP</span>
+          <span class="text-xs">⭐</span>
+        </a>
       </nav>
 
-      <!-- Desktop Auth CTAs -->
-      <div class="hidden sm:flex items-center gap-3">
+      <!-- Desktop Auth CTAs (Dynamic via workdent-nav.js) -->
+      <div class="hidden sm:flex items-center gap-3 wd-auth-slot">
         <a href="/auth/login" class="wd-nav-link">Login</a>
         <a href="/auth/register" class="wd-btn-primary">
           <span>Get Started</span>
@@ -95,18 +77,20 @@
 
       <!-- Mobile Navigation Drawer -->
       <div id="wd-mobile-drawer" class="wd-mobile-drawer" role="dialog" aria-label="Mobile Navigation Menu">
-        <a href="#how-it-works" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">How it works?</a>
-        <a href="#features" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Features</a>
-        <a href="#pricing" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Pricing</a>
+        <a href="/community" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Community & Forum</a>
+        <a href="/jobs" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Find Jobs</a>
+        <a href="/members" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Members Directory</a>
+        <a href="/gallery" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Case Gallery</a>
+        <a href="/marketplace" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Marketplace</a>
+        <a href="/membership" class="px-3 py-2 text-sm font-bold text-amber-700 bg-amber-50 rounded-lg no-underline flex items-center justify-between">
+          <span>WorkDent VIP</span>
+          <span>⭐</span>
+        </a>
         <div class="px-3 pt-2 text-[11px] font-extrabold uppercase tracking-wider text-slate-400">Solutions</div>
         <a href="/as/dentist" class="px-3 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg no-underline">I'm a Dentist</a>
-        <a href="/as/dentist" class="hidden">I'm a dentist</a>
         <a href="/as/designer" class="px-3 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg no-underline">I'm a Designer</a>
         <a href="/as/lab" class="px-3 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg no-underline">I'm a Dental Lab</a>
-        <div class="flex gap-2 pt-3 border-t border-slate-200 mt-2">
-          <a href="/auth/login" class="wd-btn-secondary flex-1 text-center">Login</a>
-          <a href="/auth/register" class="wd-btn-primary flex-1 text-center">Get Started</a>
-        </div>
+        <div class="wd-mobile-auth-slot"></div>
       </div>
 
     </header>
@@ -1036,10 +1020,27 @@
     </div>
   </footer>
 
+  <!-- ==================== 3-DAY COOKIE NOTICE BAR ==================== -->
+  <div id="wd-cookie-notice" class="wd-cookie-bar hidden">
+    <div class="flex items-center gap-3">
+      <div class="size-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      </div>
+      <p class="text-xs text-slate-200 m-0">
+        <strong class="text-white">Secure 3-Day Session:</strong> WorkDent uses encrypted authentication cookies to keep you connected for 3 days across all network hubs.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <button id="wd-cookie-dismiss" type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors">Dismiss</button>
+      <button id="wd-cookie-accept" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition-colors">Accept & Remember (3 Days)</button>
+    </div>
+  </div>
+
   <!-- ==================== SCRIPTS ==================== -->
   <script src="./lib/workdent-banner.js"></script>
   <script src="./lib/workdent-stepper.js"></script>
   <script src="./lib/workdent-supabase.js"></script>
+  <script src="./lib/workdent-nav.js"></script>
   <script src="./lib/app-connector.js"></script>
 </body>
 </html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WorkDent Case Gallery &bull; Clinical Restorations & Dental CAD</title>
+  <meta name="description" content="Showcase and inspect verified dental CAD designs, monolithic zirconia restorations, All-on-X implant cases, and clinical portfolios.">
+  <link rel="icon" href="/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/workdent-ui.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- ==================== FLOATING GLASS NAVBAR ==================== -->
+  <div class="wd-navbar-wrap">
+    <header class="wd-navbar">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 no-underline group">
+        <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
+            WorkDent
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">Gallery</span>
+          </span>
+          <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5 hidden sm:inline">Connect. Work. Grow.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-semibold">
+        <a href="/community" class="wd-nav-link">Community</a>
+        <a href="/jobs" class="wd-nav-link">Find Jobs</a>
+        <a href="/members" class="wd-nav-link">Members</a>
+        <a href="/gallery" class="wd-nav-link text-blue-600 bg-blue-50 font-bold">Case Gallery</a>
+        <a href="/marketplace" class="wd-nav-link">Marketplace</a>
+        <a href="/membership" class="wd-nav-link text-amber-700 hover:text-amber-800 flex items-center gap-1 font-bold">
+          <span>VIP</span>
+          <span class="text-xs">⭐</span>
+        </a>
+      </nav>
+
+      <!-- Desktop Auth Slot -->
+      <div class="hidden sm:flex items-center gap-3 wd-auth-slot">
+        <a href="/auth/login" class="wd-nav-link">Sign In</a>
+        <a href="/auth/register" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.875rem;">Join Free</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100" aria-label="Toggle navigation menu">
+        <svg class="size-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="wd-mobile-drawer" class="wd-mobile-drawer">
+        <a href="/community" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Community</a>
+        <a href="/jobs" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Find Jobs</a>
+        <a href="/members" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Members Directory</a>
+        <a href="/gallery" class="px-3 py-2 text-sm font-bold text-blue-600 bg-blue-50 rounded-lg no-underline">Case Gallery</a>
+        <a href="/marketplace" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Marketplace</a>
+        <a href="/membership" class="px-3 py-2 text-sm font-bold text-amber-700 bg-amber-50 rounded-lg no-underline flex items-center justify-between">
+          <span>WorkDent VIP</span>
+          <span>⭐</span>
+        </a>
+        <div class="wd-mobile-auth-slot"></div>
+      </div>
+    </header>
+  </div>
+
+  <!-- ==================== GALLERY HERO ==================== -->
+  <section class="pt-32 pb-8 px-4 bg-gradient-to-b from-white via-slate-50 to-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-800 text-xs font-bold mb-3">
+            <span>🖼️ CLINICAL CASE PORTFOLIO</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight leading-tight">
+            Restorations & CAD Showcase
+          </h1>
+          <p class="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed">
+            Discover precision dental restorations, monolithic zirconia aesthetics, 3D printed splints, and custom titanium abutments designed by verified WorkDent professionals.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="open-submit-case-modal" class="wd-btn-primary flex items-center gap-2">
+            <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
+            </svg>
+            <span>Submit Your Case</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex items-center gap-2 mt-8 overflow-x-auto pb-2" id="gallery-filters">
+        <button class="wd-filter-pill active" data-type="all">All Cases (320)</button>
+        <button class="wd-filter-pill" data-type="anterior">Anterior Aesthetics (94)</button>
+        <button class="wd-filter-pill" data-type="allonx">Full Arch All-on-X (78)</button>
+        <button class="wd-filter-pill" data-type="abutment">Custom Titanium Abutments (56)</button>
+        <button class="wd-filter-pill" data-type="splint">3D Printed Splints & Guards (42)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GALLERY GRID ==================== -->
+  <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-container">
+      
+      <!-- Case 1 -->
+      <div class="wd-item-card gallery-card cursor-pointer p-0 overflow-hidden" data-type="allonx" data-title="Maxillary Full Arch Monolithic Multilayer Zirconia on 6 Implants" data-author="Elena Rostova" data-software="exocad Galway 3.2" data-material="Katana HTML Multilayer Zirconia" data-margin="0.035mm spacer, 0.7mm minimal thickness" data-likes="124" data-img="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80">
+        <div class="relative h-56 bg-slate-100 overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=800&q=80" alt="Full Arch Zirconia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900/80 text-white backdrop-blur-md">All-on-X</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-blue-600/90 text-white backdrop-blur-md">exocad 3.2</span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1">
+            <span>❤️</span> 124
+          </div>
+        </div>
+
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="text-base font-extrabold text-slate-900 hover:text-blue-600 transition-colors line-clamp-1">
+            Maxillary Full Arch Monolithic Multilayer Zirconia on 6 Implants
+          </h3>
+          <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+            Screw-retained monolithic hybrid on multi-unit abutments. Optimized emergence profile with micro-layering on facial aspects.
+          </p>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=80&q=80" class="size-6 rounded-full object-cover">
+              <span class="font-bold text-slate-800">Elena Rostova</span>
+            </div>
+            <span class="text-blue-600 font-extrabold hover:underline">Inspect 3D &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 2 -->
+      <div class="wd-item-card gallery-card cursor-pointer p-0 overflow-hidden" data-type="anterior" data-title="Minimally Invasive Feldspathic Porcelain Veneers #6-#11" data-author="Carlos Mendez" data-software="3Shape Dental System 2024" data-material="IPS e.max CAD & Custom Surface Texture" data-margin="0.3mm contact clearance, natural mamelons" data-likes="198" data-img="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80">
+        <div class="relative h-56 bg-slate-100 overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=800&q=80" alt="Anterior Veneers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900/80 text-white backdrop-blur-md">Anterior</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-purple-600/90 text-white backdrop-blur-md">3Shape 2024</span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1">
+            <span>❤️</span> 198
+          </div>
+        </div>
+
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="text-base font-extrabold text-slate-900 hover:text-blue-600 transition-colors line-clamp-1">
+            Minimally Invasive Feldspathic Porcelain Veneers #6-#11
+          </h3>
+          <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+            Ultra-thin preparation design with natural surface perikymata lines and incisal halo translucency.
+          </p>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" class="size-6 rounded-full object-cover">
+              <span class="font-bold text-slate-800">Carlos Mendez</span>
+            </div>
+            <span class="text-blue-600 font-extrabold hover:underline">Inspect 3D &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 3 -->
+      <div class="wd-item-card gallery-card cursor-pointer p-0 overflow-hidden" data-type="abutment" data-title="Posterior Custom Titanium Abutment & Zirconia Crown (#19)" data-author="Kenji Tanaka" data-software="exocad Galway" data-material="Grade 5 Pre-milled Titanium + Katana STML" data-margin="1.5mm subgingival, 18° screw channel" data-likes="112" data-img="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80">
+        <div class="relative h-56 bg-slate-100 overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80" alt="Titanium Abutment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900/80 text-white backdrop-blur-md">Custom Abutment</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-blue-600/90 text-white backdrop-blur-md">exocad Galway</span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1">
+            <span>❤️</span> 112
+          </div>
+        </div>
+
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="text-base font-extrabold text-slate-900 hover:text-blue-600 transition-colors line-clamp-1">
+            Posterior Custom Titanium Abutment & Zirconia Crown (#19)
+          </h3>
+          <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+            Anatomical emergence profile mimicking the natural cross-section of a lower first molar root trunk. Angled screw channel for aesthetic screw exit.
+          </p>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" class="size-6 rounded-full object-cover">
+              <span class="font-bold text-slate-800">Kenji Tanaka</span>
+            </div>
+            <span class="text-blue-600 font-extrabold hover:underline">Inspect 3D &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Case 4 -->
+      <div class="wd-item-card gallery-card cursor-pointer p-0 overflow-hidden" data-type="splint" data-title="Digital Clear Nightguard with Canine Guidance Ramp" data-author="David Kim" data-software="3Shape Splint Studio" data-material="KeySplint Soft Resin on SprintRay Pro 55" data-margin="2.0mm occlusal plane, 0.4mm retention relief" data-likes="88" data-img="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80">
+        <div class="relative h-56 bg-slate-100 overflow-hidden group">
+          <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80" alt="Splint & Nightguard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900/80 text-white backdrop-blur-md">Splint Studio</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-emerald-600/90 text-white backdrop-blur-md">3D Printed</span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1">
+            <span>❤️</span> 88
+          </div>
+        </div>
+
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="text-base font-extrabold text-slate-900 hover:text-blue-600 transition-colors line-clamp-1">
+            Digital Clear Nightguard with Canine Guidance Ramp
+          </h3>
+          <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+            Precise virtual articulation eliminating premature occlusal interferences in lateral excursive movements.
+          </p>
+
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-2">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80" class="size-6 rounded-full object-cover">
+              <span class="font-bold text-slate-800">David Kim</span>
+            </div>
+            <span class="text-blue-600 font-extrabold hover:underline">Inspect 3D &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== CASE DETAIL MODAL ==================== -->
+  <div id="case-modal" class="wd-modal-backdrop">
+    <div class="wd-modal-box max-w-3xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <div>
+          <h3 class="text-lg font-extrabold text-slate-900" id="modal-case-title">Case Title</h3>
+          <div class="text-xs text-slate-500" id="modal-case-author">By Elena Rostova &bull; Verified WorkDent Case</div>
+        </div>
+        <button type="button" id="close-case-modal" class="text-slate-400 hover:text-slate-600">
+          <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <div class="mt-4 flex flex-col gap-4">
+        <div class="h-72 w-full rounded-xl overflow-hidden bg-slate-900 relative">
+          <img id="modal-case-img" src="" class="w-full h-full object-cover">
+          <div class="absolute bottom-3 left-3 bg-black/70 backdrop-blur-md px-3 py-1.5 rounded-lg text-white text-xs font-bold flex items-center gap-2">
+            <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>3D STL Inspection Mode Active</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="font-bold text-slate-500">CAD Software</div>
+            <div class="font-extrabold text-slate-900 mt-0.5" id="modal-case-software">exocad Galway 3.2</div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="font-bold text-slate-500">Restorative Material</div>
+            <div class="font-extrabold text-slate-900 mt-0.5" id="modal-case-material">Katana HTML Zirconia</div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div class="font-bold text-slate-500">Spacer / Clearance</div>
+            <div class="font-extrabold text-slate-900 mt-0.5" id="modal-case-margin">0.035mm spacer</div>
+          </div>
+        </div>
+
+        <div class="p-4 bg-blue-50 rounded-xl border border-blue-200 flex items-center justify-between">
+          <div class="text-xs text-blue-900 font-bold">
+            Interested in having this designer handle your upcoming cases?
+          </div>
+          <button type="button" class="wd-btn-primary" style="padding: 0.4rem 1rem; font-size: 0.8125rem;">
+            Request Similar Case
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SUBMIT CASE MODAL ==================== -->
+  <div id="submit-case-modal" class="wd-modal-backdrop">
+    <div class="wd-modal-box">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <h3 class="text-lg font-extrabold text-slate-900">Submit Your Dental Case</h3>
+        <button type="button" id="close-submit-case-modal" class="text-slate-400 hover:text-slate-600">
+          <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <form id="submit-case-form" class="mt-4 flex flex-col gap-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Case Title</label>
+          <input type="text" id="case-title-in" required placeholder="e.g. Anterior Feldspathic Veneers #7-#10" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Category</label>
+            <select id="case-cat-in" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+              <option value="anterior">Anterior Aesthetics</option>
+              <option value="allonx">Full Arch All-on-X</option>
+              <option value="abutment">Custom Abutment</option>
+              <option value="splint">3D Printed Splint</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Software Used</label>
+            <input type="text" id="case-soft-in" required placeholder="exocad 3.2 or 3Shape" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Clinical Image URL (or render link)</label>
+          <input type="url" id="case-img-in" required placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Clinical Notes & Milling Tolerances</label>
+          <textarea id="case-notes-in" rows="3" required placeholder="Describe material shade, margin gaps, occlusal contact intensity..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-200">
+          <button type="button" id="cancel-submit-case-btn" class="px-4 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+          <button type="submit" class="wd-btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.8125rem;">Publish to Gallery</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 3-DAY COOKIE NOTICE BAR ==================== -->
+  <div id="wd-cookie-notice" class="wd-cookie-bar hidden">
+    <div class="flex items-center gap-3">
+      <div class="size-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      </div>
+      <p class="text-xs text-slate-200 m-0">
+        <strong class="text-white">Secure 3-Day Session:</strong> WorkDent uses encrypted authentication cookies to keep you connected for 3 days across all network hubs.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <button id="wd-cookie-dismiss" type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors">Dismiss</button>
+      <button id="wd-cookie-accept" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition-colors">Accept & Remember (3 Days)</button>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 text-white pt-12 pb-8 border-t border-slate-800 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800 text-xs">
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Network</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><a href="/community" class="hover:text-white no-underline">Community & Forum</a></li>
+            <li><a href="/jobs" class="hover:text-white no-underline">Find Work (Jobs)</a></li>
+            <li><a href="/members" class="hover:text-white no-underline">Members Directory</a></li>
+            <li><a href="/gallery" class="hover:text-white no-underline text-blue-400 font-bold">Case Gallery</a></li>
+            <li><a href="/marketplace" class="hover:text-white no-underline">Marketplace</a></li>
+            <li><a href="/membership" class="hover:text-amber-400 no-underline font-bold">VIP Membership ⭐</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">Dental CAD/CAM</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><span>exocad Galway 3.2</span></li>
+            <li><span>3Shape Dental System</span></li>
+            <li><span>MillBox 5-Axis CAM</span></li>
+            <li><span>Blender for Dental</span></li>
+            <li><span>SprintRay & Asiga 3D</span></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">Company</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><a href="/about-us" class="hover:text-white no-underline">About Us</a></li>
+            <li><a href="/our-story" class="hover:text-white no-underline">Our Story</a></li>
+            <li><a href="/how-it-works" class="hover:text-white no-underline">How It Works</a></li>
+            <li><a href="/contact" class="hover:text-white no-underline">Contact Support</a></li>
+            <li><a href="/terms" class="hover:text-white no-underline">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Identity</h5>
+          <p class="text-slate-400 leading-relaxed mb-3">
+            Where Dental Professionals Connect, Work & Grow. Guaranteed escrow payments, vetted designers, and laboratory workflows.
+          </p>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-900/50 text-blue-300 font-bold border border-blue-700 text-[11px]">
+            <span>Connect &bull; Work &bull; Grow</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
+        <span>&copy; 2026 WorkDent Inc. All rights reserved.</span>
+        <span>HIPAA Compliant &bull; Secure Escrow Architecture</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/lib/workdent-supabase.js"></script>
+  <script src="/lib/workdent-nav.js"></script>
+  <script>
+    // Filter
+    const galleryPills = document.querySelectorAll('#gallery-filters button');
+    const galleryCards = document.querySelectorAll('.gallery-card');
+    galleryPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        galleryPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const type = pill.dataset.type;
+        galleryCards.forEach(card => {
+          if (type === 'all' || card.dataset.type === type) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Case Detail Modal
+    const caseModal = document.getElementById('case-modal');
+    galleryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        document.getElementById('modal-case-title').textContent = card.dataset.title;
+        document.getElementById('modal-case-author').textContent = 'By ' + card.dataset.author + ' • Verified WorkDent Case';
+        document.getElementById('modal-case-img').src = card.dataset.img;
+        document.getElementById('modal-case-software').textContent = card.dataset.software;
+        document.getElementById('modal-case-material').textContent = card.dataset.material;
+        document.getElementById('modal-case-margin').textContent = card.dataset.margin;
+        caseModal.classList.add('open');
+      });
+    });
+    document.getElementById('close-case-modal').addEventListener('click', () => caseModal.classList.remove('open'));
+
+    // Submit Case Modal
+    const submitModal = document.getElementById('submit-case-modal');
+    document.getElementById('open-submit-case-modal').addEventListener('click', () => submitModal.classList.add('open'));
+    [document.getElementById('close-submit-case-modal'), document.getElementById('cancel-submit-case-btn')].forEach(b => b.addEventListener('click', () => submitModal.classList.remove('open')));
+
+    document.getElementById('submit-case-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = document.getElementById('case-title-in').value;
+      const cat = document.getElementById('case-cat-in').value;
+      const soft = document.getElementById('case-soft-in').value;
+      const img = document.getElementById('case-img-in').value;
+      const notes = document.getElementById('case-notes-in').value;
+
+      const newCard = document.createElement('div');
+      newCard.className = 'wd-item-card gallery-card cursor-pointer p-0 overflow-hidden';
+      newCard.dataset.type = cat;
+      newCard.dataset.title = title;
+      newCard.dataset.author = 'You';
+      newCard.dataset.software = soft;
+      newCard.dataset.material = 'Clinical Restoration';
+      newCard.dataset.margin = notes.slice(0, 40);
+      newCard.dataset.img = img;
+      newCard.innerHTML = `
+        <div class="relative h-56 bg-slate-100 overflow-hidden group">
+          <img src="${img}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute top-3 left-3 flex items-center gap-1.5">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-slate-900/80 text-white backdrop-blur-md">${cat}</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-black uppercase bg-blue-600/90 text-white backdrop-blur-md">${soft}</span>
+          </div>
+          <div class="absolute bottom-3 right-3 px-2 py-1 rounded-lg bg-black/70 backdrop-blur-md text-white text-xs font-bold flex items-center gap-1">
+            <span>❤️</span> 1
+          </div>
+        </div>
+        <div class="p-5 flex flex-col flex-1">
+          <h3 class="text-base font-extrabold text-slate-900">${title}</h3>
+          <p class="text-xs text-slate-500 mt-1 line-clamp-2">${notes}</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span class="font-bold text-slate-800">You (Verified Member)</span>
+            <span class="text-blue-600 font-extrabold">Inspect 3D &rarr;</span>
+          </div>
+        </div>
+      `;
+      document.getElementById('gallery-container').prepend(newCard);
+      submitModal.classList.remove('open');
+      document.getElementById('submit-case-form').reset();
+      alert('Your clinical case has been submitted and is now featured in the WorkDent gallery!');
+    });
+  </script>
+</body>
+</html>

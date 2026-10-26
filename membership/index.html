@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WorkDent VIP &bull; Premium Professional Membership & Lab Tiers</title>
+  <meta name="description" content="Unlock VIP Gold Badges, 3% reduced escrow fees, instant 24hr payouts, and priority placement in the WorkDent dental directory.">
+  <link rel="icon" href="/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/workdent-ui.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- ==================== FLOATING GLASS NAVBAR ==================== -->
+  <div class="wd-navbar-wrap">
+    <header class="wd-navbar">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2.5 no-underline group">
+        <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
+          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-lg font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
+            WorkDent
+            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-amber-100 text-amber-900">VIP</span>
+          </span>
+          <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5 hidden sm:inline">Connect. Work. Grow.</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1 text-sm font-semibold">
+        <a href="/community" class="wd-nav-link">Community</a>
+        <a href="/jobs" class="wd-nav-link">Find Jobs</a>
+        <a href="/members" class="wd-nav-link">Members</a>
+        <a href="/gallery" class="wd-nav-link">Case Gallery</a>
+        <a href="/marketplace" class="wd-nav-link">Marketplace</a>
+        <a href="/membership" class="wd-nav-link text-amber-800 bg-amber-50 font-bold flex items-center gap-1">
+          <span>VIP</span>
+          <span class="text-xs">⭐</span>
+        </a>
+      </nav>
+
+      <!-- Desktop Auth Slot -->
+      <div class="hidden sm:flex items-center gap-3 wd-auth-slot">
+        <a href="/auth/login" class="wd-nav-link">Sign In</a>
+        <a href="/auth/register" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.875rem;">Join Free</a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100" aria-label="Toggle navigation menu">
+        <svg class="size-6 text-slate-800" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="wd-mobile-drawer" class="wd-mobile-drawer">
+        <a href="/community" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Community</a>
+        <a href="/jobs" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Find Jobs</a>
+        <a href="/members" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Members Directory</a>
+        <a href="/gallery" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Case Gallery</a>
+        <a href="/marketplace" class="px-3 py-2 text-sm font-bold text-slate-800 hover:bg-slate-100 rounded-lg no-underline">Marketplace</a>
+        <a href="/membership" class="px-3 py-2 text-sm font-bold text-amber-800 bg-amber-50 rounded-lg no-underline flex items-center justify-between">
+          <span>WorkDent VIP</span>
+          <span>⭐</span>
+        </a>
+        <div class="wd-mobile-auth-slot"></div>
+      </div>
+    </header>
+  </div>
+
+  <!-- ==================== MEMBERSHIP HERO ==================== -->
+  <section class="pt-32 pb-12 px-4 bg-gradient-to-b from-white via-amber-50/20 to-slate-50 border-b border-slate-200 text-center">
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-black uppercase tracking-wider mb-3 shadow-sm">
+        <span>⭐ WORKDENT PRO & VIP PLATFORM</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+        Elevate Your Dental Reputation & Growth
+      </h1>
+      <p class="text-slate-600 text-base sm:text-xl mt-3 max-w-2xl mx-auto leading-relaxed">
+        Join hundreds of verified master ceramists, CAD power designers, and full-service labs with VIP gold verification, reduced fees, and instant payouts.
+      </p>
+
+      <!-- Billing Switch -->
+      <div class="inline-flex items-center p-1.5 bg-slate-200/70 rounded-2xl mt-8">
+        <button id="monthly-toggle" type="button" class="px-5 py-2 rounded-xl text-xs font-bold transition-all bg-white text-slate-900 shadow-sm">
+          Monthly Billing
+        </button>
+        <button id="annual-toggle" type="button" class="px-5 py-2 rounded-xl text-xs font-bold transition-all text-slate-600 hover:text-slate-900 flex items-center gap-1.5">
+          <span>Annual Billing</span>
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-extrabold">Save 20%</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING CARDS ==================== -->
+  <main class="max-w-7xl mx-auto px-4 py-12 flex-1 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      
+      <!-- Tier 1: Free -->
+      <div class="wd-item-card flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-extrabold text-slate-400 uppercase tracking-wider">Basic Network</div>
+          <h3 class="text-2xl font-black text-slate-900 mt-1">Community Member</h3>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Essential tools to explore the dental network, participate in discussions, and find initial casework.
+          </p>
+
+          <div class="mt-6 flex items-baseline gap-1">
+            <span class="text-4xl font-black text-slate-950">$0</span>
+            <span class="text-xs font-bold text-slate-500">/ forever free</span>
+          </div>
+
+          <ul class="mt-8 space-y-3 text-xs text-slate-600 border-t border-slate-100 pt-6">
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Public member directory listing
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Browse and post in Community Forum
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Apply up to 3 jobs/cases per month
+            </li>
+            <li class="flex items-center gap-2 text-slate-400">
+              <svg class="size-4 text-slate-300 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              Standard 8% escrow transaction fee
+            </li>
+            <li class="flex items-center gap-2 text-slate-400">
+              <svg class="size-4 text-slate-300 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              Standard 5-day payout clearance
+            </li>
+          </ul>
+        </div>
+
+        <a href="/auth/register" class="wd-btn-secondary w-full text-center mt-8 text-xs py-2.5">
+          Get Started Free
+        </a>
+      </div>
+
+      <!-- Tier 2: Pro VIP (Featured) -->
+      <div class="wd-item-card flex flex-col justify-between border-2 border-amber-400 relative shadow-xl shadow-amber-500/10">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[11px] font-black uppercase tracking-wider shadow-md">
+          ⭐ MOST POPULAR FOR DESIGNERS
+        </div>
+
+        <div>
+          <div class="text-xs font-extrabold text-amber-700 uppercase tracking-wider mt-2">Professional Growth</div>
+          <h3 class="text-2xl font-black text-slate-900 mt-1">WorkDent Pro VIP</h3>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            The gold standard for full-time CAD freelancers, aesthetic ceramists, and top-tier specialists.
+          </p>
+
+          <div class="mt-6 flex items-baseline gap-1">
+            <span class="text-4xl font-black text-slate-950 price-display" data-monthly="$29" data-annual="$24">$29</span>
+            <span class="text-xs font-bold text-slate-500">/ month, billed <span class="billing-cycle-text">monthly</span></span>
+          </div>
+
+          <ul class="mt-8 space-y-3 text-xs text-slate-700 border-t border-slate-100 pt-6">
+            <li class="flex items-center gap-2 font-bold text-amber-800">
+              <span class="text-amber-500">⭐</span>
+              Verified VIP Gold Badge on profile & posts
+            </li>
+            <li class="flex items-center gap-2 font-bold text-emerald-700">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Reduced 3% escrow fee (Save up to $600/mo)
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Priority 1st-page ranking in "Find Designers"
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Unlimited job applications & instant bids
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Instant 24-hr escrow payouts (Wise/Bank)
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Free downloads from Master CAD Libraries
+            </li>
+          </ul>
+        </div>
+
+        <button type="button" class="upgrade-vip-btn w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-extrabold text-xs shadow-lg shadow-amber-500/25 transition-all mt-8" data-plan="WorkDent Pro VIP" data-price="$29">
+          Upgrade to VIP Pro ⭐
+        </button>
+      </div>
+
+      <!-- Tier 3: Dental Lab Enterprise -->
+      <div class="wd-item-card flex flex-col justify-between">
+        <div>
+          <div class="text-xs font-extrabold text-blue-600 uppercase tracking-wider">Laboratories & Clinics</div>
+          <h3 class="text-2xl font-black text-slate-900 mt-1">Lab Enterprise</h3>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Built for dental labs seeking to scale overflow capacity and manage multiple bench technicians.
+          </p>
+
+          <div class="mt-6 flex items-baseline gap-1">
+            <span class="text-4xl font-black text-slate-950 price-display" data-monthly="$99" data-annual="$79">$99</span>
+            <span class="text-xs font-bold text-slate-500">/ month, billed <span class="billing-cycle-text">monthly</span></span>
+          </div>
+
+          <ul class="mt-8 space-y-3 text-xs text-slate-600 border-t border-slate-100 pt-6">
+            <li class="flex items-center gap-2 font-bold text-slate-900">
+              <svg class="size-4 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              All Pro VIP features included
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Featured Spotlight in Lab Directory
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Unlimited sponsored job & case postings
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Multi-seat CAD team management (5 seats)
+            </li>
+            <li class="flex items-center gap-2">
+              <svg class="size-4 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              Dedicated laboratory account manager
+            </li>
+          </ul>
+        </div>
+
+        <button type="button" class="upgrade-vip-btn wd-btn-primary w-full text-center mt-8 text-xs py-2.5" data-plan="Lab Enterprise" data-price="$99">
+          Scale Your Lab
+        </button>
+      </div>
+
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="mt-20 max-w-3xl mx-auto">
+      <h3 class="text-2xl font-black text-slate-900 text-center mb-8">Frequently Asked Questions</h3>
+      <div class="space-y-4 text-sm">
+        <div class="p-4 bg-white rounded-xl border border-slate-200">
+          <h4 class="font-bold text-slate-900">How does the 3% reduced escrow fee work?</h4>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+            Free members pay an 8% transaction fee on completed cases. As a Pro VIP member, your fee is slashed to just 3%. If you design 40 units or 10 full-arch cases a month, the membership pays for itself in your first week.
+          </p>
+        </div>
+        <div class="p-4 bg-white rounded-xl border border-slate-200">
+          <h4 class="font-bold text-slate-900">What does the VIP Gold Badge include?</h4>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+            Your profile, proposals, and community posts receive a verified gold badge (⭐ VIP). You also rank on the first page of search results when laboratories search for vetted CAD talent.
+          </p>
+        </div>
+        <div class="p-4 bg-white rounded-xl border border-slate-200">
+          <h4 class="font-bold text-slate-900">Can I cancel anytime?</h4>
+          <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+            Yes, there are no long-term contracts. You can downgrade or cancel anytime directly from your account settings with one click.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==================== CHECKOUT MODAL ==================== -->
+  <div id="checkout-modal" class="wd-modal-backdrop">
+    <div class="wd-modal-box">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900" id="checkout-title">Activate WorkDent Pro VIP</h3>
+          <div class="text-xs text-slate-500" id="checkout-subtitle">$29/month &bull; Instant VIP Gold Badge</div>
+        </div>
+        <button type="button" id="close-checkout-modal" class="text-slate-400 hover:text-slate-600">
+          <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <form id="checkout-form" class="mt-4 flex flex-col gap-3">
+        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 flex items-center gap-3">
+          <span class="text-2xl">⭐</span>
+          <div class="text-xs text-amber-900">
+            <strong>Instant VIP Activation:</strong> Your profile will immediately receive the Gold VIP verified badge, 3% reduced fee tier, and priority ranking.
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Billing Email</label>
+          <input type="email" id="checkout-email" required placeholder="dentist@workdent.io" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Card Details</label>
+          <div class="w-full px-3 py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 flex items-center justify-between">
+            <span class="text-slate-400 text-xs">•••• •••• •••• 4242</span>
+            <span class="text-slate-400 text-xs font-semibold">12/28 &bull; CVC 888</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-200">
+          <button type="button" id="cancel-checkout-btn" class="px-3 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
+          <button type="submit" class="py-2.5 px-5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs shadow-md transition-colors">
+            Confirm & Activate VIP ⭐
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 3-DAY COOKIE NOTICE BAR ==================== -->
+  <div id="wd-cookie-notice" class="wd-cookie-bar hidden">
+    <div class="flex items-center gap-3">
+      <div class="size-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
+        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+      </div>
+      <p class="text-xs text-slate-200 m-0">
+        <strong class="text-white">Secure 3-Day Session:</strong> WorkDent uses encrypted authentication cookies to keep you connected for 3 days across all network hubs.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <button id="wd-cookie-dismiss" type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors">Dismiss</button>
+      <button id="wd-cookie-accept" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition-colors">Accept & Remember (3 Days)</button>
+    </div>
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-slate-900 text-white pt-12 pb-8 border-t border-slate-800 mt-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800 text-xs">
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Network</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><a href="/community" class="hover:text-white no-underline">Community & Forum</a></li>
+            <li><a href="/jobs" class="hover:text-white no-underline">Find Work (Jobs)</a></li>
+            <li><a href="/members" class="hover:text-white no-underline">Members Directory</a></li>
+            <li><a href="/gallery" class="hover:text-white no-underline">Case Gallery</a></li>
+            <li><a href="/marketplace" class="hover:text-white no-underline">Marketplace</a></li>
+            <li><a href="/membership" class="hover:text-amber-400 no-underline text-amber-400 font-bold">VIP Membership ⭐</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">Dental CAD/CAM</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><span>exocad Galway 3.2</span></li>
+            <li><span>3Shape Dental System</span></li>
+            <li><span>MillBox 5-Axis CAM</span></li>
+            <li><span>Blender for Dental</span></li>
+            <li><span>SprintRay & Asiga 3D</span></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">Company</h5>
+          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
+            <li><a href="/about-us" class="hover:text-white no-underline">About Us</a></li>
+            <li><a href="/our-story" class="hover:text-white no-underline">Our Story</a></li>
+            <li><a href="/how-it-works" class="hover:text-white no-underline">How It Works</a></li>
+            <li><a href="/contact" class="hover:text-white no-underline">Contact Support</a></li>
+            <li><a href="/terms" class="hover:text-white no-underline">Terms of Service</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Identity</h5>
+          <p class="text-slate-400 leading-relaxed mb-3">
+            Where Dental Professionals Connect, Work & Grow. Guaranteed escrow payments, vetted designers, and laboratory workflows.
+          </p>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-900/50 text-blue-300 font-bold border border-blue-700 text-[11px]">
+            <span>Connect &bull; Work &bull; Grow</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
+        <span>&copy; 2026 WorkDent Inc. All rights reserved.</span>
+        <span>HIPAA Compliant &bull; Secure Escrow Architecture</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/lib/workdent-supabase.js"></script>
+  <script src="/lib/workdent-nav.js"></script>
+  <script>
+    // Billing Switch
+    const monthlyBtn = document.getElementById('monthly-toggle');
+    const annualBtn = document.getElementById('annual-toggle');
+    const priceDisplays = document.querySelectorAll('.price-display');
+    const cycleTexts = document.querySelectorAll('.billing-cycle-text');
+
+    monthlyBtn.addEventListener('click', () => {
+      monthlyBtn.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
+      monthlyBtn.classList.remove('text-slate-600');
+      annualBtn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
+      annualBtn.classList.add('text-slate-600');
+      priceDisplays.forEach(el => el.textContent = el.dataset.monthly);
+      cycleTexts.forEach(el => el.textContent = 'monthly');
+    });
+
+    annualBtn.addEventListener('click', () => {
+      annualBtn.classList.add('bg-white', 'text-slate-900', 'shadow-sm');
+      annualBtn.classList.remove('text-slate-600');
+      monthlyBtn.classList.remove('bg-white', 'text-slate-900', 'shadow-sm');
+      monthlyBtn.classList.add('text-slate-600');
+      priceDisplays.forEach(el => el.textContent = el.dataset.annual);
+      cycleTexts.forEach(el => el.textContent = 'annually (Save 20%)');
+    });
+
+    // Checkout Modal
+    const checkoutModal = document.getElementById('checkout-modal');
+    document.querySelectorAll('.upgrade-vip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('checkout-title').textContent = 'Activate ' + btn.dataset.plan;
+        document.getElementById('checkout-subtitle').textContent = btn.dataset.price + '/month • Instant VIP Gold Badge';
+        checkoutModal.classList.add('open');
+      });
+    });
+    document.getElementById('close-checkout-modal').addEventListener('click', () => checkoutModal.classList.remove('open'));
+    document.getElementById('cancel-checkout-btn').addEventListener('click', () => checkoutModal.classList.remove('open'));
+
+    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Update session with VIP badge
+      const session = window.WorkDentAuth ? window.WorkDentAuth.validateSession() : null;
+      if (session) {
+        session.isVip = true;
+        window.WorkDentAuth.Cookie.set('workdent_auth_session', session, 3);
+      }
+      checkoutModal.classList.remove('open');
+      alert('🎉 Congratulations! Your WorkDent VIP Pro membership is active. Your profile now displays the Gold ⭐ VIP verification badge!');
+      if (window.WorkDentNav) window.WorkDentNav.refreshAuth();
+    });
+  </script>
+</body>
+</html>
