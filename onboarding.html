@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#F5FAF9]">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Professional Onboarding &bull; WorkDent Dental Network</title>
+  <meta name="description" content="Set up your WorkDent professional profile, dental software, clinic/lab location, and CAD specialization.">
+  <link rel="icon" href="/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/workdent-ui.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      color: #102A43;
+      background-color: #F5FAF9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .wizard-card {
+      background: #FFFFFF;
+      border: 1px solid #DCE8E8;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 45px -15px rgba(16, 42, 67, 0.08), 0 0 1px 1px rgba(16, 42, 67, 0.03);
+    }
+    .step-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: #EAF4F4;
+      color: #627D98;
+      transition: all 0.2s ease;
+    }
+    .step-pill.active {
+      background: #087F8C;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(8, 127, 140, 0.25);
+    }
+    .step-pill.completed {
+      background: #E6F8F6;
+      color: #087F8C;
+      border: 1px solid #B9F3E8;
+    }
+    .software-tag {
+      cursor: pointer;
+      border: 1.5px solid #CBD5E1;
+      background-color: #F8FAFC;
+      border-radius: 0.75rem;
+      padding: 0.5rem 0.875rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #334E68;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      user-select: none;
+    }
+    .software-tag:hover {
+      border-color: #087F8C;
+      background-color: #FFFFFF;
+    }
+    .software-tag.selected {
+      border-color: #087F8C;
+      background-color: #E6F8F6;
+      color: #087F8C;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(8, 127, 140, 0.15);
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="py-4 px-6 max-w-7xl mx-auto w-full flex items-center justify-between border-b border-[#DCE8E8]/70 bg-white/80 backdrop-blur-md sticky top-0 z-40">
+    <a href="/" class="flex items-center text-2xl font-black text-[#102A43] no-underline tracking-tight group" aria-label="WorkDent Home">
+      <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+      <span class="hidden sm:inline-block text-[11px] font-bold text-slate-400 border-l border-slate-300 pl-2.5 ml-2">Setup Wizard</span>
+    </a>
+
+    <div class="flex items-center gap-4 text-xs font-semibold">
+      <a href="/dashboard" class="text-slate-500 hover:text-slate-800 transition-colors">Skip to Dashboard &rarr;</a>
+    </div>
+  </header>
+
+  <!-- Main Wizard Flow -->
+  <main class="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-10">
+    <div class="max-w-3xl w-full">
+      
+      <!-- Progress Bar & Stepper Indicators -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between gap-2 overflow-x-auto pb-2 sm:pb-0" id="wizard-steps-nav">
+          <div class="step-pill active" data-step="1">
+            <span class="size-5 rounded-full bg-white/20 flex items-center justify-center text-xs">1</span>
+            <span>Profession</span>
+          </div>
+          <div class="step-pill" data-step="2">
+            <span class="size-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">2</span>
+            <span>Location</span>
+          </div>
+          <div class="step-pill" data-step="3">
+            <span class="size-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">3</span>
+            <span>CAD Tools</span>
+          </div>
+          <div class="step-pill" data-step="4">
+            <span class="size-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">4</span>
+            <span>Photo &amp; Bio</span>
+          </div>
+          <div class="step-pill" data-step="5">
+            <span class="size-5 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xs">5</span>
+            <span>Review</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Step Card -->
+      <div class="wizard-card p-6 sm:p-10">
+        
+        <!-- STEP 1: Profession & Clinical Role -->
+        <div id="step-panel-1" class="step-panel">
+          <div class="mb-6">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#087F8C]">Step 1 of 5</span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#102A43] mt-1">Select Your Profession &amp; Specialty</h1>
+            <p class="text-sm text-slate-600 mt-2">Help the WorkDent network match you with the right cases, lab overflow, and clinical partners.</p>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <label for="ob-profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Primary Profession</label>
+              <select id="ob-profession" class="wd-select auth-input">
+                <option value="dentist" selected>Dentist / Clinical Practice Surgeon</option>
+                <option value="designer">Dental CAD/CAM Designer (exocad, 3Shape)</option>
+                <option value="lab">Dental Laboratory Owner / Production Manager</option>
+                <option value="ceramist">Dental Ceramist / Senior Aesthetic Tech</option>
+                <option value="milling">Milling Center &amp; CAM Production Specialist</option>
+                <option value="support">Dental Software / Technical Support</option>
+                <option value="manufacturer">Dental Materials Manufacturer / Rep</option>
+                <option value="other">Other Dental Professional</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="ob-specialty" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Primary Clinical Specialty</label>
+              <select id="ob-specialty" class="wd-select auth-input">
+                <option value="crown_bridge" selected>Crown &amp; Bridge Restorations (Zirconia, Lithium Disilicate)</option>
+                <option value="implants">Implant Planning, Custom Abutments &amp; All-on-X</option>
+                <option value="ortho">Orthodontics, Clear Aligners &amp; Indirect Bonding</option>
+                <option value="dentures">Removable Prosthetics, Cast Partials &amp; Digital Dentures</option>
+                <option value="aesthetic">Smile Design, Prep-less Veneers &amp; Mockups</option>
+                <option value="surgical">Guided Surgery Stents &amp; Nightguards</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="ob-experience" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Years of Dental / CAD Experience</label>
+              <select id="ob-experience" class="wd-select auth-input">
+                <option value="1_2">1 &ndash; 2 Years (Junior Specialist)</option>
+                <option value="3_5" selected>3 &ndash; 5 Years (Experienced Professional)</option>
+                <option value="6_10">6 &ndash; 10 Years (Senior Master Technician / Doctor)</option>
+                <option value="10_plus">10+ Years (Industry Veteran / Lab Director)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-end">
+            <button type="button" class="wd-btn-primary px-8" onclick="goToStep(2)">
+              <span>Next: Location Details &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Location (Country, State, City, Clinic/Lab Name) -->
+        <div id="step-panel-2" class="step-panel hidden">
+          <div class="mb-6">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#087F8C]">Step 2 of 5</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#102A43] mt-1">Your Practice or Lab Location</h2>
+            <p class="text-sm text-slate-600 mt-2">Connecting you with localized dentists and laboratories for physical shipping and regional case turnarounds.</p>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <label for="ob-country" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Country</label>
+              <select id="ob-country" class="wd-select auth-input" onchange="updateStateDropdown()">
+                <option value="United States" selected>United States</option>
+                <option value="Germany">Germany</option>
+                <option value="India">India</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="France">France</option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+                <option value="United Arab Emirates">United Arab Emirates</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Japan">Japan</option>
+                <option value="South Korea">South Korea</option>
+                <option value="Turkey">Turkey</option>
+                <option value="Other">Other Country</option>
+              </select>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="ob-state" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">State / Province</label>
+                <select id="ob-state" class="wd-select auth-input">
+                  <option value="California" selected>California</option>
+                  <option value="New York">New York</option>
+                  <option value="Texas">Texas</option>
+                  <option value="Florida">Florida</option>
+                  <option value="Illinois">Illinois</option>
+                  <option value="Washington">Washington</option>
+                  <option value="Other">Other State/Region</option>
+                </select>
+              </div>
+              <div>
+                <label for="ob-city" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">City</label>
+                <input type="text" id="ob-city" placeholder="San Francisco" value="San Francisco" class="auth-input">
+              </div>
+            </div>
+
+            <div>
+              <label for="ob-org-name" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Clinic, Lab or Studio Name</label>
+              <input type="text" id="ob-org-name" placeholder="Apex Dental CAD Studio" class="auth-input">
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" class="wd-btn-secondary" onclick="goToStep(1)">&larr; Back</button>
+            <button type="button" class="wd-btn-primary px-8" onclick="goToStep(3)">
+              <span>Next: Dental Software &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: CAD Software & Hardware Tech Stack -->
+        <div id="step-panel-3" class="step-panel hidden">
+          <div class="mb-6">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#087F8C]">Step 3 of 5</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#102A43] mt-1">Dental Software &amp; Equipment</h2>
+            <p class="text-sm text-slate-600 mt-2">Select the CAD/CAM suites and scanner equipment you routinely use.</p>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">CAD/CAM Design Software (Select all that apply)</label>
+              <div class="flex flex-wrap gap-2" id="software-tag-cloud">
+                <div class="software-tag selected" data-val="exocad">exocad DentalCAD</div>
+                <div class="software-tag selected" data-val="3shape">3Shape Dental System</div>
+                <div class="software-tag" data-val="millbox">MillBox CAM</div>
+                <div class="software-tag" data-val="blender">Blender for Dental</div>
+                <div class="software-tag" data-val="hyperdent">HyperDENT</div>
+                <div class="software-tag" data-val="medit">Medit Link</div>
+                <div class="software-tag" data-val="dentalwings">Dental Wings</div>
+              </div>
+            </div>
+
+            <div>
+              <label for="ob-scanner" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Primary Intraoral or Lab Scanner</label>
+              <select id="ob-scanner" class="wd-select auth-input">
+                <option value="trios" selected>3Shape TRIOS (Wireless / Color)</option>
+                <option value="medit_i">Medit i700 / i900 Intraoral</option>
+                <option value="itero">iTero Element 5D / Flex</option>
+                <option value="shining">Shining 3D AutoScan Lab Scanner</option>
+                <option value="ineos">Dentsply Sirona inEos X5</option>
+                <option value="other">Other Open STL/PLY Scanner</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" class="wd-btn-secondary" onclick="goToStep(2)">&larr; Back</button>
+            <button type="button" class="wd-btn-primary px-8" onclick="goToStep(4)">
+              <span>Next: Photo &amp; Bio &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Photo & Bio -->
+        <div id="step-panel-4" class="step-panel hidden">
+          <div class="mb-6">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#087F8C]">Step 4 of 5</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#102A43] mt-1">Profile Photo &amp; Bio</h2>
+            <p class="text-sm text-slate-600 mt-2">Personalize your verified profile so dentists and labs can identify you.</p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-center gap-5">
+              <div id="avatar-preview-container" class="size-20 rounded-full border-2 border-[#087F8C] shadow-md overflow-hidden bg-slate-100 flex items-center justify-center">
+                <img id="avatar-img-preview" src="" alt="Profile" class="size-full object-cover hidden">
+                <div id="avatar-initial-preview" class="size-full bg-gradient-to-tr from-[#087F8C] to-[#2479D8] text-white text-2xl font-black flex items-center justify-center">
+                  W
+                </div>
+              </div>
+
+              <div class="flex-1">
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Avatar Source</label>
+                <p id="avatar-source-note" class="text-xs text-slate-500 mb-2">Using default profile representation.</p>
+                <div class="flex gap-2">
+                  <button type="button" id="use-default-avatar-btn" class="px-3 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold hover:bg-slate-50">Reset to Initials</button>
+                  <label class="px-3 py-1.5 rounded-lg bg-[#087F8C] text-white text-xs font-bold cursor-pointer hover:bg-[#06646E]">
+                    <span>Upload Custom Photo</span>
+                    <input type="file" id="avatar-file-input" accept="image/*" class="hidden">
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="ob-bio" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Professional Bio &amp; Workflow Overview</label>
+              <textarea id="ob-bio" rows="4" placeholder="Briefly describe your dental laboratory, clinic specialties, or CAD turnaround capabilities..." class="auth-input h-auto py-3 leading-relaxed">Certified dental CAD specialist specializing in high-aesthetic anterior restorations, exocad full-arch implant bars, and 24-hour turnaround lab overflow cases.</textarea>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" class="wd-btn-secondary" onclick="goToStep(3)">&larr; Back</button>
+            <button type="button" class="wd-btn-primary px-8" onclick="goToStep(5)">
+              <span>Next: Review &amp; Confirm &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Review & Complete -->
+        <div id="step-panel-5" class="step-panel hidden">
+          <div class="mb-6">
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#087F8C]">Step 5 of 5</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-[#102A43] mt-1">Review Your WorkDent Profile</h2>
+            <p class="text-sm text-slate-600 mt-2">Confirm your professional credentials before publishing to the directory.</p>
+          </div>
+
+          <!-- Summary Card -->
+          <div class="p-5 rounded-2xl bg-[#F0F7F7] border border-[#DCE8E8] space-y-4">
+            <div class="flex items-center gap-4">
+              <div id="review-avatar-container" class="size-16 rounded-full border border-teal-600 shadow-sm overflow-hidden flex items-center justify-center bg-white">
+                <img id="review-avatar-img" src="" alt="Profile" class="size-full object-cover hidden">
+                <div id="review-avatar-initial" class="size-full bg-teal-600 text-white text-xl font-bold flex items-center justify-center">W</div>
+              </div>
+              <div>
+                <h3 id="review-name" class="font-extrabold text-base text-[#102A43]">Professional Name</h3>
+                <p id="review-role-badge" class="text-xs font-bold text-[#087F8C]">DENTAL CAD SPECIALIST</p>
+                <p id="review-location" class="text-xs text-slate-500 mt-0.5">San Francisco, California, United States</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-3 border-t border-slate-200/80 text-xs">
+              <div>
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Specialty:</span>
+                <p id="review-specialty" class="font-bold text-slate-800 m-0 mt-0.5">Crown &amp; Bridge Restorations</p>
+              </div>
+              <div>
+                <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">CAD Software:</span>
+                <p id="review-software" class="font-bold text-slate-800 m-0 mt-0.5">exocad, 3Shape</p>
+              </div>
+            </div>
+
+            <div class="pt-2 text-xs text-slate-600 italic">
+              &ldquo;<span id="review-bio">Professional bio preview</span>&rdquo;
+            </div>
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
+            <button type="button" class="wd-btn-secondary" onclick="goToStep(4)">&larr; Back</button>
+            <button type="button" id="ob-complete-btn" class="wd-btn-primary px-8" onclick="finishOnboarding()">
+              <span>Complete Profile &amp; Enter WorkDent &rarr;</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/lib/workdent-supabase.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      let currentStep = 1;
+      let userAvatarData = null;
+
+      // Check current session
+      const session = window.WorkDentAuth ? window.WorkDentAuth.validateSession() : null;
+      if (session) {
+        if (session.name) {
+          const initial = session.name.charAt(0).toUpperCase();
+          document.getElementById('avatar-initial-preview').textContent = initial;
+          document.getElementById('review-avatar-initial').textContent = initial;
+          document.getElementById('review-name').textContent = session.name;
+        }
+
+        // Check if user came from Google with profile image
+        if (session.avatar_url) {
+          userAvatarData = session.avatar_url;
+          showAvatarImg(session.avatar_url);
+          document.getElementById('avatar-source-note').textContent = 'Google profile picture detected & loaded.';
+        }
+
+        if (session.profession || session.role) {
+          const profSelect = document.getElementById('ob-profession');
+          if (profSelect) profSelect.value = session.profession || session.role;
+        }
+      }
+
+      function showAvatarImg(url) {
+        const imgP = document.getElementById('avatar-img-preview');
+        const initP = document.getElementById('avatar-initial-preview');
+        imgP.src = url;
+        imgP.classList.remove('hidden');
+        initP.classList.add('hidden');
+
+        const revP = document.getElementById('review-avatar-img');
+        const revInit = document.getElementById('review-avatar-initial');
+        revP.src = url;
+        revP.classList.remove('hidden');
+        revInit.classList.add('hidden');
+      }
+
+      function showAvatarInitial() {
+        userAvatarData = null;
+        document.getElementById('avatar-img-preview').classList.add('hidden');
+        document.getElementById('avatar-initial-preview').classList.remove('hidden');
+        document.getElementById('review-avatar-img').classList.add('hidden');
+        document.getElementById('review-avatar-initial').classList.remove('hidden');
+      }
+
+      document.getElementById('use-default-avatar-btn').addEventListener('click', showAvatarInitial);
+
+      // File upload for custom avatar
+      document.getElementById('avatar-file-input').addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function (ev) {
+          userAvatarData = ev.target.result;
+          showAvatarImg(userAvatarData);
+          document.getElementById('avatar-source-note').textContent = 'Custom photo uploaded: ' + file.name;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      // Software Tag Selection Toggle
+      document.querySelectorAll('#software-tag-cloud .software-tag').forEach(tag => {
+        tag.addEventListener('click', () => {
+          tag.classList.toggle('selected');
+        });
+      });
+
+      // Wizard Step Navigation
+      window.goToStep = function (stepNumber) {
+        currentStep = stepNumber;
+        document.querySelectorAll('.step-panel').forEach(p => p.classList.add('hidden'));
+        const activePanel = document.getElementById('step-panel-' + stepNumber);
+        if (activePanel) activePanel.classList.remove('hidden');
+
+        // Update pills
+        document.querySelectorAll('#wizard-steps-nav .step-pill').forEach(pill => {
+          const pillStep = parseInt(pill.dataset.step, 10);
+          pill.classList.remove('active', 'completed');
+          if (pillStep === stepNumber) {
+            pill.classList.add('active');
+          } else if (pillStep < stepNumber) {
+            pill.classList.add('completed');
+          }
+        });
+
+        // If step 5, update preview values
+        if (stepNumber === 5) {
+          updateReviewSummary();
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      // Dynamic states based on country
+      window.updateStateDropdown = function () {
+        const country = document.getElementById('ob-country').value;
+        const stateSelect = document.getElementById('ob-state');
+        stateSelect.innerHTML = '';
+
+        if (country === 'United States') {
+          ['California', 'New York', 'Texas', 'Florida', 'Illinois', 'Pennsylvania', 'Ohio', 'Georgia', 'North Carolina', 'Washington'].forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s;
+            opt.textContent = s;
+            stateSelect.appendChild(opt);
+          });
+        } else if (country === 'Germany') {
+          ['Bavaria', 'North Rhine-Westphalia', 'Baden-Württemberg', 'Berlin', 'Hesse', 'Saxony'].forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s;
+            opt.textContent = s;
+            stateSelect.appendChild(opt);
+          });
+        } else if (country === 'India') {
+          ['Maharashtra', 'Karnataka', 'Delhi NCR', 'Gujarat', 'Tamil Nadu', 'Telangana', 'West Bengal'].forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s;
+            opt.textContent = s;
+            stateSelect.appendChild(opt);
+          });
+        } else {
+          ['Primary State / Province', 'Central District', 'Capital Region', 'Other'].forEach(s => {
+            const opt = document.createElement('option');
+            opt.value = s;
+            opt.textContent = s;
+            stateSelect.appendChild(opt);
+          });
+        }
+      };
+
+      function updateReviewSummary() {
+        const profession = document.getElementById('ob-profession').selectedOptions[0].text;
+        const specialty = document.getElementById('ob-specialty').selectedOptions[0].text;
+        const country = document.getElementById('ob-country').value;
+        const state = document.getElementById('ob-state').value;
+        const city = document.getElementById('ob-city').value || 'City';
+        const bio = document.getElementById('ob-bio').value;
+
+        const selectedSoftware = [];
+        document.querySelectorAll('#software-tag-cloud .software-tag.selected').forEach(t => {
+          selectedSoftware.push(t.textContent.trim());
+        });
+
+        document.getElementById('review-role-badge').textContent = profession.toUpperCase();
+        document.getElementById('review-location').textContent = `${city}, ${state}, ${country}`;
+        document.getElementById('review-specialty').textContent = specialty;
+        document.getElementById('review-software').textContent = selectedSoftware.length ? selectedSoftware.join(', ') : 'Open CAD STL/PLY';
+        document.getElementById('review-bio').textContent = bio;
+      }
+
+      window.finishOnboarding = async function () {
+        const completeBtn = document.getElementById('ob-complete-btn');
+        completeBtn.disabled = true;
+        completeBtn.innerHTML = '<span>Saving Profile Data...</span>';
+
+        const profession = document.getElementById('ob-profession').value;
+        const specialty = document.getElementById('ob-specialty').value;
+        const experience = document.getElementById('ob-experience').value;
+        const country = document.getElementById('ob-country').value;
+        const state = document.getElementById('ob-state').value;
+        const city = document.getElementById('ob-city').value;
+        const orgName = document.getElementById('ob-org-name').value;
+        const scanner = document.getElementById('ob-scanner').value;
+        const bio = document.getElementById('ob-bio').value;
+
+        const selectedSoftware = [];
+        document.querySelectorAll('#software-tag-cloud .software-tag.selected').forEach(t => {
+          selectedSoftware.push(t.getAttribute('data-val'));
+        });
+
+        const profileData = {
+          profession,
+          specialty,
+          experience,
+          country,
+          state,
+          city,
+          orgName,
+          primarySoftware: selectedSoftware.join(','),
+          scannerType: scanner,
+          bio,
+          avatar_url: userAvatarData,
+          onboarding_completed: true
+        };
+
+        if (window.WorkDentAuth && window.WorkDentAuth.updateProfile) {
+          await window.WorkDentAuth.updateProfile(profileData);
+        }
+
+        setTimeout(() => {
+          window.location.href = '/dashboard?onboarding=success';
+        }, 600);
+      };
+
+    })();
+  </script>
+</body>
+</html>

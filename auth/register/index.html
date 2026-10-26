@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign In &bull; WorkDent Dental Network</title>
-  <meta name="description" content="Sign in to your WorkDent professional account. Access dental CAD cases, lab overflow, and clinical network.">
+  <title>Create Account &bull; WorkDent Dental Network</title>
+  <meta name="description" content="Create your WorkDent professional account. Access dental CAD cases, lab overflow, and clinical network.">
   <link rel="icon" href="/favicon.ico">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,38 +18,38 @@
     body {
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       margin: 0;
-      color: #0f172a;
-      background-color: #f8fafc;
+      color: #102A43;
+      background-color: #F5FAF9;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
     .auth-card {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
+      background: #FFFFFF;
+      border: 1px solid #DCE8E8;
       border-radius: 1.5rem;
-      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(15, 23, 42, 0.03);
+      box-shadow: 0 20px 40px -15px rgba(16, 42, 67, 0.08), 0 0 1px 1px rgba(16, 42, 67, 0.03);
     }
     .auth-input {
       width: 100%;
       height: 2.875rem;
       border-radius: 0.75rem;
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid #CBD5E1;
       padding: 0 1rem;
       font-size: 0.875rem;
-      color: #0f172a;
-      background-color: #f8fafc;
+      color: #102A43;
+      background-color: #F8FAFC;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       box-sizing: border-box;
     }
     .auth-input:focus {
       outline: none;
-      border-color: #2563eb;
-      background-color: #ffffff;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+      border-color: #087F8C;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(8, 127, 140, 0.15);
     }
     .auth-main-switch {
-      background: #f1f5f9;
+      background: #EAF4F4;
       padding: 0.25rem;
       border-radius: 0.875rem;
       display: flex;
@@ -65,12 +65,12 @@
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       background: transparent;
-      color: #64748b;
+      color: #627D98;
     }
     .auth-main-tab.active {
-      background: #ffffff;
-      color: #0f172a;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      background: #FFFFFF;
+      color: #102A43;
+      box-shadow: 0 2px 6px rgba(16, 42, 67, 0.08);
     }
     .google-btn {
       display: flex;
@@ -80,62 +80,35 @@
       width: 100%;
       height: 2.875rem;
       border-radius: 0.75rem;
-      border: 1.5px solid #cbd5e1;
-      background-color: #ffffff;
-      color: #0f172a;
+      border: 1.5px solid #CBD5E1;
+      background-color: #FFFFFF;
+      color: #102A43;
       font-size: 0.875rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
     }
     .google-btn:hover {
-      background-color: #f8fafc;
-      border-color: #94a3b8;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    }
-    .role-card {
-      border: 1.5px solid #e2e8f0;
-      background-color: #f8fafc;
-      border-radius: 0.875rem;
-      padding: 0.75rem 0.875rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    .role-card:hover {
-      border-color: #94a3b8;
-      background-color: #ffffff;
-    }
-    .role-card.selected {
-      border-color: #2563eb;
-      background-color: #eff6ff;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+      background-color: #F8FAFC;
+      border-color: #9FB3C8;
+      box-shadow: 0 2px 8px rgba(16, 42, 67, 0.06);
     }
     .hidden { display: none !important; }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-  <!-- Floating Header with 3-Dot Navigation System -->
+  <!-- Header with Clean Wordmark (No Fake Tooth Icon, No PRO/VIP Labels) -->
   <header class="py-5 px-6 max-w-7xl mx-auto w-full flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2.5 no-underline group">
-      <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
-        <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
-        </svg>
-      </div>
-      <div class="flex flex-col">
-        <span class="text-xl font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
-          Work<span class="text-blue-600">Dent</span>
-        </span>
-        <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5">The Professional Network</span>
-      </div>
+    <a href="/" class="flex items-center text-2xl font-black text-[#102A43] no-underline tracking-tight group" aria-label="WorkDent Home">
+      <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
     </a>
 
-    <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
-      <a href="/community" class="hover:text-blue-600 transition-colors hidden sm:inline">Community</a>
-      <a href="/jobs" class="hover:text-blue-600 transition-colors hidden sm:inline">Find Work</a>
-      <a href="/membership" class="hover:text-amber-600 transition-colors font-bold hidden sm:inline">VIP ⭐</a>
-      <a href="/" class="text-blue-600 font-bold hover:underline flex items-center gap-1">
+    <div class="flex items-center gap-5 text-xs font-semibold text-slate-600">
+      <a href="/community" class="hover:text-[#087F8C] transition-colors hidden sm:inline">Community</a>
+      <a href="/jobs" class="hover:text-[#087F8C] transition-colors hidden sm:inline">Find Work</a>
+      <a href="/find-designers" class="hover:text-[#087F8C] transition-colors hidden sm:inline">Browse Designers</a>
+      <a href="/" class="text-[#087F8C] font-bold hover:underline flex items-center gap-1">
         <span>&larr;</span> Back to Home
       </a>
     </div>
@@ -146,37 +119,37 @@
     <div class="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
       
       <!-- Left Visual / Brand Showcase Panel -->
-      <div class="hidden lg:flex lg:col-span-5 flex-col justify-between p-8 rounded-3xl bg-slate-900 text-white min-h-[560px] relative overflow-hidden shadow-2xl">
-        <div class="absolute -right-20 -top-20 size-72 bg-blue-600/25 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -left-20 -bottom-20 size-72 bg-sky-500/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="hidden lg:flex lg:col-span-5 flex-col justify-between p-8 rounded-3xl bg-[#0D2030] text-white min-h-[580px] relative overflow-hidden shadow-2xl border border-[#1E3A52]">
+        <div class="absolute -right-20 -top-20 size-72 bg-[#087F8C]/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -bottom-20 size-72 bg-[#2479D8]/20 rounded-full blur-3xl pointer-events-none"></div>
         
         <div class="relative z-10">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30 mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#087F8C]/20 text-[#36C9C0] border border-[#087F8C]/30 mb-6">
             <span>✦ Dental Industry Network</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
             Connect. Work. Grow.
           </h2>
           <p class="text-slate-300 text-sm mt-3 leading-relaxed">
-            Where dental technicians, laboratories, clinics, CAD designers and manufacturers collaborate with trust.
+            The professional network where dentists, laboratories, CAD designers, and dental technicians collaborate with trusted escrow security.
           </p>
 
           <div class="mt-8 space-y-3.5 text-xs text-slate-200">
             <div class="flex items-center gap-3">
-              <span class="flex size-5 items-center justify-center rounded-full bg-blue-600 text-white font-bold">&check;</span>
+              <span class="flex size-5 items-center justify-center rounded-full bg-[#087F8C] text-white font-bold">&check;</span>
               <span><strong>Permanent @username</strong> & professional identity</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="flex size-5 items-center justify-center rounded-full bg-blue-600 text-white font-bold">&check;</span>
+              <span class="flex size-5 items-center justify-center rounded-full bg-[#087F8C] text-white font-bold">&check;</span>
               <span><strong>Verified Badges:</strong> Technician, Lab & Clinic</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="flex size-5 items-center justify-center rounded-full bg-blue-600 text-white font-bold">&check;</span>
+              <span class="flex size-5 items-center justify-center rounded-full bg-[#087F8C] text-white font-bold">&check;</span>
               <span><strong>Freelance CAD Jobs</strong> & Lab overflow outsourcing</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="flex size-5 items-center justify-center rounded-full bg-blue-600 text-white font-bold">&check;</span>
-              <span><strong>3-Day Cookie Security</strong> with rate-limit protection</span>
+              <span class="flex size-5 items-center justify-center rounded-full bg-[#087F8C] text-white font-bold">&check;</span>
+              <span><strong>Multi-Step Onboarding</strong> with country & software setup</span>
             </div>
           </div>
 
@@ -184,13 +157,13 @@
           <div class="mt-8 pt-6 border-t border-slate-800">
             <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">Instant Demo Accounts</div>
             <div class="flex flex-wrap gap-1.5">
-              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-blue-600 text-[11px] font-bold text-slate-200 transition-colors" data-email="designer@workdent.io" data-pw="Password123!" data-role="designer">
+              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#087F8C] text-[11px] font-bold text-slate-200 transition-colors" data-email="designer@workdent.io" data-pw="Password123!" data-role="designer">
                 👨‍🔬 Demo CAD Designer
               </button>
-              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-blue-600 text-[11px] font-bold text-slate-200 transition-colors" data-email="lab@workdent.io" data-pw="Password123!" data-role="lab">
+              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#087F8C] text-[11px] font-bold text-slate-200 transition-colors" data-email="lab@workdent.io" data-pw="Password123!" data-role="lab">
                 🏢 Demo Dental Lab
               </button>
-              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-blue-600 text-[11px] font-bold text-slate-200 transition-colors" data-email="dentist@workdent.io" data-pw="Password123!" data-role="dentist">
+              <button type="button" class="demo-login-chip px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-[#087F8C] text-[11px] font-bold text-slate-200 transition-colors" data-email="dentist@workdent.io" data-pw="Password123!" data-role="dentist">
                 🦷 Demo Dentist
               </button>
             </div>
@@ -212,10 +185,10 @@
           
           <!-- Master Switcher Tab -->
           <div class="auth-main-switch mb-6" role="tablist">
-            <button type="button" class="auth-main-tab" id="main-tab-login" role="tab" aria-selected="true">
+            <button type="button" class="auth-main-tab" id="main-tab-login" role="tab" aria-selected="false">
               Sign In
             </button>
-            <button type="button" class="auth-main-tab active" id="main-tab-register" role="tab" aria-selected="false">
+            <button type="button" class="auth-main-tab active" id="main-tab-register" role="tab" aria-selected="true">
               Create Account
             </button>
           </div>
@@ -240,7 +213,7 @@
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
             </svg>
-            <span id="google-btn-text">Continue with Google</span>
+            <span id="google-btn-text">Sign up with Google</span>
           </button>
 
           <!-- Divider -->
@@ -252,7 +225,6 @@
 
           <!-- ==================== SIGN IN SECTION ==================== -->
           <div id="section-login" class="hidden">
-            
             <!-- Auth Mode Pill (Password vs OTP) -->
             <div class="flex gap-2 mb-4 bg-slate-100 p-1 rounded-xl">
               <button type="button" class="auth-main-tab active text-xs py-1.5" id="login-mode-pw">Password</button>
@@ -269,7 +241,7 @@
               <div id="signin-pw-wrap">
                 <div class="flex items-center justify-between mb-1">
                   <label for="signin-password" class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Password</label>
-                  <a href="/auth/forgot" class="text-xs font-semibold text-blue-600 hover:underline">Forgot?</a>
+                  <a href="/auth/forgot" class="text-xs font-semibold text-[#087F8C] hover:underline">Forgot?</a>
                 </div>
                 <div class="relative">
                   <input type="password" id="signin-password" name="password" autocomplete="current-password" placeholder="••••••••" class="auth-input pr-12">
@@ -278,18 +250,16 @@
               </div>
 
               <!-- OTP notice block -->
-              <div id="signin-otp-wrap" class="hidden p-3 rounded-xl bg-blue-50 border border-blue-100 text-xs text-blue-800">
+              <div id="signin-otp-wrap" class="hidden p-3 rounded-xl bg-teal-50 border border-teal-100 text-xs text-teal-900">
                 <p class="font-bold">📧 Passwordless Verification</p>
                 <p class="mt-0.5">We will send a 6-digit code to your email. No password required.</p>
               </div>
 
-              <!-- Session checkbox -->
               <div class="flex items-center justify-between pt-1">
                 <label class="flex items-center gap-2 text-xs text-slate-600 cursor-pointer">
-                  <input type="checkbox" id="signin-remember" checked class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
-                  <span>Keep me logged in for 3 days</span>
+                  <input type="checkbox" id="signin-remember" checked class="rounded border-slate-300 text-teal-600 focus:ring-teal-500">
+                  <span>Remember login for 3 days</span>
                 </label>
-                <span class="text-[10px] font-extrabold uppercase bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">Active Cookie</span>
               </div>
 
               <button type="submit" id="signin-submit-btn" class="wd-btn-primary w-full justify-center py-3 text-sm mt-2">
@@ -301,31 +271,22 @@
 
           <!-- ==================== SIGN UP SECTION ==================== -->
           <div id="section-register" class="">
-            
             <form id="form-register" class="space-y-4">
               
-              <!-- Role Selection (4 Core Profiles) -->
+              <!-- Profession Selection (Polished Dropdown - User Requested) -->
               <div>
-                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">Select Your Profession</label>
-                <div class="grid grid-cols-2 gap-2" id="reg-roles-wrap">
-                  <div class="role-card selected" data-reg-role="technician" tabindex="0">
-                    <p class="text-xs font-extrabold text-slate-900">👨‍🔬 Technician / CAD</p>
-                    <p class="text-[10px] text-slate-500 leading-tight mt-0.5">exocad, 3Shape freelance work</p>
-                  </div>
-                  <div class="role-card" data-reg-role="lab" tabindex="0">
-                    <p class="text-xs font-extrabold text-slate-900">🏢 Dental Lab</p>
-                    <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Milling center & lab overflow</p>
-                  </div>
-                  <div class="role-card" data-reg-role="dentist" tabindex="0">
-                    <p class="text-xs font-extrabold text-slate-900">🦷 Dentist / Clinic</p>
-                    <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Send intraoral scans & cases</p>
-                  </div>
-                  <div class="role-card" data-reg-role="company" tabindex="0">
-                    <p class="text-xs font-extrabold text-slate-900">🏭 Manufacturer / Co.</p>
-                    <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Materials, equipment & CAD</p>
-                  </div>
-                </div>
-                <input type="hidden" id="reg-role-val" value="technician">
+                <label for="reg-profession" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Select Your Profession</label>
+                <select id="reg-profession" name="profession" required class="wd-select auth-input">
+                  <option value="" disabled selected>-- Choose your dental role --</option>
+                  <option value="dentist">Dentist / Clinical Practice</option>
+                  <option value="lab">Dental Laboratory Owner / Manager</option>
+                  <option value="designer">Dental CAD/CAM Designer (exocad, 3Shape)</option>
+                  <option value="ceramist">Dental Ceramist / Senior Technician</option>
+                  <option value="milling">Milling Center &amp; Production Tech</option>
+                  <option value="support">Dental Software / Technical Support</option>
+                  <option value="manufacturer">Dental Manufacturer / Supplier</option>
+                  <option value="other">Other Dental Professional</option>
+                </select>
               </div>
 
               <!-- Name & Unique @Username -->
@@ -353,10 +314,12 @@
                 <input type="password" id="reg-password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" class="auth-input">
               </div>
 
-              <!-- 3-Day session checkbox -->
-              <div class="flex items-center gap-2 pt-1">
-                <input type="checkbox" id="reg-remember" checked class="rounded border-slate-300 text-blue-600 focus:ring-blue-500">
-                <label for="reg-remember" class="text-xs text-slate-600 cursor-pointer">Remember session for 3 days with encrypted cookie</label>
+              <!-- Terms & Conditions / Privacy Policy Agreement (Unchecked by default, clicking text opens /terms or /privacy without toggling checkbox) -->
+              <div class="flex items-start gap-2.5 pt-1">
+                <input type="checkbox" id="reg-terms-agree" required class="mt-0.5 size-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500 cursor-pointer">
+                <label for="reg-terms-agree" class="text-xs text-slate-600 leading-snug cursor-pointer select-none">
+                  I agree to the <a href="/terms" target="_blank" onclick="event.stopPropagation();" class="text-[#087F8C] hover:text-[#06646E] font-bold underline">Terms &amp; Conditions</a> and <a href="/privacy" target="_blank" onclick="event.stopPropagation();" class="text-[#087F8C] hover:text-[#06646E] font-bold underline">Privacy Policy</a>
+                </label>
               </div>
 
               <button type="submit" id="reg-submit-btn" class="wd-btn-primary w-full justify-center py-3 text-sm mt-2">
@@ -412,20 +375,25 @@
       tabLogin.addEventListener('click', () => setTab('login'));
       tabRegister.addEventListener('click', () => setTab('register'));
 
-      // Check initial URL parameters or path
-      if (window.location.pathname.includes('/register') || window.location.search.includes('tab=register') || window.location.search.includes('mode=register')) {
-        setTab('register');
+      // Check URL params
+      if (window.location.search.includes('tab=login') || window.location.pathname.endsWith('/login') || window.location.pathname.endsWith('/login.html')) {
+        setTab('login');
       } else {
         setTab('register');
       }
 
+      // Check if user was redirected after deleting account
+      if (window.location.search.includes('deleted=true')) {
+        showNotice('Your WorkDent account has been successfully deleted.', 'info');
+      }
+
       // --- 2. Notice System ---
       function showNotice(msg, type = 'error') {
-        notice.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'border-red-200', 'bg-emerald-50', 'text-emerald-700', 'border-emerald-200', 'bg-amber-50', 'text-amber-800', 'border-amber-200');
+        notice.classList.remove('hidden', 'bg-red-50', 'text-red-700', 'border-red-200', 'bg-emerald-50', 'text-emerald-700', 'border-emerald-200', 'bg-teal-50', 'text-teal-800', 'border-teal-200');
         if (type === 'error') {
           notice.classList.add('bg-red-50', 'text-red-700', 'border', 'border-red-200');
-        } else if (type === 'warning') {
-          notice.classList.add('bg-amber-50', 'text-amber-800', 'border', 'border-amber-200');
+        } else if (type === 'info') {
+          notice.classList.add('bg-teal-50', 'text-teal-800', 'border', 'border-teal-200');
         } else {
           notice.classList.add('bg-emerald-50', 'text-emerald-700', 'border', 'border-emerald-200');
         }
@@ -472,13 +440,17 @@
         googleBtn.disabled = true;
         googleBtn.innerHTML = 'Connecting to Google...';
         
-        const role = document.getElementById('reg-role-val').value || 'technician';
-        const res = await window.WorkDentAuth.loginWithGoogle({ role });
+        const profession = document.getElementById('reg-profession')?.value || 'dentist';
+        const res = await window.WorkDentAuth.loginWithGoogle({ role: profession });
         if (res.success) {
-          showNotice('Google authorization verified! Redirecting...', 'success');
+          showNotice('Google authorization verified! Redirecting to setup...', 'success');
           setTimeout(() => {
-            window.location.href = '/dashboard';
-          }, 500);
+            if (!window.WorkDentAuth.isOnboardingCompleted()) {
+              window.location.href = '/onboarding';
+            } else {
+              window.location.href = '/dashboard';
+            }
+          }, 600);
         } else {
           showNotice(res.error || 'Google login failed.', 'error');
           googleBtn.disabled = false;
@@ -488,10 +460,10 @@
       // --- 5. Quick Demo Login Chips ---
       document.querySelectorAll('.demo-login-chip').forEach(chip => {
         chip.addEventListener('click', async () => {
-          setTab('register');
+          setTab('login');
           document.getElementById('signin-email').value = chip.dataset.email;
           document.getElementById('signin-password').value = chip.dataset.pw;
-          showNotice('Loaded ' + chip.textContent.trim() + ' credentials. Signing in...', 'info');
+          showNotice('Loaded demo credentials. Signing in...', 'info');
           
           setTimeout(async () => {
             const res = await window.WorkDentAuth.login({
@@ -499,14 +471,14 @@
               password: chip.dataset.pw
             });
             if (res.success) {
-              showNotice('Signed in as ' + chip.dataset.email + '! Redirecting...', 'success');
+              showNotice('Signed in! Redirecting...', 'success');
               setTimeout(() => { window.location.href = '/dashboard'; }, 400);
             }
           }, 300);
         });
       });
 
-      // --- 6. Sign In Form Logic (Password & OTP) ---
+      // --- 6. Sign In Form Logic ---
       let isOtpLogin = false;
       const btnPw = document.getElementById('login-mode-pw');
       const btnOtp = document.getElementById('login-mode-otp');
@@ -592,27 +564,29 @@
         }
       });
 
-      // --- 7. Role Selection Cards ---
-      const roleCards = document.querySelectorAll('#reg-roles-wrap .role-card');
-      const roleValInput = document.getElementById('reg-role-val');
-      roleCards.forEach(card => {
-        card.addEventListener('click', () => {
-          roleCards.forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          roleValInput.value = card.getAttribute('data-reg-role');
-        });
-      });
-
-      // --- 8. Registration Form Logic ---
+      // --- 7. Registration Form Logic ---
       document.getElementById('form-register').addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!checkRateLimit()) return;
+
+        const termsCheckbox = document.getElementById('reg-terms-agree');
+        if (!termsCheckbox || !termsCheckbox.checked) {
+          showNotice('You must agree to the Terms & Conditions and Privacy Policy to create an account.', 'error');
+          termsCheckbox.focus();
+          return;
+        }
+
+        const profession = document.getElementById('reg-profession').value;
+        if (!profession) {
+          showNotice('Please select your dental profession from the dropdown.', 'error');
+          document.getElementById('reg-profession').focus();
+          return;
+        }
 
         const fullName = document.getElementById('reg-fullname').value.trim();
         const username = document.getElementById('reg-username').value.trim();
         const email = document.getElementById('reg-email').value.trim();
         const password = document.getElementById('reg-password').value;
-        const role = roleValInput.value;
         const submitBtn = document.getElementById('reg-submit-btn');
         const regBtnLabel = document.getElementById('reg-btn-label');
 
@@ -632,16 +606,17 @@
         const res = await window.WorkDentAuth.register({
           email,
           password,
-          firstName: fullName.split(' ')[0],
-          lastName: fullName.split(' ').slice(1).join(' '),
-          role
+          fullName,
+          username,
+          profession,
+          termsAgreed: true
         });
 
         if (res.success) {
           window.WorkDentAuth.RateLimiter?.recordAttempt(true);
-          showNotice('Account registered successfully! Redirecting...', 'success');
+          showNotice('Account registered! Taking you to onboarding wizard...', 'success');
           setTimeout(() => {
-            window.location.href = window.WorkDentAuth.getDashboardUrl(role);
+            window.location.href = '/onboarding';
           }, 600);
         } else {
           window.WorkDentAuth.RateLimiter?.recordAttempt(false);

@@ -21,32 +21,18 @@
     <header class="wd-navbar">
       
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 no-underline group">
-        <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
-          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
-          </svg>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-lg font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
-            WorkDent
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">Cases</span>
-          </span>
-          <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5 hidden sm:inline">Connect. Work. Grow.</span>
-        </div>
+      <a href="/" class="flex items-center text-2xl font-black text-[#102A43] no-underline tracking-tight group" aria-label="WorkDent Home">
+        <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+        <span class="hidden sm:inline-block text-[10px] font-bold text-slate-400 border-l border-slate-300 pl-2.5 ml-2">Cases</span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-1 text-sm font-semibold">
+      <nav class="hidden md:flex items-center gap-1.5 text-sm font-semibold">
         <a href="/dashboard" class="wd-nav-link">Dashboard</a>
-        <a href="/projects" class="wd-nav-link text-blue-600 bg-blue-50 font-bold">My Cases</a>
+        <a href="/projects" class="wd-nav-link text-[#087F8C] bg-[#E8F8F7] font-bold">My Cases</a>
+        <a href="/find-designers" class="wd-nav-link">Browse Designers</a>
         <a href="/community" class="wd-nav-link">Community</a>
         <a href="/jobs" class="wd-nav-link">Find Jobs</a>
-        <a href="/members" class="wd-nav-link">Members</a>
-        <a href="/membership" class="wd-nav-link text-amber-700 hover:text-amber-800 flex items-center gap-1 font-bold">
-          <span>VIP</span>
-          <span class="text-xs">⭐</span>
-        </a>
 
         <!-- Desktop 3-Dots More Menu -->
         <div class="relative wd-more-dropdown">
@@ -73,26 +59,21 @@
         </div>
       </nav>
 
-      <!-- Right CTAs -->
-      <div class="flex items-center gap-2">
-        <a href="/cases/new" class="text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white px-3.5 py-2 rounded-xl shadow-sm transition-all hover:shadow-blue-500/25 flex items-center gap-1.5">
+      <!-- Right Auth Slot (Google Avatar & Dropdown via workdent-nav.js) -->
+      <div class="hidden sm:flex items-center gap-3 wd-auth-slot">
+        <a href="/cases/new" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.8125rem;">
           <span>&plus;</span> Post Case
         </a>
-        <a href="/messages" class="size-9 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 flex items-center justify-center text-slate-700 transition-colors relative" title="Messages">
-          <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-          </svg>
-          <span class="size-2 rounded-full bg-blue-600 absolute top-1.5 right-1.5"></span>
-        </a>
-        
-        <button type="button" class="wd-mobile-toggle md:hidden" id="wd-mobile-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false" onclick="window.toggleWorkdentMobileNav(event, this)">
-          <span class="wd-dots-icon">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </span>
-        </button>
       </div>
+
+      <!-- Mobile 3-Dots Menu Button -->
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100 transition-colors" aria-label="Toggle navigation menu" aria-expanded="false" title="Menu" onclick="window.toggleWorkdentMobileNav(event, this)">
+        <svg class="size-6 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+          <circle cx="5" cy="12" r="2.2"></circle>
+          <circle cx="12" cy="12" r="2.2"></circle>
+          <circle cx="19" cy="12" r="2.2"></circle>
+        </svg>
+      </button>
 
     </header>
   </div>
@@ -101,11 +82,11 @@
   <div class="wd-mobile-drawer" id="wd-mobile-drawer">
     <div class="flex flex-col gap-2 p-4 text-sm font-semibold">
       <a href="/dashboard" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Dashboard</a>
-      <a href="/projects" class="p-2.5 rounded-lg bg-blue-50 text-blue-700 font-bold">My Cases</a>
-      <a href="/cases/new" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800 font-bold text-blue-600">&plus; Post New Case</a>
-      <a href="/messages" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Direct Messages</a>
+      <a href="/projects" class="p-2.5 rounded-lg bg-teal-50 text-teal-800 font-bold">My Cases</a>
+      <a href="/cases/new" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800 font-bold text-[#087F8C]">&plus; Post New Case</a>
+      <a href="/find-designers" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Browse Designers</a>
       <a href="/community" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Community</a>
-      <a href="/jobs" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Find Jobs</a>
+      <div class="wd-mobile-auth-slot mt-2"></div>
     </div>
   </div>
 
@@ -353,11 +334,51 @@
     </div>
   </div>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-slate-900 text-white py-8 border-t border-slate-800 text-xs">
-    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-slate-500 gap-2">
-      <span>&copy; 2026 WorkDent Inc. All rights reserved.</span>
-      <span>HIPAA Compliant &bull; Secure Escrow Architecture</span>
+  <!-- ==================== FOOTER (MATCHING HEALTHCARE PALETTE) ==================== -->
+  <footer class="bg-[#0D2030] text-slate-300 py-16 border-t border-[#1E3A52] mt-16">
+    <div class="wd-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#1E3A52]">
+        <div class="lg:col-span-2">
+          <a href="/" class="flex items-center text-2xl font-black text-white group mb-4 no-underline tracking-tight">
+            <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+          </a>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+            The professional network connecting dental practices and labs with skilled CAD designers worldwide with 100% escrow protection.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Company</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/about-us" class="text-slate-400 hover:text-[#36C9C0] no-underline">About Us</a></li>
+            <li><a href="/our-story" class="text-slate-400 hover:text-[#36C9C0] no-underline">Our Story</a></li>
+            <li><a href="/how-it-works" class="text-slate-400 hover:text-[#36C9C0] no-underline">How It Works</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Marketplace</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/find-designers" class="text-slate-400 hover:text-[#36C9C0] no-underline">Browse Designers</a></li>
+            <li><a href="/cases/new" class="text-slate-400 hover:text-[#36C9C0] no-underline">Post a Case</a></li>
+            <li><a href="/auth/register" class="text-slate-400 hover:text-[#36C9C0] no-underline">Create Account</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Support</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/contact" class="text-slate-400 hover:text-[#36C9C0] no-underline">Contact</a></li>
+            <li><a href="/help" class="text-slate-400 hover:text-[#36C9C0] no-underline">Help Center</a></li>
+            <li><a href="/terms" class="text-slate-400 hover:text-[#36C9C0] no-underline">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+        <p>&copy; Copyright 2026 WorkDent Dental Network. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="/privacy" class="text-slate-400 hover:text-[#36C9C0] no-underline">Privacy Policy</a>
+          <a href="/terms" class="text-slate-400 hover:text-[#36C9C0] no-underline">Terms of Use</a>
+          <a href="/security" class="text-slate-400 hover:text-[#36C9C0] no-underline">Security</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -375,7 +396,7 @@
       btn.parentElement.querySelectorAll('button').forEach(b => {
         b.className = 'px-3.5 py-2 rounded-xl hover:bg-slate-100';
       });
-      btn.className = 'px-3.5 py-2 rounded-xl bg-blue-600 text-white';
+      btn.className = 'px-3.5 py-2 rounded-xl bg-[#087F8C] text-white';
     }
 
     function searchCases() {
@@ -410,7 +431,7 @@
     function requestRevision() {
       const notes = prompt('Please specify required margin, contact, or anatomical adjustments for the technician:');
       if (notes) {
-        alert('Revision request sent directly to the technician with your instructions.');
+        alert('Revision request sent directly to the technician with your instructions. Escrow remains on hold.');
         closeReviewModal();
       }
     }
@@ -418,6 +439,49 @@
     function simulateDownload(filename) {
       alert('Downloading ' + filename + ' (Mill-Ready Binary STL)');
     }
+
+    // Render custom cases from localStorage if present
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        const stored = JSON.parse(localStorage.getItem('workdent_custom_cases') || '[]');
+        const container = document.getElementById('cases-container');
+        stored.forEach(c => {
+          const div = document.createElement('div');
+          div.className = 'case-card bg-white p-5 sm:p-6 rounded-3xl border border-teal-300 shadow-sm relative overflow-hidden';
+          div.setAttribute('data-status', c.status || 'review');
+          div.innerHTML = `
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div class="flex items-start gap-4">
+                <div class="size-12 rounded-2xl bg-teal-100 text-teal-800 flex items-center justify-center text-xl shrink-0 font-bold">🦷</div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-extrabold text-slate-900 text-base">${c.id} &bull; ${c.title}</span>
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-teal-100 text-teal-900 border border-teal-300">Escrow Held: In Queue</span>
+                  </div>
+                  <div class="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <span>Material: <strong>${c.material}</strong></span>
+                    <span>&bull;</span>
+                    <span>Assigned: <strong>${c.designer}</strong></span>
+                    <span>&bull;</span>
+                    <span>Submitted: <strong>${c.timestamp}</strong></span>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2.5 shrink-0">
+                <div class="text-right mr-2 hidden sm:block">
+                  <span class="text-xs text-slate-400 block">Escrow Vault</span>
+                  <span class="text-base font-extrabold text-[#087F8C]">${c.escrow}</span>
+                </div>
+                <button onclick="openReviewModal('${c.id}', '${c.title}', '${c.designer}', '${c.escrow}')" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.8125rem;">
+                  Inspect &amp; Manage &rarr;
+                </button>
+              </div>
+            </div>
+          `;
+          container.prepend(div);
+        });
+      } catch (e) {}
+    });
   </script>
 </body>
 </html>

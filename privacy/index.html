@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-[#F5FAF9]">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy &amp; PHI Protection &bull; WorkDent Network</title>
+  <meta name="description" content="WorkDent Privacy Policy, HIPAA Security Protocols, Protected Health Information (PHI) encryption, and Cookie Policy.">
+  <link rel="icon" href="/favicon.ico">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/css/workdent-ui.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#F5FAF9] text-[#102A43] min-h-screen flex flex-col font-sans antialiased">
+
+  <!-- ==================== FLOATING GLASS NAVBAR ==================== -->
+  <div class="wd-navbar-wrap">
+    <header class="wd-navbar">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center text-2xl font-black text-[#102A43] no-underline tracking-tight group" aria-label="WorkDent Home">
+        <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+        <span class="hidden sm:inline-block text-[10px] font-bold text-slate-400 border-l border-slate-300 pl-2.5 ml-2">Privacy</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-1.5 text-sm font-semibold" aria-label="Main Navigation">
+        <a href="/community" class="wd-nav-link">Community</a>
+        <a href="/jobs" class="wd-nav-link">Find Jobs</a>
+        <a href="/find-designers" class="wd-nav-link">Browse Designers</a>
+        <a href="/gallery" class="wd-nav-link">Case Gallery</a>
+        <a href="/marketplace" class="wd-nav-link">Marketplace</a>
+
+        <!-- Desktop 3-Dots More Menu -->
+        <div class="relative wd-more-dropdown">
+          <button type="button" class="wd-dots-btn" onclick="window.toggleWorkdentMoreMenu(event, this)" id="wd-desktop-dots-btn" aria-label="More options" aria-expanded="false" title="More Options">
+            <svg class="size-5" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="5" cy="12" r="2.2"></circle>
+              <circle cx="12" cy="12" r="2.2"></circle>
+              <circle cx="19" cy="12" r="2.2"></circle>
+            </svg>
+          </button>
+          <div class="wd-dropdown-content" role="menu">
+            <div class="px-3 py-1 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Solutions</div>
+            <a href="/as/dentist" class="wd-dropdown-item" role="menuitem"><span>🦷</span> For Dentists &amp; Clinics</a>
+            <a href="/as/designer" class="wd-dropdown-item" role="menuitem"><span>💻</span> For CAD Technicians</a>
+            <a href="/as/lab" class="wd-dropdown-item" role="menuitem"><span>🏢</span> For Dental Labs</a>
+            <div class="my-1 border-t border-slate-100"></div>
+            <div class="px-3 py-1 text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">Company &amp; Legal</div>
+            <a href="/how-it-works" class="wd-dropdown-item" role="menuitem"><span>⚙️</span> How It Works</a>
+            <a href="/about-us" class="wd-dropdown-item" role="menuitem"><span>ℹ️</span> About WorkDent</a>
+            <a href="/terms" class="wd-dropdown-item" role="menuitem"><span>📜</span> Terms of Service</a>
+            <a href="/privacy" class="wd-dropdown-item active font-bold text-[#087F8C]" role="menuitem"><span>🔒</span> Privacy Policy</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Desktop Auth Slot (Google Avatar & Dropdown via workdent-nav.js) -->
+      <div class="hidden sm:flex items-center gap-3 wd-auth-slot">
+        <a href="/auth/login" class="wd-nav-link">Sign In</a>
+        <a href="/auth/register" class="wd-btn-primary">Join Free</a>
+      </div>
+
+      <!-- Mobile 3-Dots Menu Button -->
+      <button id="wd-mobile-toggle" type="button" class="md:hidden flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-800 hover:bg-slate-100 transition-colors" aria-label="Toggle navigation menu" aria-expanded="false" title="Menu" onclick="window.toggleWorkdentMobileNav(event, this)">
+        <svg class="size-6 text-slate-800" fill="currentColor" viewBox="0 0 24 24">
+          <circle cx="5" cy="12" r="2.2"></circle>
+          <circle cx="12" cy="12" r="2.2"></circle>
+          <circle cx="19" cy="12" r="2.2"></circle>
+        </svg>
+      </button>
+
+      <!-- Mobile Drawer -->
+      <div class="wd-mobile-drawer" id="wd-mobile-drawer">
+        <div class="flex flex-col gap-2 p-4 text-sm font-semibold">
+          <a href="/community" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Community &amp; Forum</a>
+          <a href="/jobs" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Find Work (Jobs)</a>
+          <a href="/find-designers" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Browse Designers</a>
+          <a href="/gallery" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Case Gallery</a>
+          <a href="/marketplace" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-800">Marketplace</a>
+          
+          <div class="my-2 border-t border-slate-200"></div>
+          <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 px-3">Company &amp; Legal</div>
+          <a href="/how-it-works" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-700">How It Works</a>
+          <a href="/terms" class="p-2.5 rounded-lg hover:bg-slate-100 text-slate-700">Terms of Service</a>
+          <a href="/privacy" class="p-2.5 rounded-lg bg-teal-50 text-teal-800 font-bold">Privacy Policy</a>
+          
+          <div class="wd-mobile-auth-slot mt-2"></div>
+        </div>
+      </div>
+
+    </header>
+  </div>
+
+  <!-- ==================== MAIN LEGAL DOCUMENT ==================== -->
+  <main class="flex-1 pt-28 pb-16 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Header -->
+      <div class="p-8 sm:p-10 rounded-3xl bg-white border border-[#DCE8E8] shadow-sm mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-[#E6F8F6] text-[#087F8C] border border-[#B9F3E8] mb-4">
+          <span>🔒 WorkDent Security &amp; Data Privacy</span>
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-[#102A43] tracking-tight">
+          Privacy Policy &amp; Health Data Governance
+        </h1>
+        <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+          Last Updated: January 1, 2026 &bull; Compliant with HIPAA, GDPR (Art. 9 Special Category), and CCPA/CPRA
+        </p>
+      </div>
+
+      <!-- Sections -->
+      <div class="space-y-8">
+
+        <!-- 1. Information We Collect -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-[#DCE8E8] shadow-sm">
+          <h2 class="text-lg font-extrabold text-[#102A43] mb-3">1. Information We Collect &amp; Process</h2>
+          <p class="text-sm text-slate-600 leading-relaxed mb-4">
+            WorkDent collects information to provide peer-to-peer dental laboratory workflows, escrow payments, and verified technician profiles:
+          </p>
+          <ul class="space-y-2 text-sm text-slate-600 list-disc pl-5">
+            <li><strong>Account Profile Data:</strong> Display name, verified role (Dentist, Lab Owner, CAD Designer), work email address, phone number, clinic/laboratory address, and optional avatar image.</li>
+            <li><strong>Technical Clinical Scans:</strong> 3D surface files (STL, PLY, OBJ), scan body positions, preparation tooth indices, and CAD metadata (.dentalProject) necessary to design dental prosthetics.</li>
+            <li><strong>Financial Escrow Records:</strong> Payment transaction hashes, invoice billing details, and milestone release receipts processed through PCI-DSS Level 1 compliant gateways.</li>
+            <li><strong>Session &amp; Security Data:</strong> Encrypted 3-day authentication cookies, IP addresses, rate-limiting logs, and login timestamps to prevent account brute-force attacks.</li>
+          </ul>
+        </div>
+
+        <!-- 2. Patient Health Data (HIPAA & De-Identification) -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-[#DCE8E8] shadow-sm">
+          <h2 class="text-lg font-extrabold text-[#102A43] mb-3">2. Patient Data (HIPAA &amp; De-Identification Protocols)</h2>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            WorkDent operates as a Business Associate under the Health Insurance Portability and Accountability Act (HIPAA). We require all dental clinics and scanning facilities to strip direct identifiers (Patient Full Name, Social Security Number, Date of Birth) before transmitting intraoral scans.
+          </p>
+          <div class="mt-4 p-4 rounded-xl bg-[#E6F8F6] border border-[#B9F3E8] text-xs text-[#087F8C]">
+            <strong>Zero PHI Indexing:</strong> WorkDent algorithms index dental cases strictly by random alphanumeric identifiers (e.g. #WD-84920). 3D scan files are never exposed to public search crawlers or unauthorized parties.
+          </div>
+        </div>
+
+        <!-- 3. Escrow & Payment Protection -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-[#DCE8E8] shadow-sm">
+          <h2 class="text-lg font-extrabold text-[#102A43] mb-3">3. Milestone Escrow &amp; Funds Protection</h2>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            When ordering a dental CAD restoration or hiring a technician:
+          </p>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 list-disc pl-5">
+            <li>Your funds are locked in an isolated escrow vault.</li>
+            <li>Neither the designer nor WorkDent can withdraw these funds until you inspect and formally approve the delivered 3D CAD proposal.</li>
+            <li>If the proposal does not meet clinical margin or contact requirements, you have the right to request complimentary revisions or invoke full escrow refund.</li>
+          </ul>
+        </div>
+
+        <!-- 4. Cookie & Local Storage Policy -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-[#DCE8E8] shadow-sm">
+          <h2 class="text-lg font-extrabold text-[#102A43] mb-3">4. Cookie &amp; Session Management Policy</h2>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            WorkDent uses encrypted session cookies (`workdent_auth_session`) with a strict 3-day expiration (Max-Age: 259,200 seconds) to maintain your login credentials securely without requiring frequent re-authentication during active clinical work.
+          </p>
+          <p class="text-sm text-slate-600 leading-relaxed mt-3">
+            Users may clear active cookies and sign out at any moment using the "Sign Out" button in the navigation header or delete their account permanently in Account Settings.
+          </p>
+        </div>
+
+        <!-- 5. Account Deletion & Right to Erasure -->
+        <div class="p-6 sm:p-8 rounded-3xl bg-white border border-[#DCE8E8] shadow-sm">
+          <h2 class="text-lg font-extrabold text-[#102A43] mb-3">5. Account Deletion &amp; Right to Erasure (GDPR Art. 17)</h2>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            You retain absolute ownership over your profile and casework data. You may permanently delete your WorkDent account at any time via your Profile Settings. Upon deletion:
+          </p>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600 list-disc pl-5">
+            <li>Your public designer/dentist profile is immediately purged from the network directory.</li>
+            <li>All active session cookies, tokens, and local cache records are wiped.</li>
+            <li>Historical completed transaction ledgers are retained solely to comply with federal tax and auditing regulations.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==================== FOOTER (MATCHING HEALTHCARE PALETTE) ==================== -->
+  <footer class="bg-[#0D2030] text-slate-300 py-16 border-t border-[#1E3A52] mt-16">
+    <div class="wd-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#1E3A52]">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2">
+          <a href="/" class="flex items-center text-2xl font-black text-white group mb-4 no-underline tracking-tight">
+            <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+          </a>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+            The professional network connecting dental practices and labs with skilled CAD designers worldwide with 100% escrow protection.
+          </p>
+        </div>
+
+        <!-- Navigation Col 1: Company -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Company</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/about-us" class="text-slate-400 hover:text-[#36C9C0] no-underline">About Us</a></li>
+            <li><a href="/our-story" class="text-slate-400 hover:text-[#36C9C0] no-underline">Our Story</a></li>
+            <li><a href="/how-it-works" class="text-slate-400 hover:text-[#36C9C0] no-underline">How It Works</a></li>
+          </ul>
+        </div>
+
+        <!-- Navigation Col 2: Marketplace -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Marketplace</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/find-designers" class="text-slate-400 hover:text-[#36C9C0] no-underline">Browse Designers</a></li>
+            <li><a href="/cases/new" class="text-slate-400 hover:text-[#36C9C0] no-underline">Post a Case</a></li>
+            <li><a href="/auth/register" class="text-slate-400 hover:text-[#36C9C0] no-underline">Create Account</a></li>
+          </ul>
+        </div>
+
+        <!-- Navigation Col 3: Support -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Support</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/contact" class="text-slate-400 hover:text-[#36C9C0] no-underline">Contact</a></li>
+            <li><a href="/help" class="text-slate-400 hover:text-[#36C9C0] no-underline">Help Center</a></li>
+            <li><a href="/terms" class="text-slate-400 hover:text-[#36C9C0] no-underline">Terms of Service</a></li>
+            <li><a href="/privacy" class="text-slate-400 hover:text-[#36C9C0] no-underline font-bold text-[#36C9C0]">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+        <p>&copy; Copyright 2026 WorkDent Dental Network. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="/privacy" class="text-slate-400 hover:text-[#36C9C0] no-underline">Privacy Policy</a>
+          <a href="/terms" class="text-slate-400 hover:text-[#36C9C0] no-underline">Terms of Use</a>
+          <a href="/security" class="text-slate-400 hover:text-[#36C9C0] no-underline">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/lib/workdent-supabase.js"></script>
+  <script src="/lib/workdent-nav.js"></script>
+</body>
+</html>

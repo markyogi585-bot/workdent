@@ -1,95 +1,105 @@
-# WorkDent — Product Requirements Document (PRD)
-## The Professional Network for Dental Work
-**Tagline:** *Connect. Work. Grow.*
+# WorkDent - Product Requirements Document (PRD)
+
+**Brand Identity**: WorkDent &bull; The Professional Network for Dental Work  
+**Tagline**: *Connect. Work. Grow.*  
+**Release**: Production v2.4 (Healthcare SaaS Edition)  
+**Status**: Active &bull; Fully Tested &bull; Zero 404 Pages  
 
 ---
 
-## 1. Executive Summary
-**WorkDent** is the dedicated professional and business network for the global dental industry. Rather than a generic job board or a single-page dashboard, WorkDent unifies dental technicians, dental laboratories, clinical dentists, CAD/CAM designers, dental manufacturers, and milling centers into a high-trust digital ecosystem.
+## 1. Executive Summary & Brand Vision
 
-### Core Value Pillars
-1. **Find Work & Outsource Seamlessly**: Lab-to-lab overflow, freelance CAD/CAM design (exocad, 3Shape), and specialized clinic cases.
-2. **Knowledge & Community**: A peer-reviewed clinical feed for CAD/CAM troubleshooting, material recommendations (Zirconia, PMMA, Titanium), and scan strategies.
-3. **Verified Identity & @Username System**: Permanent unique handles (e.g. `@rahul_cadcam`, `@apex_lab`) with multi-tier verification badges:
-   - 🟢 **Verified Technician**
-   - 🔵 **Verified Dental Laboratory**
-   - 🟣 **Verified Dentist / Clinic**
-   - 🟠 **Verified Manufacturer / Company**
-4. **Marketplace & Case Gallery**: Equipment, materials, and clinical portfolios with in-browser 3D STL inspection and escrow-protected deals.
-5. **Secure Authentication & Session Infrastructure**: Unified Login/Signup switcher, Google OAuth, Passwordless Email OTP, client/session Rate Limiting (anti-brute-force), and 3-Day Persistent Cookie sessions.
+WorkDent is the professional dental industry network connecting dentists, clinical practice owners, commercial dental laboratories, freelance dental CAD/CAM technicians, ceramists, and dental technology manufacturers.
+
+WorkDent is **not a generic job board or forum**. It is an authoritative clinical collaboration platform with:
+- **Zero Platform Fees for Dentists**: Free case posting, open directory search, and transparent quotation.
+- **100% Escrow Protection**: Client funds are secured in an isolated escrow vault before CAD production starts. Escrow is released exclusively upon dentist/lab approval of 3D restorative geometry.
+- **Calibrated Dental CAD Specialists**: Verified technicians with verified competencies across exocad (Rijeka/Galway), 3Shape Dental System, and MillBox CAM.
+- **Permanent Professional Identity**: Verified @username profiles, restorative portfolios, CAD software credentials, and verified client review records.
 
 ---
 
-## 2. Information Architecture & Routing
+## 2. Core Personas & Value Proposition
 
-| Route | Page | Primary Objective | Key Features |
-|---|---|---|---|
-| `/` | **Home** | Brand introduction, trust proof & ecosystem entry | Hero, Community preview, Job cards, Member highlights, VIP teaser, universal glass navbar |
-| `/community` | **Community** | Social discussion, case Q&A & troubleshooting | Category filtering (CAD/CAM, Lab, Tech, Troubleshooting), post creator, likes, comments, bookmarking |
-| `/jobs` | **Find Work & Jobs** | Dental job marketplace & freelance dispatch | Search & filters (CAD Designer, Tech, Lab, Remote, Full-time, Freelance), job posting modal, instant apply |
-| `/members` | **Members Directory** | Searchable professional networking | Filter by role (Technician, Lab, Dentist, Designer, Company), search by name or `@username`, Connect / Message |
-| `/gallery` | **Case Gallery** | Visual portfolio of clinical cases | Before & After clinical sliders, software tags (exocad, 3Shape), material metadata, like & share |
-| `/marketplace` | **Marketplace** | Dental equipment, materials & services | Category filters (Milling, 3D Printers, Scanners, Zirconia, Software, CAD Services), seller profiles, inquire modal |
-| `/profile` | **User Profile** | Personal & business identity page | Header with avatar, @username, verification badge, bio, skills, software, portfolio cases, ratings & reviews |
-| `/membership` | **VIP Membership** | Monetization & premium professional tiers | WorkDent Free vs WorkDent VIP ⭐ (featured listings, VIP badge, advanced networking, Stripe-ready) |
-| `/auth/login` | **Unified Auth** | Sign In / Sign Up with smooth switch | Tab switcher, Google OAuth, Email/Password, Passwordless OTP, Rate Limiting, 3-Day persistent cookies |
-| `/auth/register`| **Unified Auth** | Sign Up with role card selection | Role selection cards (Dentist, CAD Designer, Dental Lab), instant validation, OTP progression |
-| `/auth/register/verify` | **OTP Verification** | 6-box split OTP verification | Auto-advance digit boxes, paste handling, 60s resend timer, 3-day cookie issue |
+### 2.1 Dentists & Clinical Practice Surgeons
+- **Problem**: In-house chairside CAD takes too long; commercial local labs have 2-3 week backlogs for simple single crowns and bridge units.
+- **Solution**: Drag-and-drop intraoral scans (STL/PLY/OBJ), choose restorative specs (zirconia, e.max, margin gap, occlusal offset), and get sub-3-hour turnaround with guaranteed fit.
+
+### 2.2 Commercial Dental Laboratories
+- **Problem**: Seasonal volume spikes, staff shortages, and expensive overtime labor during peak weeks.
+- **Solution**: Outsource CAD design overflow to calibrated master technicians worldwide while maintaining strict clinical oversight.
+
+### 2.3 Freelance Dental CAD Designers & Master Ceramists
+- **Problem**: Chasing clients for payment, unpredictable cash flow, and lack of verified restorative showcase portfolios.
+- **Solution**: Guaranteed milestone escrow payments, automated invoice receipts, and global client discovery.
 
 ---
 
-## 3. UI/UX Design System Specifications (`/ui-ux-pro-max`)
+## 3. Product Architecture & Key Modules
 
-### 3.1 Visual Palette & Tokens
-- **Background**: `#F8FAFC` (soft modern slate) with subtle radial mesh gradient (`rgba(37,99,235,0.06)`)
-- **Primary Brand**: `#2563EB` (Royal Dental Blue)
-- **Primary Hover**: `#1D4ED8`
-- **Secondary Accent**: `#0284C7` (Sky Blue) & `#059669` (Clinical Emerald)
-- **Card Surface**: Glassmorphic `#FFFFFF` with `backdrop-filter: blur(16px)`, `border: 1px solid #E2E8F0`, and refined depth `box-shadow: 0 10px 30px -10px rgba(15,23,42,0.06)`
-- **Typography**: `Plus Jakarta Sans`, 400 (regular), 500 (medium), 600 (semi-bold), 700 (bold), 800 (extra-bold)
-- **High-Contrast Text**: `#0F172A` (Headings, WCAG AAA compliant), `#334155` (Body), `#64748B` (Muted labels)
-
-### 3.2 Floating Glassmorphism Navbar
-- Translucent surface: `background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);`
-- Clean brand mark: `WorkDent` with `Dent` highlighted in blue (zero arbitrary icon boxes).
-- Active navigation states with rounded pill hover transitions.
-- Fully accessible mobile drawer toggle with smooth slide/fade.
-
----
-
-## 4. Technical Architecture & Security Specifications
-
-### 4.1 Security Rate Limiting
-- **Threshold**: Maximum 5 failed authentication attempts per 5-minute rolling window.
-- **Cooldown**: 60-second lock with visual countdown timer on the submit button.
-- **Notification**: High-visibility alert toast: `⚠️ Security rate limit active: Too many attempts. Please wait X seconds.`
-
-### 4.2 3-Day Persistent Cookie Session
-- **Cookie Name**: `workdent_auth_session`
-- **Max-Age**: `259200` seconds (exactly 3 days).
-- **Security Flags**: `SameSite=Lax`, `Path=/`, `Secure` over HTTPS.
-- **Auto-Sync**: Checks expiration on route navigation; redirects smoothly to `/auth/login?expired=true` upon expiration.
-- **Global Cookie Consent & Session Banner**: Subtle bottom banner notifying users of session persistence.
-
-### 4.3 Supabase Backend Integration
-- Auth methods: `signUp`, `signInWithPassword`, `signInWithOtp`, `signInWithOAuth` (Google).
-- PostgreSQL database schemas for:
-  - `profiles` (`id`, `username`, `full_name`, `role`, `verified_badge`, `bio`, `software`, `rating`)
-  - `posts` (`id`, `user_id`, `category`, `title`, `content`, `likes_count`, `created_at`)
-  - `jobs` (`id`, `poster_id`, `title`, `type`, `remote`, `software`, `budget`, `created_at`)
-  - `marketplace_items` (`id`, `seller_id`, `title`, `category`, `price`, `image_url`)
+```mermaid
+flowchart TD
+    A[Visitor / Clinical User] --> B[Homepage & Network Discovery]
+    B --> C{Authenticated?}
+    C -->|No| D[Sign In / Create Account with Terms Agreement]
+    C -->|Yes| E[Navbar Google Avatar & Account Card]
+    D --> F[5-Step Professional Onboarding Wizard]
+    F --> G[Dashboard & Case Portal]
+    E --> G
+    G --> H[Post New Case with STL Scans]
+    G --> I[Browse Verified CAD Designers]
+    H --> J[100% Escrow Vault Lock]
+    J --> K[Technician CAD Design Delivery]
+    K --> L{Dentist 3D Review}
+    L -->|Approve| M[Release Escrow Funds to Tech]
+    L -->|Revise| N[Hold Escrow & Dispatch Adjustments]
+```
 
 ---
 
-## 5. Delivery Milestones
-- [x] Phase 1: Architecture, PRD, Task Breakdown & Progress Tracking
-- [x] Phase 2: Design System Core (`css/workdent-ui.css`) & Typography
-- [x] Phase 3: Unified Auth (Switch System, Google Login, Rate Limiter, 3-Day Cookies)
-- [x] Phase 4: Modern Homepage (`index.html`) with Community & Job Teasers
-- [x] Phase 5: Dedicated Community Hub (`community.html`)
-- [x] Phase 6: Dedicated Jobs & Work Portal (`jobs.html`)
-- [x] Phase 7: Searchable Members Directory (`members.html`) with @usernames
-- [x] Phase 8: Clinical Case Gallery (`gallery.html`) & 3D Viewer
-- [x] Phase 9: Dental Marketplace (`marketplace.html`)
-- [x] Phase 10: VIP Membership Page (`membership.html`)
-- [x] Phase 11: Automated Verification, Responsive Audit & Git Remote Push
+## 4. Feature Specifications & Requirements
+
+### 4.1 Terms & Conditions Checkbox (Legally Enforced)
+- **Unchecked by Default**: The registration checkbox requires explicit user consent before account creation.
+- **Click Behavior**: Clicking `"Terms & Conditions"` navigates directly to `/terms` without toggling the checkbox. Clicking `"Privacy Policy"` navigates to `/privacy`.
+- **Validation**: Submitting registration without checking the box triggers an instant feedback alert.
+
+### 4.2 Streamlined Profession Selector
+- Clunky role cards are completely replaced with an accessible `<select id="reg-profession">` dropdown:
+  - Dentist / Clinical Practice
+  - Dental Laboratory Owner / Manager
+  - Dental CAD/CAM Designer (exocad, 3Shape)
+  - Dental Ceramist / Master Technician
+  - Milling Center & Production Tech
+  - Dental Software / Technical Support
+  - Dental Manufacturer / Supplier
+  - Other Dental Professional
+
+### 4.3 Multi-Step Onboarding Wizard (`/onboarding`)
+- **Step 1: Profession & Role**: Specialization focus and experience level.
+- **Step 2: Location Details**: Country dropdown (20+ countries) with dependent state/province selector, city, and clinic/lab name.
+- **Step 3: CAD Software & Hardware Tech Stack**: Multi-select tags for exocad, 3Shape, MillBox, Blender for Dental, HyperDENT, Medit, and intraoral scanner presets.
+- **Step 4: Profile Photo & Bio**: Google profile picture auto-import with custom file upload fallback and initials generator.
+- **Step 5: Review & Confirm**: Real-time card summary and 1-click publishing.
+
+### 4.4 Authenticated Navbar State (Google-Style User Avatar)
+- When authenticated:
+  - Displays circular user avatar image (or crisp initial badge).
+  - Clicking avatar toggles a Google-style interactive dropdown card:
+    - User name, email, and role badge
+    - `My Profile & Portfolio` (`/profile`)
+    - `Work & Cases Dashboard` (`/dashboard`)
+    - `Post / Upload Dental Case` (`/cases/new`)
+    - `Edit Profile & Location` (`/onboarding`)
+    - Separator
+    - `Sign Out` (calls `WorkDentAuth.logout()`)
+    - `Delete Account` (calls `WorkDentAuth.deleteAccount()`)
+
+### 4.5 Visual Discipline (Healthcare Palette & STRICTLY ZERO PURPLE)
+- Primary Teal: `#087F8C`
+- Clinical Blue: `#2479D8`
+- Accent Turquoise: `#36C9C0`
+- Mint Tints: `#B9F3E8`, `#E8F8F7`
+- Deep Navy: `#102A43`
+- Healthcare Footer: `#0D2030` with `#1E3A52` borders and `#36C9C0` link hovers.
+- **Prohibited**: Absolutely zero purple, violet, indigo, or fuchsia tones.

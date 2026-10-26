@@ -21,32 +21,18 @@
     <header class="wd-navbar">
       
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 no-underline group">
-        <div class="size-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/25 group-hover:scale-105 transition-transform">
-          <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2C7.5 2 4 4.5 4 8c0 2.5 1.5 4.5 3 6.5 1.5 2 1.5 4.5 1 7.5 2-.5 4-1.5 4-3.5 0 2 2 3 4 3.5-.5-3-.5-5.5 1-7.5 1.5-2 3-4 3-6.5 0-3.5-3.5-6-8-6z"></path>
-          </svg>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-lg font-extrabold tracking-tight text-slate-950 flex items-center gap-1 leading-none">
-            WorkDent
-            <span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">Profile</span>
-          </span>
-          <span class="text-[10px] font-bold text-slate-500 tracking-wide mt-0.5 hidden sm:inline">Connect. Work. Grow.</span>
-        </div>
+      <a href="/" class="flex items-center text-2xl font-black text-[#102A43] no-underline tracking-tight group" aria-label="WorkDent Home">
+        <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+        <span class="hidden sm:inline-block text-[10px] font-bold text-slate-400 border-l border-slate-300 pl-2.5 ml-2">Profile</span>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-1 text-sm font-semibold">
+      <nav class="hidden md:flex items-center gap-1.5 text-sm font-semibold">
         <a href="/community" class="wd-nav-link">Community</a>
         <a href="/jobs" class="wd-nav-link">Find Jobs</a>
-        <a href="/members" class="wd-nav-link">Members</a>
+        <a href="/find-designers" class="wd-nav-link">Browse Designers</a>
         <a href="/gallery" class="wd-nav-link">Case Gallery</a>
         <a href="/marketplace" class="wd-nav-link">Marketplace</a>
-        <a href="/membership" class="wd-nav-link text-amber-700 hover:text-amber-800 flex items-center gap-1 font-bold">
-          <span>VIP</span>
-          <span class="text-xs">⭐</span>
-        </a>
       
         <!-- Desktop 3-Dots More Menu -->
         <div class="relative wd-more-dropdown">
@@ -123,7 +109,7 @@
     <div class="max-w-7xl mx-auto">
       
       <!-- Cover Banner -->
-      <div class="h-44 sm:h-56 w-full rounded-2xl bg-gradient-to-r from-blue-900 via-slate-900 to-indigo-950 relative overflow-hidden shadow-inner">
+      <div class="h-44 sm:h-56 w-full rounded-2xl bg-gradient-to-r from-[#0B1E2D] via-[#102A43] to-[#087F8C] relative overflow-hidden shadow-inner">
         <div class="absolute inset-0 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
         <div class="absolute bottom-4 right-4 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md text-white text-xs font-bold">
           <span class="size-2 rounded-full bg-emerald-400"></span>
@@ -138,13 +124,12 @@
           <div class="mb-2">
             <div class="flex flex-wrap items-center gap-2">
               <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-950" id="profile-name">Elena Rostova</h1>
-              <svg class="size-5 text-blue-600 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-              <span id="profile-vip-badge" class="wd-badge wd-badge-vip">⭐ VIP PRO</span>
+              <svg class="size-5 text-[#087F8C] shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
             </div>
             <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500 font-semibold mt-1">
               <span id="profile-handle">@cad_master_elena</span>
               <span>&bull;</span>
-              <span id="profile-role" class="wd-badge wd-badge-tech">CAD Specialist</span>
+              <span id="profile-role" class="px-2 py-0.5 rounded-full bg-teal-50 text-teal-800 font-bold border border-teal-200">CAD Specialist</span>
               <span>&bull;</span>
               <span id="profile-location">📍 Miami, FL, USA</span>
             </div>
@@ -176,22 +161,29 @@
           <div class="text-slate-500 font-semibold mt-0.5">Avg Turnaround</div>
         </div>
         <div class="p-3 bg-slate-50 rounded-xl">
-          <div class="text-xl font-black text-blue-600">100%</div>
-          <div class="text-slate-500 font-semibold mt-0.5">Escrow Success</div>
+          <div class="text-xl font-black text-[#087F8C]">100%</div>
+          <div class="text-slate-500 font-semibold mt-0.5">Escrow Protected</div>
         </div>
       </div>
 
       <!-- Profile Tabs -->
       <div class="flex items-center gap-4 mt-8 border-b border-slate-200 text-sm font-bold overflow-x-auto" id="profile-tabs">
-        <button class="pb-3 border-b-2 border-blue-600 text-blue-600 transition-colors whitespace-nowrap active" data-tab="portfolio">
+        <button class="pb-3 border-b-2 border-[#087F8C] text-[#087F8C] transition-colors whitespace-nowrap active" data-tab="portfolio">
           Case Portfolio (6)
         </button>
         <button class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition-colors whitespace-nowrap" data-tab="rates">
-          Rates & Turnaround
+          Rates &amp; Turnaround
         </button>
         <button class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition-colors whitespace-nowrap" data-tab="reviews">
           Reviews (48)
         </button>
+        <button class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition-colors whitespace-nowrap" data-tab="gear">
+          Software &amp; Equipment
+        </button>
+        <button class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition-colors whitespace-nowrap" data-tab="settings">
+          ⚙️ Account &amp; Settings
+        </button>
+      </div>
         <button class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 transition-colors whitespace-nowrap" data-tab="gear">
           Software & Lab Equipment
         </button>
@@ -218,7 +210,7 @@
         <div class="wd-item-card p-0 overflow-hidden">
           <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=600&q=80" class="h-48 w-full object-cover">
           <div class="p-4">
-            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-purple-50 text-purple-700">Veneers</span>
+            <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-teal-50 text-teal-800 border border-teal-200">Veneers</span>
             <h4 class="text-sm font-extrabold text-slate-900 mt-2">Minimally Invasive Anterior Smile Design #6-#11</h4>
             <p class="text-xs text-slate-500 mt-1">0.3mm contact margin &bull; Natural surface mamelons</p>
           </div>
@@ -345,6 +337,71 @@
       </div>
     </div>
 
+    <!-- Tab 5: Settings & Security -->
+    <div id="tab-settings" class="tab-pane hidden">
+      <div class="max-w-3xl mx-auto space-y-6">
+        
+        <!-- Account Overview Card -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+            <div>
+              <h3 class="text-lg font-black text-[#102A43]">Account Credentials &amp; Profile</h3>
+              <p class="text-xs text-slate-500 mt-0.5">Manage your WorkDent verified professional profile data</p>
+            </div>
+            <a href="/onboarding" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.75rem;">
+              <span>Update Profile via Wizard &rarr;</span>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+              <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Display Name</span>
+              <p class="font-extrabold text-sm text-[#102A43] m-0 mt-1" id="settings-name-val">Elena Rostova</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+              <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Registered Email</span>
+              <p class="font-extrabold text-sm text-[#102A43] m-0 mt-1" id="settings-email-val">elena@dentaldesign.io</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+              <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Role / Profession</span>
+              <p class="font-extrabold text-sm text-[#087F8C] m-0 mt-1" id="settings-role-val">Dental CAD Specialist</p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+              <span class="text-slate-400 font-bold uppercase tracking-wider text-[10px]">Active Session</span>
+              <p class="font-extrabold text-sm text-emerald-700 m-0 mt-1">3-Day Encrypted Cookie (Active)</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security & Danger Zone: Sign Out & Delete Account -->
+        <div class="bg-red-50/50 p-6 sm:p-8 rounded-3xl border border-red-200 shadow-sm">
+          <h3 class="text-lg font-black text-red-950">Security &amp; Account Actions</h3>
+          <p class="text-xs text-red-800 mt-1">Actions here affect your identity and session across the entire WorkDent network.</p>
+
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-red-200/60">
+            <div>
+              <p class="font-bold text-xs text-slate-800 m-0">Sign Out of Current Device</p>
+              <p class="text-[11px] text-slate-500 m-0 mt-0.5">Clears session cookie and redirects to sign in.</p>
+            </div>
+            <button type="button" onclick="window.WorkDentAuth.logout()" class="px-4 py-2 rounded-xl bg-white border border-slate-300 hover:bg-slate-50 text-xs font-bold text-slate-700 shadow-xs cursor-pointer">
+              Sign Out
+            </button>
+          </div>
+
+          <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-red-200/60">
+            <div>
+              <p class="font-bold text-xs text-red-900 m-0">Permanently Delete Account</p>
+              <p class="text-[11px] text-red-700 m-0 mt-0.5">Purges your public profile, portfolio cases, ratings, and login identity.</p>
+            </div>
+            <button type="button" onclick="window.WorkDentAuth.deleteAccount()" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-sm transition-colors cursor-pointer">
+              Delete Account
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </main>
 
   <!-- ==================== HIRE MODAL ==================== -->
@@ -363,7 +420,7 @@
       <form id="hire-form" class="mt-4 flex flex-col gap-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Restoration Type</label>
-          <select id="hire-case-type" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+          <select id="hire-case-type" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#087F8C]">
             <option value="10">Single Unit Posterior Crown ($10)</option>
             <option value="25">3-Unit Bridge ($25)</option>
             <option value="65">Full Arch All-on-X ($65)</option>
@@ -373,86 +430,87 @@
 
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">STL Scan Download Link (or Cloud Drive)</label>
-          <input type="url" required placeholder="https://wetransfer.com/... or Google Drive link" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600">
+          <input type="url" required placeholder="https://wetransfer.com/... or Google Drive link" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#087F8C]">
         </div>
 
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Prescription Notes & Tooth Numbers</label>
-          <textarea rows="3" required placeholder="e.g. Tooth #14 monolithic zirconia, shade A2, 0.035mm spacer, heavy occlusal clearance..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+          <textarea rows="3" required placeholder="e.g. Tooth #14 monolithic zirconia, shade A2, 0.035mm spacer, heavy occlusal clearance..." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#087F8C]"></textarea>
         </div>
 
         <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-200">
           <button type="button" id="cancel-hire-btn" class="px-3 py-2 text-xs font-bold text-slate-600 hover:bg-slate-100 rounded-lg">Cancel</button>
-          <button type="submit" class="wd-btn-primary" style="padding: 0.4rem 1.25rem; font-size: 0.8125rem;">Fund Escrow & Send Case</button>
+          <button type="submit" class="wd-btn-primary" style="padding: 0.4rem 1.25rem; font-size: 0.8125rem;">Fund Escrow &amp; Send Case</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ==================== 3-DAY COOKIE NOTICE BAR ==================== -->
-  <div id="wd-cookie-notice" class="wd-cookie-bar hidden">
-    <div class="flex items-center gap-3">
-      <div class="size-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center shrink-0">
-        <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-      </div>
-      <p class="text-xs text-slate-200 m-0">
-        <strong class="text-white">Secure 3-Day Session:</strong> WorkDent uses encrypted authentication cookies to keep you connected for 3 days across all network hubs.
-      </p>
-    </div>
-    <div class="flex items-center gap-2 shrink-0">
-      <button id="wd-cookie-dismiss" type="button" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-colors">Dismiss</button>
-      <button id="wd-cookie-accept" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white transition-colors">Accept & Remember (3 Days)</button>
-    </div>
-  </div>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer class="bg-slate-900 text-white pt-12 pb-8 border-t border-slate-800 mt-16">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-slate-800 text-xs">
-        <div>
-          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Network</h5>
-          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
-            <li><a href="/community" class="hover:text-white no-underline">Community & Forum</a></li>
-            <li><a href="/jobs" class="hover:text-white no-underline">Find Work (Jobs)</a></li>
-            <li><a href="/members" class="hover:text-white no-underline">Members Directory</a></li>
-            <li><a href="/gallery" class="hover:text-white no-underline">Case Gallery</a></li>
-            <li><a href="/marketplace" class="hover:text-white no-underline">Marketplace</a></li>
-            <li><a href="/membership" class="hover:text-amber-400 no-underline font-bold">VIP Membership ⭐</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 class="text-sm font-extrabold text-white mb-3">Dental CAD/CAM</h5>
-          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
-            <li><span>exocad Galway 3.2</span></li>
-            <li><span>3Shape Dental System</span></li>
-            <li><span>MillBox 5-Axis CAM</span></li>
-            <li><span>Blender for Dental</span></li>
-            <li><span>SprintRay & Asiga 3D</span></li>
-          </ul>
-        </div>
-        <div>
-          <h5 class="text-sm font-extrabold text-white mb-3">Company</h5>
-          <ul class="space-y-2 p-0 m-0 list-none text-slate-400">
-            <li><a href="/about-us" class="hover:text-white no-underline">About Us</a></li>
-            <li><a href="/our-story" class="hover:text-white no-underline">Our Story</a></li>
-            <li><a href="/how-it-works" class="hover:text-white no-underline">How It Works</a></li>
-            <li><a href="/contact" class="hover:text-white no-underline">Contact Support</a></li>
-            <li><a href="/terms" class="hover:text-white no-underline">Terms of Service</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 class="text-sm font-extrabold text-white mb-3">WorkDent Identity</h5>
-          <p class="text-slate-400 leading-relaxed mb-3">
-            Where Dental Professionals Connect, Work & Grow. Guaranteed escrow payments, vetted designers, and laboratory workflows.
+  <!-- ==================== FOOTER (MATCHING HEALTHCARE PALETTE) ==================== -->
+  <footer class="bg-[#0D2030] text-slate-300 py-16 border-t border-[#1E3A52] mt-16">
+    <div class="wd-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#1E3A52]">
+        
+        <!-- Brand Info -->
+        <div class="lg:col-span-2">
+          <a href="/" class="flex items-center text-2xl font-black text-white group mb-4 no-underline tracking-tight">
+            <span class="font-extrabold tracking-tight">Work<span class="text-[#087F8C]">Dent</span></span>
+          </a>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
+            The professional network connecting dental practices and labs with skilled CAD designers worldwide with 100% escrow protection.
           </p>
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-blue-900/50 text-blue-300 font-bold border border-blue-700 text-[11px]">
-            <span>Connect &bull; Work &bull; Grow</span>
+          
+          <div>
+            <form onsubmit="event.preventDefault(); document.getElementById('nl-success').classList.remove('hidden');" class="flex gap-2 max-w-sm">
+              <input type="email" placeholder="Enter your work email" required class="flex-1 rounded-xl bg-[#132A3E] border border-[#224564] px-3.5 py-2 text-xs text-white placeholder:text-slate-400 focus:outline-hidden focus:border-[#087F8C] transition-colors">
+              <button type="submit" class="wd-btn-primary py-2 px-3 text-xs" style="min-height: auto;">
+                Subscribe
+              </button>
+            </form>
+            <p id="nl-success" class="hidden text-xs text-emerald-400 mt-2 font-medium">&check; Thank you for subscribing to WorkDent updates!</p>
           </div>
         </div>
+
+        <!-- Navigation Col 1: Company -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Company</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/about-us" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">About Us</a></li>
+            <li><a href="/our-story" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Our Story</a></li>
+            <li><a href="/how-it-works" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">How It Works</a></li>
+          </ul>
+        </div>
+
+        <!-- Navigation Col 2: Marketplace -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Marketplace</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/find-designers" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Browse Designers</a></li>
+            <li><a href="/cases/new" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Post a Case</a></li>
+            <li><a href="/auth/register" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Create Account</a></li>
+          </ul>
+        </div>
+
+        <!-- Navigation Col 3: Support -->
+        <div>
+          <h4 class="text-xs font-extrabold uppercase tracking-widest text-white mb-4">Support</h4>
+          <ul class="space-y-2.5 text-sm list-none p-0">
+            <li><a href="/contact" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Contact</a></li>
+            <li><a href="/help" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Help Center</a></li>
+            <li><a href="/terms" class="text-slate-400 hover:text-[#36C9C0] no-underline transition-colors font-medium">Terms of Service</a></li>
+          </ul>
+        </div>
+
       </div>
-      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-2">
-        <span>&copy; 2026 WorkDent Inc. All rights reserved.</span>
-        <span>HIPAA Compliant &bull; Secure Escrow Architecture</span>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+        <p>&copy; Copyright 2026 WorkDent Dental Network. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="/privacy" class="text-slate-400 hover:text-[#36C9C0] no-underline">Privacy Policy</a>
+          <a href="/terms" class="text-slate-400 hover:text-[#36C9C0] no-underline">Terms of Use</a>
+          <a href="/security" class="text-slate-400 hover:text-[#36C9C0] no-underline">Security</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -464,8 +522,60 @@
     // Tab switching
     const tabBtns = document.querySelectorAll('#profile-tabs button');
     const tabPanes = document.querySelectorAll('.tab-pane');
+    
+    function switchTab(tabName) {
+      tabBtns.forEach(b => {
+        b.classList.remove('border-[#087F8C]', 'text-[#087F8C]', 'active');
+        b.classList.add('border-transparent', 'text-slate-500');
+        if (b.dataset.tab === tabName) {
+          b.classList.add('border-[#087F8C]', 'text-[#087F8C]', 'active');
+          b.classList.remove('border-transparent', 'text-slate-500');
+        }
+      });
+
+      tabPanes.forEach(p => {
+        if (p.id === 'tab-' + tabName) {
+          p.classList.remove('hidden');
+        } else {
+          p.classList.add('hidden');
+        }
+      });
+    }
+
     tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // Check hash for direct tab link e.g. /profile#settings
+    if (window.location.hash.includes('settings')) {
+      switchTab('settings');
+    }
+
+    // Dynamic session check: If current user is logged in and no "?id=" param is provided, load their profile!
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const designerId = urlParams.get('id');
+      if (!designerId && window.WorkDentAuth) {
+        const session = window.WorkDentAuth.validateSession();
+        if (session && session.email) {
+          const displayName = session.name || session.email.split('@')[0];
+          document.getElementById('profile-name').textContent = displayName;
+          document.getElementById('profile-handle').textContent = '@' + (session.username || displayName.toLowerCase().replace(/\s+/g, '_'));
+          document.getElementById('profile-role').textContent = (session.profession || session.role || 'dentist').replace('_', ' ').toUpperCase();
+          if (session.city && session.country) {
+            document.getElementById('profile-location').textContent = `📍 ${session.city}, ${session.country}`;
+          }
+          if (session.avatar_url) {
+            document.getElementById('profile-avatar').src = session.avatar_url;
+          }
+
+          // Populate Settings tab values
+          document.getElementById('settings-name-val').textContent = displayName;
+          document.getElementById('settings-email-val').textContent = session.email;
+          document.getElementById('settings-role-val').textContent = (session.profession || session.role || 'dentist').replace('_', ' ').toUpperCase();
+        }
+      }
+    });
         tabBtns.forEach(b => {
           b.classList.remove('border-blue-600', 'text-blue-600', 'active');
           b.classList.add('border-transparent', 'text-slate-500');
