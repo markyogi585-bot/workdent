@@ -1127,3 +1127,136 @@ p {
   pointer-events: auto !important;
   transform: translateY(0) !important;
 }
+
+/* ==================== MOBILE BOTTOM NAVIGATION DOCK ==================== */
+.wd-bottom-nav {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 -4px 20px rgba(15, 23, 42, 0.08) !important;
+  z-index: 999 !important;
+  padding-bottom: max(0.35rem, env(safe-area-inset-bottom)) !important;
+  pointer-events: auto !important;
+}
+
+@media (min-width: 768px) {
+  .wd-bottom-nav {
+    display: none !important;
+  }
+}
+
+body.has-bottom-nav {
+  padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+@media (min-width: 768px) {
+  body.has-bottom-nav {
+    padding-bottom: 0 !important;
+  }
+}
+
+.wd-bottom-nav-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-around !important;
+  max-width: 32rem !important;
+  margin: 0 auto !important;
+  height: 3.875rem !important;
+  padding: 0 0.5rem !important;
+}
+
+.wd-bottom-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.1875rem !important;
+  flex: 1 !important;
+  height: 100% !important;
+  min-height: 44px !important;
+  min-width: 44px !important;
+  text-decoration: none !important;
+  color: #627D98 !important;
+  font-size: 0.6875rem !important;
+  font-weight: 600 !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.wd-bottom-item:hover,
+.wd-bottom-item:active,
+.wd-bottom-item.active {
+  color: var(--wd-teal) !important;
+}
+
+.wd-bottom-item.active .wd-bottom-label {
+  font-weight: 800 !important;
+  color: var(--wd-teal) !important;
+}
+
+.wd-bottom-icon {
+  width: 1.375rem !important;
+  height: 1.375rem !important;
+  stroke-width: 2.1 !important;
+  transition: transform 0.15s ease !important;
+}
+
+.wd-bottom-item:active .wd-bottom-icon {
+  transform: scale(0.92) !important;
+}
+
+.wd-bottom-item.active .wd-bottom-icon {
+  stroke-width: 2.4 !important;
+}
+
+/* Elevated + Create Button in Center */
+.wd-bottom-create {
+  position: relative !important;
+  top: -0.625rem !important;
+}
+
+.wd-bottom-create-btn {
+  width: 2.875rem !important;
+  height: 2.875rem !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(135deg, #087F8C 0%, #2479D8 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 6px 18px rgba(8, 127, 140, 0.4) !important;
+  border: 2px solid #FFFFFF !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.wd-bottom-create:active .wd-bottom-create-btn {
+  transform: scale(0.92) !important;
+  box-shadow: 0 2px 8px rgba(8, 127, 140, 0.25) !important;
+}
+
+.wd-bottom-avatar {
+  width: 1.375rem !important;
+  height: 1.375rem !important;
+  border-radius: 9999px !important;
+  object-fit: cover !important;
+  border: 1.5px solid var(--wd-teal) !important;
+}
+
+.wd-bottom-initial {
+  width: 1.375rem !important;
+  height: 1.375rem !important;
+  border-radius: 9999px !important;
+  background: var(--wd-teal) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  font-size: 0.6875rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
