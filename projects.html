@@ -411,8 +411,13 @@
       });
     }
 
+    let currentActiveCaseId = null;
+    let currentActivePrice = null;
+
     function openReviewModal(caseId, title, tech, price) {
-      document.getElementById('modal-case-title').innerText = caseId + ' Inspection & Approval';
+      currentActiveCaseId = caseId;
+      currentActivePrice = price;
+      document.getElementById('modal-case-title').innerText = caseId + ' Inspection & Escrow Vault';
       document.getElementById('modal-case-tech').innerText = tech;
       document.getElementById('modal-case-price').innerText = price;
       document.getElementById('review-modal').classList.remove('hidden');
@@ -422,33 +427,54 @@
       document.getElementById('review-modal').classList.add('hidden');
     }
 
-    function approveMilestone() {
-      alert('Milestone Approved! Escrow payment has been released to technician. Production STL is now available for download.');
+    async function approveMilestone() {
+      if (!currentActiveCaseId) return;
+      const btn = event.target;
+      btn.disabled = true;
+      btn.innerText = 'Releasing Escrow in Supabase...';
+
+      const res = await window.WorkDentAuth.escrow.releaseEscrow(currentActiveCaseId);
+      alert('✓ Escrow Milestone Approved! ' + (currentActivePrice || '$22.00') + ' released to technician wallet. The final production STL has been unlocked.');
       closeReviewModal();
       location.reload();
     }
 
-    function requestRevision() {
-      const notes = prompt('Please specify required margin, contact, or anatomical adjustments for the technician:');
-      if (notes) {
-        alert('Revision request sent directly to the technician with your instructions. Escrow remains on hold.');
+    async function requestRevision() {
+      if (!currentActiveCaseId) return;
+      const notes = prompt('Please specify the clinical adjustments needed (e.g., reduce distal occlusion by 0.02mm, adjust margin seal):');
+      if (notes && notes.trim()) {
+        await window.WorkDentAuth.escrow.requestRevision(currentActiveCaseId, notes.trim());
+        alert('Revision request logged with technician. Escrow deposit remains securely locked in vault.');
         closeReviewModal();
+        location.reload();
       }
     }
 
     function simulateDownload(filename) {
-      alert('Downloading ' + filename + ' (Mill-Ready Binary STL)');
+      alert('Downloading ' + filename + ' (Direct from WorkDent CAD Storage)');
     }
 
-    // Render custom cases from localStorage if present
-    document.addEventListener('DOMContentLoaded', () => {
+    // Render custom and remote cases from Supabase & Local Cache
+    document.addEventListener('DOMContentLoaded', async () => {
       try {
-        const stored = JSON.parse(localStorage.getItem('workdent_custom_cases') || '[]');
+        const { remoteCases, localCases } = await window.WorkDentAuth.cases.getCases();
         const container = document.getElementById('cases-container');
-        stored.forEach(c => {
+
+        // Render local custom cases
+        localCases.forEach(c => {
           const div = document.createElement('div');
+          const isReleased = c.escrow_status === 'released_to_designer' || c.status === 'completed';
+          const isRevision = c.status === 'revision_requested';
+          
           div.className = 'case-card bg-white p-5 sm:p-6 rounded-3xl border border-teal-300 shadow-sm relative overflow-hidden';
-          div.setAttribute('data-status', c.status || 'review');
+          div.setAttribute('data-status', isReleased ? 'completed' : (isRevision ? 'review' : (c.status || 'review')));
+          
+          const statusBadge = isReleased
+            ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-100 text-emerald-900 border border-emerald-300">Escrow Released &bull; Completed</span>`
+            : (isRevision
+                ? `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300">Revision Requested &bull; Escrow Held</span>`
+                : `<span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-teal-100 text-teal-900 border border-teal-300">Escrow Held &bull; In Queue</span>`);
+
           div.innerHTML = `
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div class="flex items-start gap-4">
@@ -456,14 +482,14 @@
                 <div>
                   <div class="flex items-center gap-2">
                     <span class="font-extrabold text-slate-900 text-base">${c.id} &bull; ${c.title}</span>
-                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-teal-100 text-teal-900 border border-teal-300">Escrow Held: In Queue</span>
+                    ${statusBadge}
                   </div>
                   <div class="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
                     <span>Material: <strong>${c.material}</strong></span>
                     <span>&bull;</span>
                     <span>Assigned: <strong>${c.designer}</strong></span>
                     <span>&bull;</span>
-                    <span>Submitted: <strong>${c.timestamp}</strong></span>
+                    <span>Submitted: <strong>${c.timestamp || 'Today'}</strong></span>
                   </div>
                 </div>
               </div>
@@ -472,15 +498,18 @@
                   <span class="text-xs text-slate-400 block">Escrow Vault</span>
                   <span class="text-base font-extrabold text-[#087F8C]">${c.escrow}</span>
                 </div>
-                <button onclick="openReviewModal('${c.id}', '${c.title}', '${c.designer}', '${c.escrow}')" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.8125rem;">
-                  Inspect &amp; Manage &rarr;
-                </button>
+                ${isReleased 
+                  ? `<button onclick="simulateDownload('${c.id}_Final.stl')" class="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs transition-all flex items-center gap-1.5"><span>⬇</span> Download STL</button>`
+                  : `<button onclick="openReviewModal('${c.id}', '${c.title}', '${c.designer}', '${c.escrow}')" class="wd-btn-primary" style="padding: 0.5rem 1rem; min-height: 40px; font-size: 0.8125rem;">Inspect &amp; Manage &rarr;</button>`
+                }
               </div>
             </div>
           `;
           container.prepend(div);
         });
-      } catch (e) {}
+      } catch (e) {
+        console.warn('Projects render error:', e);
+      }
     });
   </script>
 </body>

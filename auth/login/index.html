@@ -446,9 +446,10 @@
           showNotice('Google authorization verified! Redirecting to setup...', 'success');
           setTimeout(() => {
             if (!window.WorkDentAuth.isOnboardingCompleted()) {
-              window.location.href = '/onboarding';
+              const redirect = window.WorkDentAuth.getRedirectDestination(res.role || profession);
+              window.location.href = `/onboarding?redirect=${encodeURIComponent(redirect)}`;
             } else {
-              window.location.href = '/dashboard';
+              window.location.href = window.WorkDentAuth.getRedirectDestination(res.role || profession);
             }
           }, 600);
         } else {
@@ -550,13 +551,12 @@
         signinBtnLabel.textContent = 'Signing In...';
         const res = await window.WorkDentAuth.login({ email, password });
         if (res.success) {
-          window.WorkDentAuth.RateLimiter?.recordAttempt(true);
+          window.WorkDentAuth.RateLimiter?.recordAttempt('auth', true);
           showNotice('Login successful! Redirecting...', 'success');
-          const urlParams = new URLSearchParams(window.location.search);
-          const dest = urlParams.get('redirect') || window.WorkDentAuth.getDashboardUrl(res.role);
+          const dest = window.WorkDentAuth.getRedirectDestination(res.role);
           setTimeout(() => { window.location.href = dest; }, 500);
         } else {
-          window.WorkDentAuth.RateLimiter?.recordAttempt(false);
+          window.WorkDentAuth.RateLimiter?.recordAttempt('auth', false);
           checkRateLimit();
           showNotice(res.error || 'Invalid credentials.', 'error');
           signinBtnLabel.textContent = 'Sign In';
@@ -613,13 +613,14 @@
         });
 
         if (res.success) {
-          window.WorkDentAuth.RateLimiter?.recordAttempt(true);
+          window.WorkDentAuth.RateLimiter?.recordAttempt('auth', true);
           showNotice('Account registered! Taking you to onboarding wizard...', 'success');
+          const intendedDest = window.WorkDentAuth.getRedirectDestination(profession);
           setTimeout(() => {
-            window.location.href = '/onboarding';
+            window.location.href = `/onboarding?redirect=${encodeURIComponent(intendedDest)}`;
           }, 600);
         } else {
-          window.WorkDentAuth.RateLimiter?.recordAttempt(false);
+          window.WorkDentAuth.RateLimiter?.recordAttempt('auth', false);
           checkRateLimit();
           showNotice(res.error || 'Registration failed.', 'error');
           regBtnLabel.textContent = 'Create WorkDent Account';

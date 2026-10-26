@@ -185,33 +185,41 @@
             </div>
           </div>
 
-          <!-- Section 3: File Upload Dropzone -->
+          <!-- Section 3: File Upload Dropzone (Supabase Storage Integrated) -->
           <div class="pt-4 border-t border-slate-100">
-            <h3 class="text-sm font-extrabold text-slate-900 mb-3 flex items-center gap-2">
-              <span class="size-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs">3</span>
-              <span>Intraoral Scans (Upper, Lower & Bite Registration)</span>
-            </h3>
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
+                <span class="size-6 rounded-lg bg-teal-100 text-teal-800 flex items-center justify-center text-xs font-bold">3</span>
+                <span>Intraoral Scans (Upper, Lower &amp; Bite Registration)</span>
+              </h3>
+              <span class="text-[11px] font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200">Supabase Storage</span>
+            </div>
 
-            <div class="border-2 border-dashed border-slate-300 hover:border-blue-500 rounded-2xl p-6 sm:p-8 text-center bg-slate-50 hover:bg-blue-50/30 transition-all cursor-pointer" onclick="document.getElementById('file-input').click()">
+            <div id="dropzone-box" class="border-2 border-dashed border-slate-300 hover:border-[#087F8C] rounded-2xl p-6 sm:p-8 text-center bg-slate-50 hover:bg-teal-50/20 transition-all cursor-pointer" onclick="document.getElementById('file-input').click()">
               <input type="file" id="file-input" multiple accept=".stl,.ply,.obj,.dentalProject,.zip" class="hidden" onchange="handleFileSelect(this)">
-              <div class="size-12 rounded-2xl bg-blue-100 text-blue-700 mx-auto flex items-center justify-center text-2xl mb-3">
+              <div class="size-12 rounded-2xl bg-teal-100 text-teal-800 mx-auto flex items-center justify-center text-2xl mb-3 font-bold">
                 📂
               </div>
               <div class="font-extrabold text-slate-900 text-sm">Drop your STL / PLY / OBJ scan files here</div>
-              <div class="text-xs text-slate-500 mt-1">Accepts Upper arch, Lower arch, Buccal bite, and .dentalProject files (up to 250 MB)</div>
+              <div class="text-xs text-slate-500 mt-1">Accepts Upper arch, Lower arch, Buccal bite, and .dentalProject files (up to 150 MB)</div>
               <button type="button" class="mt-3 px-4 py-2 rounded-xl bg-white border border-slate-300 text-xs font-bold text-slate-700 shadow-sm hover:bg-slate-50">
                 Browse Local Files
               </button>
             </div>
 
-            <div id="file-list-preview" class="hidden mt-3 space-y-2">
-              <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-between text-xs text-blue-900">
-                <span class="font-bold flex items-center gap-2">
-                  <span>📄</span> <span id="file-name-label">Upper_Jaw_Prep_19.stl</span>
-                </span>
-                <span class="font-bold text-emerald-700">Validated Ready</span>
+            <!-- Upload Progress Bar -->
+            <div id="upload-progress-container" class="hidden mt-3 p-3 rounded-xl bg-slate-100 border border-slate-200">
+              <div class="flex items-center justify-between text-xs font-bold text-slate-700 mb-1.5">
+                <span id="upload-status-text">Uploading scan files to Supabase Storage...</span>
+                <span id="upload-progress-percent" class="font-mono text-[#087F8C]">0%</span>
+              </div>
+              <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                <div id="upload-progress-bar" class="bg-[#087F8C] h-full w-0 transition-all duration-200 rounded-full"></div>
               </div>
             </div>
+
+            <!-- Uploaded Files List -->
+            <div id="file-list-preview" class="hidden mt-3 space-y-2"></div>
           </div>
 
           <!-- Section 4: Turnaround SLA & Budget -->
@@ -324,50 +332,142 @@
   <script src="/lib/workdent-supabase.js"></script>
   <script src="/lib/workdent-nav.js"></script>
   <script>
-    function handleFileSelect(input) {
-      if (input.files && input.files[0]) {
-        document.getElementById('file-name-label').innerText = input.files[0].name + ' (' + (input.files[0].size / (1024*1024)).toFixed(1) + ' MB)';
-        document.getElementById('file-list-preview').classList.remove('hidden');
+    const uploadedScanFiles = [];
+
+    // Drag-and-drop box enhancement
+    const dropzone = document.getElementById('dropzone-box');
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('border-[#087F8C]', 'bg-teal-50/40');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropzone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('border-[#087F8C]', 'bg-teal-50/40');
+      }, false);
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files && files.length) {
+        processFiles(files);
+      }
+    });
+
+    async function handleFileSelect(input) {
+      if (input.files && input.files.length) {
+        await processFiles(input.files);
       }
     }
 
-    function handlePostCase(e) {
+    async function processFiles(files) {
+      const progressContainer = document.getElementById('upload-progress-container');
+      const progressBar = document.getElementById('upload-progress-bar');
+      const progressPercent = document.getElementById('upload-progress-percent');
+      const listContainer = document.getElementById('file-list-preview');
+
+      progressContainer.classList.remove('hidden');
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        progressBar.style.width = '30%';
+        progressPercent.innerText = '30%';
+
+        const tempCaseId = 'case_pending_' + Date.now();
+        const res = await window.WorkDentAuth.storage.uploadScanFile(file, tempCaseId, (pct) => {
+          progressBar.style.width = pct + '%';
+          progressPercent.innerText = pct + '%';
+        });
+
+        if (res.success) {
+          uploadedScanFiles.push(res.file);
+          renderFileList();
+        } else {
+          alert(res.error || 'Failed to upload file ' + file.name);
+        }
+      }
+
+      setTimeout(() => {
+        progressContainer.classList.add('hidden');
+        progressBar.style.width = '0%';
+      }, 500);
+    }
+
+    function renderFileList() {
+      const listContainer = document.getElementById('file-list-preview');
+      listContainer.innerHTML = '';
+      if (!uploadedScanFiles.length) {
+        listContainer.classList.add('hidden');
+        return;
+      }
+      listContainer.classList.remove('hidden');
+
+      uploadedScanFiles.forEach((f, idx) => {
+        const item = document.createElement('div');
+        item.className = 'p-3 rounded-xl bg-teal-50/70 border border-teal-200 flex items-center justify-between text-xs text-teal-950';
+        item.innerHTML = `
+          <div class="flex items-center gap-2.5 truncate">
+            <span class="size-6 rounded-lg bg-teal-200 text-teal-800 flex items-center justify-center font-bold text-[10px] shrink-0">${f.type || 'STL'}</span>
+            <span class="font-bold truncate">${f.name}</span>
+            <span class="text-slate-500 font-mono text-[11px]">(${(f.size / (1024*1024)).toFixed(2)} MB)</span>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <span class="text-[11px] font-extrabold text-teal-700 bg-white px-2 py-0.5 rounded-md border border-teal-200">&check; Stored</span>
+            <button type="button" onclick="removeScanFile(${idx})" class="text-rose-600 hover:text-rose-800 font-bold px-1">&times;</button>
+          </div>
+        `;
+        listContainer.appendChild(item);
+      });
+    }
+
+    function removeScanFile(idx) {
+      uploadedScanFiles.splice(idx, 1);
+      renderFileList();
+    }
+
+    async function handlePostCase(e) {
       e.preventDefault();
       const btn = document.getElementById('btn-submit-case');
       btn.disabled = true;
-      btn.innerText = 'Locking Escrow & Uploading Scan Files...';
-
-      const caseId = '#WD-' + Math.floor(84000 + Math.random() * 9999);
-      document.getElementById('created-case-id').innerText = caseId;
+      btn.innerHTML = `
+        <span class="inline-block animate-spin mr-2">⟳</span>
+        Locking Escrow &amp; Creating Case in Supabase...
+      `;
 
       const caseType = document.getElementById('case-type').selectedOptions[0].text;
-      const teeth = document.getElementById('case-teeth').value;
+      const teeth = document.getElementById('case-teeth').value.trim();
       const material = document.getElementById('case-material').selectedOptions[0].text;
+      const cementGap = document.getElementById('case-cement').value;
+      const occlusal = document.getElementById('case-occlusal').value;
+      const notes = document.getElementById('case-notes').value.trim();
 
-      // Save into localStorage
-      const newCaseObj = {
-        id: caseId,
+      const caseData = {
         title: `${teeth} ${caseType}`,
+        restorationType: caseType,
+        toothNumbers: teeth,
         material: material,
-        designer: 'WorkDent Certified Tech Queue',
-        escrow: '$22.00',
-        status: 'review',
-        timestamp: 'Just now'
+        cementGapUm: Math.round(parseFloat(cementGap) * 1000),
+        occlusalOffsetUm: parseFloat(occlusal),
+        price: 22.00,
+        notes: notes,
+        scanFiles: uploadedScanFiles
       };
 
-      try {
-        const stored = JSON.parse(localStorage.getItem('workdent_custom_cases') || '[]');
-        stored.unshift(newCaseObj);
-        localStorage.setItem('workdent_custom_cases', JSON.stringify(stored));
-      } catch (e) {}
+      const result = await window.WorkDentAuth.cases.createCase(caseData);
+
+      document.getElementById('created-case-id').innerText = result.caseCode;
+      document.getElementById('case-form').classList.add('hidden');
+      document.getElementById('case-success-box').classList.remove('hidden');
 
       setTimeout(() => {
-        document.getElementById('case-form').classList.add('hidden');
-        document.getElementById('case-success-box').classList.remove('hidden');
-        setTimeout(() => {
-          window.location.href = '/projects';
-        }, 1200);
-      }, 900);
+        window.location.href = '/projects';
+      }, 1200);
     }
   </script>
 </body>

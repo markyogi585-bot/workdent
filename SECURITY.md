@@ -28,9 +28,15 @@ graph TD
    - Cookie Name: `workdent_auth_session`
    - Attributes: `Path=/; SameSite=Lax; Max-Age=259200; Secure`
    - Automatic Expiration: Validated on every page load via `WorkDentAuth.validateSession()`. If session age exceeds 259,200 seconds (3 days), the cookie is wiped immediately and the user is redirected to `/auth/login?expired=true`.
-2. **Brute-Force Rate Limiting**:
-   - `RateLimiter` enforces a sliding window of 5 failed attempts per 5 minutes.
-   - Upon exceeding limits, the submission button is disabled and a live 60-second cooldown timer is enforced across all auth forms.
+2. **Anti-Tamper Brute-Force Rate Limiting (Anti-Bypass Protection)**:
+   - `RateLimiter` enforces cryptographic HMAC/checksum integrity hashing on all rate records stored in `localStorage` and shadow memory.
+   - If an attacker manually modifies `attempts: 0` or clears `lockedUntil` via browser DevTools to bypass cooldowns, the signature check fails immediately, triggering a **15-minute Fraud-Lock Penalty**.
+   - Exponential Tiered Penalties:
+     - 1–4 attempts: Warning with remaining quota.
+     - 5 failed attempts: 60-second cooldown timer.
+     - 8 failed attempts: 15-minute security cooldown.
+     - 10+ failed attempts: 1-hour account lockout.
+   - Separate rate tracking across scopes: `auth`, `storage`, and `cases`.
 
 ---
 

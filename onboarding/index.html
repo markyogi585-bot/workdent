@@ -437,17 +437,22 @@
 
       document.getElementById('use-default-avatar-btn').addEventListener('click', showAvatarInitial);
 
-      // File upload for custom avatar
-      document.getElementById('avatar-file-input').addEventListener('change', function (e) {
+      // File upload for custom avatar (Supabase Storage Integrated)
+      document.getElementById('avatar-file-input').addEventListener('change', async function (e) {
         const file = e.target.files[0];
         if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (ev) {
-          userAvatarData = ev.target.result;
+        const note = document.getElementById('avatar-source-note');
+        note.textContent = 'Uploading to Supabase Storage...';
+
+        const res = await window.WorkDentAuth.storage.uploadAvatar(file);
+        if (res.success) {
+          userAvatarData = res.url;
           showAvatarImg(userAvatarData);
-          document.getElementById('avatar-source-note').textContent = 'Custom photo uploaded: ' + file.name;
-        };
-        reader.readAsDataURL(file);
+          note.textContent = 'Custom photo saved: ' + file.name;
+        } else {
+          alert(res.error || 'Failed to upload photo.');
+          note.textContent = 'Using default representation.';
+        }
       });
 
       // Software Tag Selection Toggle
@@ -580,8 +585,9 @@
         }
 
         setTimeout(() => {
-          window.location.href = '/dashboard?onboarding=success';
-        }, 600);
+          const targetUrl = window.WorkDentAuth.getRedirectDestination ? window.WorkDentAuth.getRedirectDestination(profession) : window.WorkDentAuth.getDashboardUrl(profession);
+          window.location.href = targetUrl + (targetUrl.includes('?') ? '&' : '?') + 'onboarding=success';
+        }, 500);
       };
 
     })();
