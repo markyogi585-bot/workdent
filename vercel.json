@@ -53,6 +53,9 @@
     { "source": "/how-it-works", "destination": "/how-it-works.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/onboarding", "destination": "/onboarding.html" },
+    { "source": "/cases/new", "destination": "/cases/new.html" },
     { "source": "/as/:role", "destination": "/as/:role.html" },
     { "source": "/help", "destination": "/help.html" },
     { "source": "/help/:slug", "destination": "/help/:slug.html" }
