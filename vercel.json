@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-XSS-Protection", "value": "1; mode=block" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/_next/static/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/auth/login", "destination": "/auth/login.html" },
+    { "source": "/auth/register", "destination": "/auth/register.html" },
+    { "source": "/auth/register/verify", "destination": "/auth/register/verify.html" },
+    { "source": "/auth/register/subscription", "destination": "/auth/register/subscription.html" },
+    { "source": "/auth/forgot", "destination": "/auth/forgot.html" },
+    { "source": "/auth/forgot/reset-password", "destination": "/auth/forgot/reset-password.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/designer/dashboard", "destination": "/designer/dashboard.html" },
+    { "source": "/designer/earnings", "destination": "/designer/earnings.html" },
+    { "source": "/designer/messages", "destination": "/designer/messages.html" },
+    { "source": "/designer/profile", "destination": "/designer/profile.html" },
+    { "source": "/designer/projects", "destination": "/designer/projects.html" },
+    { "source": "/designer/subscription", "destination": "/designer/subscription.html" },
+    { "source": "/designer/wallet", "destination": "/designer/wallet.html" },
+    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/projects/new", "destination": "/projects/new.html" },
+    { "source": "/profile", "destination": "/profile.html" },
+    { "source": "/messages", "destination": "/messages.html" },
+    { "source": "/referrals", "destination": "/referrals.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/about-us", "destination": "/about-us.html" },
+    { "source": "/our-story", "destination": "/our-story.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/as/:role", "destination": "/as/:role.html" },
+    { "source": "/help", "destination": "/help.html" },
+    { "source": "/help/:slug", "destination": "/help/:slug.html" }
+  ]
+}
