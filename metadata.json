@@ -1,0 +1,6 @@
+{
+  "name": "WorkDent — Dental CAD/CAM Marketplace",
+  "description": "The industry-leading on-demand Dental CAD/CAM design marketplace and clinical collaboration platform connecting dental clinics, laboratories, and verified CAD designers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

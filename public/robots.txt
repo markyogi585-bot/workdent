@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /designer/dashboard
+Disallow: /admin
+Disallow: /wallet
+Disallow: /messages
+Disallow: /settings
+
+Sitemap: https://workdent.net/sitemap.xml

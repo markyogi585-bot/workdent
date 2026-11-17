@@ -1,0 +1,248 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Pillar 0: Global Default-Deny Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Global Primitives
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation Blueprints
+    function isValidUserPublic(data) {
+      return data.keys().hasAll(['uid', 'fullName', 'role', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['uid', 'fullName', 'role', 'avatarUrl', 'bio', 'software', 'createdAt', 'updatedAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.uid == request.auth.uid
+        && data.fullName is string && data.fullName.size() >= 1 && data.fullName.size() <= 120
+        && data.role is string && data.role in ['DENTIST', 'LAB', 'DESIGNER']
+        && (!('avatarUrl' in data) || (data.avatarUrl is string && data.avatarUrl.size() <= 500))
+        && (!('bio' in data) || (data.bio is string && data.bio.size() <= 1000))
+        && (!('software' in data) || (data.software is string && data.software.size() <= 120))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidUserPrivate(data) {
+      return data.keys().hasAll(['uid', 'email', 'timezone', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['uid', 'email', 'phone', 'timezone', 'referralCode', 'createdAt', 'updatedAt'])
+        && data.uid is string && data.uid.size() >= 1 && data.uid.size() <= 128 && data.uid.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.uid == request.auth.uid
+        && data.email is string && data.email.size() >= 3 && data.email.size() <= 254
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 40))
+        && data.timezone is string && data.timezone.size() >= 1 && data.timezone.size() <= 64
+        && (!('referralCode' in data) || (data.referralCode is string && data.referralCode.size() <= 64))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidProject(data) {
+      return data.keys().hasAll(['title', 'status', 'serviceType', 'dentistId', 'escrowStatus', 'escrowAmount', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['title', 'description', 'status', 'serviceType', 'toothNumbers', 'dentistId', 'designerId', 'escrowStatus', 'escrowAmount', 'createdAt', 'updatedAt'])
+        && data.title is string && data.title.size() >= 1 && data.title.size() <= 200
+        && (!('description' in data) || (data.description is string && data.description.size() <= 2000))
+        && data.status is string && data.status in ['DRAFT', 'PENDING_ACCEPTANCE', 'IN_PROGRESS', 'IN_REVIEW', 'REVISION_REQUESTED', 'APPROVED', 'COMPLETED', 'DISPUTED', 'CANCELLED']
+        && data.serviceType is string && data.serviceType.size() >= 1 && data.serviceType.size() <= 100
+        && (!('toothNumbers' in data) || (data.toothNumbers is string && data.toothNumbers.size() <= 100))
+        && data.dentistId is string && data.dentistId.size() >= 1 && data.dentistId.size() <= 128 && data.dentistId.matches('^[a-zA-Z0-9_\\-]+$')
+        && (!('designerId' in data) || (data.designerId is string && data.designerId.size() >= 1 && data.designerId.size() <= 128 && data.designerId.matches('^[a-zA-Z0-9_\\-]+$')))
+        && data.escrowStatus is string && data.escrowStatus in ['AUTHORIZED_HOLD', 'CAPTURED', 'RELEASED_TO_DESIGNER', 'REFUNDED_TO_CLINIC', 'SPLIT_RESOLVED']
+        && data.escrowAmount is number && data.escrowAmount >= 0 && data.escrowAmount <= 100000
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidProjectFile(data) {
+      return data.keys().hasAll(['projectId', 'uploaderId', 'fileName', 'fileSize', 'fileType', 'storageUrl', 'isDeliverable', 'createdAt'])
+        && data.keys().hasOnly(['projectId', 'uploaderId', 'fileName', 'fileSize', 'fileType', 'storageUrl', 'isDeliverable', 'createdAt'])
+        && data.projectId is string && data.projectId.size() >= 1 && data.projectId.size() <= 128 && data.projectId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.uploaderId is string && data.uploaderId.size() >= 1 && data.uploaderId.size() <= 128 && data.uploaderId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.uploaderId == request.auth.uid
+        && data.fileName is string && data.fileName.size() >= 1 && data.fileName.size() <= 255
+        && data.fileSize is number && data.fileSize > 0 && data.fileSize <= 52428800
+        && data.fileType is string && data.fileType in ['STL', 'PLY', 'OBJ', 'ZIP', 'PDF', 'JPG', 'PNG']
+        && data.storageUrl is string && data.storageUrl.size() >= 1 && data.storageUrl.size() <= 500
+        && data.isDeliverable is bool
+        && data.createdAt is timestamp;
+    }
+
+    function isValidMessage(data) {
+      return data.keys().hasAll(['projectId', 'senderId', 'content', 'createdAt'])
+        && data.keys().hasOnly(['projectId', 'senderId', 'content', 'createdAt'])
+        && data.projectId is string && data.projectId.size() >= 1 && data.projectId.size() <= 128 && data.projectId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.senderId is string && data.senderId.size() >= 1 && data.senderId.size() <= 128 && data.senderId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.senderId == request.auth.uid
+        && data.content is string && data.content.size() >= 1 && data.content.size() <= 2000
+        && data.createdAt is timestamp;
+    }
+
+    function isValidNotification(data) {
+      return data.keys().hasAll(['userId', 'title', 'message', 'isRead', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['userId', 'title', 'message', 'isRead', 'createdAt', 'updatedAt'])
+        && data.userId is string && data.userId.size() >= 1 && data.userId.size() <= 128 && data.userId.matches('^[a-zA-Z0-9_\\-]+$')
+        && data.userId == request.auth.uid
+        && data.title is string && data.title.size() >= 1 && data.title.size() <= 200
+        && data.message is string && data.message.size() >= 1 && data.message.size() <= 1000
+        && data.isRead is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Master Gate Helper for Project Membership
+    function isProjectParticipant(projectId) {
+      let proj = get(/databases/$(database)/documents/projects/$(projectId)).data;
+      return proj.dentistId == request.auth.uid || ('designerId' in proj && proj.designerId == request.auth.uid);
+    }
+
+    // 1. User Public Profile (Split Collection)
+    match /users/{userId}/public/{docId} {
+      allow get: if isSignedIn() && isValidId(userId) && isValidId(docId);
+      allow list: if isSignedIn() && existing().uid == userId;
+      allow create: if isVerifiedUser()
+        && isValidId(userId)
+        && isValidId(docId)
+        && request.auth.uid == userId
+        && isValidUserPublic(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isVerifiedUser()
+        && isValidId(userId)
+        && isValidId(docId)
+        && request.auth.uid == userId
+        && isValidUserPublic(incoming())
+        && incoming().uid == existing().uid
+        && incoming().role == existing().role
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['fullName', 'avatarUrl', 'bio', 'software', 'updatedAt']);
+      allow delete: if false;
+    }
+
+    // 2. User Private Info (Strict PII Isolation)
+    match /users/{userId}/private/{docId} {
+      allow get: if isSignedIn() && isValidId(userId) && isValidId(docId) && request.auth.uid == userId;
+      allow list: if false;
+      allow create: if isVerifiedUser()
+        && isValidId(userId)
+        && isValidId(docId)
+        && request.auth.uid == userId
+        && isValidUserPrivate(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isVerifiedUser()
+        && isValidId(userId)
+        && isValidId(docId)
+        && request.auth.uid == userId
+        && isValidUserPrivate(incoming())
+        && incoming().uid == existing().uid
+        && incoming().email == existing().email
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['phone', 'timezone', 'updatedAt']);
+      allow delete: if false;
+    }
+
+    // 3. Projects Collection
+    match /projects/{projectId} {
+      allow get: if isSignedIn()
+        && isValidId(projectId)
+        && (existing().dentistId == request.auth.uid || ('designerId' in existing() && existing().designerId == request.auth.uid));
+      allow list: if isSignedIn()
+        && (existing().dentistId == request.auth.uid || ('designerId' in existing() && existing().designerId == request.auth.uid));
+      allow create: if isVerifiedUser()
+        && isValidId(projectId)
+        && isValidProject(incoming())
+        && incoming().dentistId == request.auth.uid
+        && incoming().status in ['DRAFT', 'PENDING_ACCEPTANCE']
+        && incoming().escrowStatus == 'AUTHORIZED_HOLD'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isVerifiedUser()
+        && isValidId(projectId)
+        && isValidProject(incoming())
+        && !(existing().status in ['COMPLETED', 'CANCELLED'])
+        && incoming().dentistId == existing().dentistId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          // Tier 1: Dentist Owner Actions (Approve, Revision, Edit Details)
+          (existing().dentistId == request.auth.uid
+            && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'description', 'status', 'escrowStatus', 'designerId', 'updatedAt']))
+          ||
+          // Tier 2: Assigned Designer Actions (Accept, Submit for Review)
+          (('designerId' in existing() && existing().designerId == request.auth.uid)
+            && incoming().designerId == existing().designerId
+            && incoming().escrowAmount == existing().escrowAmount
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']))
+        );
+      allow delete: if false;
+
+      // 4. Project Files Subcollection (Master Gate)
+      match /files/{fileId} {
+        allow get: if isSignedIn() && isValidId(projectId) && isValidId(fileId) && isProjectParticipant(projectId);
+        allow list: if isSignedIn() && isValidId(projectId) && existing().uploaderId == request.auth.uid;
+        allow create: if isVerifiedUser()
+          && isValidId(projectId)
+          && isValidId(fileId)
+          && isValidProjectFile(incoming())
+          && incoming().projectId == projectId
+          && incoming().createdAt == request.time
+          && isProjectParticipant(projectId);
+        allow update, delete: if false;
+      }
+
+      // 5. Project Messages Subcollection (Master Gate)
+      match /messages/{messageId} {
+        allow get: if isSignedIn() && isValidId(projectId) && isValidId(messageId) && isProjectParticipant(projectId);
+        allow list: if isSignedIn() && isValidId(projectId) && existing().senderId == request.auth.uid;
+        allow create: if isVerifiedUser()
+          && isValidId(projectId)
+          && isValidId(messageId)
+          && isValidMessage(incoming())
+          && incoming().projectId == projectId
+          && incoming().createdAt == request.time
+          && isProjectParticipant(projectId);
+        allow update, delete: if false;
+      }
+    }
+
+    // 6. Notifications Collection
+    match /notifications/{notificationId} {
+      allow get: if isSignedIn() && isValidId(notificationId) && existing().userId == request.auth.uid;
+      allow list: if isSignedIn() && existing().userId == request.auth.uid;
+      allow create: if isVerifiedUser()
+        && isValidId(notificationId)
+        && isValidNotification(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isVerifiedUser()
+        && isValidId(notificationId)
+        && isValidNotification(incoming())
+        && existing().userId == request.auth.uid
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['isRead', 'updatedAt']);
+      allow delete: if false;
+    }
+  }
+}

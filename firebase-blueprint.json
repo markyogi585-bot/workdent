@@ -1,0 +1,301 @@
+{
+  "entities": {
+    "UserPublic": {
+      "title": "UserPublic",
+      "description": "Public profile information for dentists, labs, and CAD designers without PII.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "role": {
+          "type": "string",
+          "enum": ["DENTIST", "LAB", "DESIGNER"]
+        },
+        "avatarUrl": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "bio": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "software": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "fullName", "role", "createdAt", "updatedAt"]
+    },
+    "UserPrivate": {
+      "title": "UserPrivate",
+      "description": "Private PII and account settings isolated to the owner.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "timezone": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "referralCode": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "email", "timezone", "createdAt", "updatedAt"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Dental CAD/CAM design case linking dentist/lab and assigned designer.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "PENDING_ACCEPTANCE",
+            "IN_PROGRESS",
+            "IN_REVIEW",
+            "REVISION_REQUESTED",
+            "APPROVED",
+            "COMPLETED",
+            "DISPUTED",
+            "CANCELLED"
+          ]
+        },
+        "serviceType": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "toothNumbers": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "dentistId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "designerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "escrowStatus": {
+          "type": "string",
+          "enum": [
+            "AUTHORIZED_HOLD",
+            "CAPTURED",
+            "RELEASED_TO_DESIGNER",
+            "REFUNDED_TO_CLINIC",
+            "SPLIT_RESOLVED"
+          ]
+        },
+        "escrowAmount": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "title",
+        "status",
+        "serviceType",
+        "dentistId",
+        "escrowStatus",
+        "escrowAmount",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ProjectFile": {
+      "title": "ProjectFile",
+      "description": "3D scan or CAD deliverable file metadata inside a project.",
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "uploaderId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "fileSize": {
+          "type": "number"
+        },
+        "fileType": {
+          "type": "string",
+          "enum": ["STL", "PLY", "OBJ", "ZIP", "PDF", "JPG", "PNG"]
+        },
+        "storageUrl": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "isDeliverable": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "projectId",
+        "uploaderId",
+        "fileName",
+        "fileSize",
+        "fileType",
+        "storageUrl",
+        "isDeliverable",
+        "createdAt"
+      ]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "Case discussion message inside a project.",
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "senderId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["projectId", "senderId", "content", "createdAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notification item.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "isRead": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["userId", "title", "message", "isRead", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/public/{docId}": {
+      "schema": { "$ref": "#/entities/UserPublic" },
+      "description": "Public profile record for a WorkDent clinician, lab, or designer."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/UserPrivate" },
+      "description": "Private PII record isolated strictly to the user."
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "Dental CAD/CAM design case."
+    },
+    "/projects/{projectId}/files/{fileId}": {
+      "schema": { "$ref": "#/entities/ProjectFile" },
+      "description": "3D scan and deliverable files belonging to a project."
+    },
+    "/projects/{projectId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/Message" },
+      "description": "Discussion messages belonging to a project."
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/Notification" },
+      "description": "User-scoped notifications."
+    }
+  }
+}

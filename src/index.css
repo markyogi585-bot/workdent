@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #262626;
+  --card: #ffffff;
+  --card-foreground: #262626;
+  --popover: #ffffff;
+  --popover-foreground: #262626;
+  --primary: #054bce;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #4b5563;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #fffbeb;
+  --accent-foreground: #92400e;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #054bce;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #262626;
+  --sidebar-primary: #054bce;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #0d0d1a;
+  --foreground: #f3f4f6;
+  --card: #141428;
+  --card-foreground: #f3f4f6;
+  --popover: #141428;
+  --popover-foreground: #f3f4f6;
+  --primary: #054bce;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1e38;
+  --secondary-foreground: #d1d5db;
+  --muted: #181830;
+  --muted-foreground: #9ca3af;
+  --border: #262645;
+  --input: #262645;
+  --sidebar: #111122;
+  --sidebar-foreground: #f3f4f6;
+  --sidebar-border: #262645;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+.bg-background {
+  background-color: var(--background);
+}
+.text-foreground {
+  color: var(--foreground);
+}
+.bg-card {
+  background-color: var(--card);
+}
+.text-card-foreground {
+  color: var(--card-foreground);
+}
+.bg-primary {
+  background-color: var(--primary);
+}
+.text-primary {
+  color: var(--primary);
+}
+.text-primary-foreground {
+  color: var(--primary-foreground);
+}
+.bg-secondary {
+  background-color: var(--secondary);
+}
+.text-secondary-foreground {
+  color: var(--secondary-foreground);
+}
+.bg-muted {
+  background-color: var(--muted);
+}
+.text-muted-foreground {
+  color: var(--muted-foreground);
+}
+.border-border {
+  border-color: var(--border);
+}

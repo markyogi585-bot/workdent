@@ -1,0 +1,170 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  DENTIST
+  LAB
+  DESIGNER
+  ADMIN
+}
+
+enum ProjectStatus {
+  DRAFT
+  PENDING_ACCEPTANCE
+  IN_PROGRESS
+  IN_REVIEW
+  REVISION_REQUESTED
+  APPROVED
+  COMPLETED
+  DISPUTED
+  CANCELLED
+}
+
+enum EscrowStatus {
+  AUTHORIZED_HOLD
+  CAPTURED
+  RELEASED_TO_DESIGNER
+  REFUNDED_TO_CLINIC
+  SPLIT_RESOLVED
+}
+
+model User {
+  id                    Int             @id @default(autoincrement())
+  email                 String          @unique
+  passwordHash          String
+  fullName              String
+  role                  Role            @default(DENTIST)
+  phone                 String?
+  avatarUrl             String?
+  timezone              String          @default("UTC")
+  twoFactorEnabled      Boolean         @default(false)
+  twoFactorSecret       String?
+  emailVerified         Boolean         @default(false)
+  stripeCustomerId      String?
+  stripeConnectId       String?
+  referralCode          String          @unique @default(cuid())
+  referredById          Int?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  createdProjects       Project[]       @relation("DentistProjects")
+  assignedProjects      Project[]       @relation("DesignerProjects")
+  sentMessages          Message[]       @relation("SentMessages")
+  receivedMessages      Message[]       @relation("ReceivedMessages")
+  notifications         Notification[]
+  portfolioItems        PortfolioItem[]
+  services              DesignerService[]
+  stagedFiles           StagedFile[]
+}
+
+model Project {
+  id                    Int             @id @default(autoincrement())
+  title                 String
+  description           String?
+  status                ProjectStatus   @default(PENDING_ACCEPTANCE)
+  serviceType           String
+  toothNumbers          String?
+  dentistId             Int
+  designerId            Int?
+  escrowStatus          EscrowStatus    @default(AUTHORIZED_HOLD)
+  escrowAmount          Decimal         @db.Decimal(10, 2)
+  platformFee           Decimal         @db.Decimal(10, 2)
+  stripePaymentIntentId String?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  dentist               User            @relation("DentistProjects", fields: [dentistId], references: [id])
+  designer              User?           @relation("DesignerProjects", fields: [designerId], references: [id])
+  files                 ProjectFile[]
+  messages              Message[]
+}
+
+model StagedFile {
+  id                    Int             @id @default(autoincrement())
+  userId                Int
+  fileName              String
+  fileSize              Int
+  mimeType              String
+  storageUrl            String
+  createdAt             DateTime        @default(now())
+
+  user                  User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ProjectFile {
+  id                    Int             @id @default(autoincrement())
+  projectId             Int
+  fileName              String
+  fileSize              Int
+  fileType              String          // STL, PLY, OBJ, ZIP, PDF
+  storageUrl            String
+  isDeliverable         Boolean         @default(false)
+  createdAt             DateTime        @default(now())
+
+  project               Project         @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id                    Int             @id @default(autoincrement())
+  senderId              Int
+  receiverId            Int
+  projectId             Int?
+  content               String
+  isRead                Boolean         @default(false)
+  createdAt             DateTime        @default(now())
+
+  sender                User            @relation("SentMessages", fields: [senderId], references: [id])
+  receiver              User            @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  project               Project?        @relation(fields: [projectId], references: [id])
+  attachments           Attachment[]
+}
+
+model Attachment {
+  id                    Int             @id @default(autoincrement())
+  messageId             Int
+  fileName              String
+  fileSize              Int
+  storageUrl            String
+
+  message               Message         @relation(fields: [messageId], references: [id], onDelete: Cascade)
+}
+
+model Notification {
+  id                    Int             @id @default(autoincrement())
+  userId                Int
+  title                 String
+  message               String
+  link                  String?
+  isRead                Boolean         @default(false)
+  createdAt             DateTime        @default(now())
+
+  user                  User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PortfolioItem {
+  id                    Int             @id @default(autoincrement())
+  userId                Int
+  title                 String
+  description           String?
+  imageUrl              String
+  isFeatured            Boolean         @default(false)
+  createdAt             DateTime        @default(now())
+
+  designer              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model DesignerService {
+  id                    Int             @id @default(autoincrement())
+  userId                Int
+  serviceName           String          // Crown, Bridge, Implant, Denture, Aligner
+  price                 Decimal         @db.Decimal(10, 2)
+  turnaroundHours       Int             @default(24)
+
+  designer              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

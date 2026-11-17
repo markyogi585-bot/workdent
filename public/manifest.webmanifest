@@ -1,0 +1,16 @@
+{
+  "name": "Workdent — Dental CAD Marketplace",
+  "short_name": "Workdent",
+  "description": "Dental CAD, designed by experts. Upload STL/PLY/OBJ scans, hire verified exocad & 3Shape designers, inspect in 3D, and pay with escrow protection.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBFBFD",
+  "theme_color": "#00BFA6",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
